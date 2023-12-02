@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
+const data = readFileSync("day1.txt").toString();
 
 const words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-const data = readFileSync("day1.txt").toString();
 
 let d1 = null, d2 = null;
 let sum = 0;
