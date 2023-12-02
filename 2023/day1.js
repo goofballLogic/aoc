@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-const data = readFileSync("day1.txt").toString();
+const data = readFileSync("day1-input.txt").toString();
 
 const words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
