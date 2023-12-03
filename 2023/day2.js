@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 const filename = "day2-input2.txt";
+const raw = readFileSync(filename).toString().trim().split("\n");
 
 const parseGame = game => parseInt(game.split(" ")[1]);
 
@@ -15,7 +16,7 @@ const parseLineSegments = ([game, handful]) => ([parseGame(game), parseHandful(h
 
 const parseLine = line => parseLineSegments(line.split(":"));
 
-const data = readFileSync(filename).toString().trim().split("\n").map(parseLine);
+const data = raw.map(parseLine);
 
 // problem 1
 
