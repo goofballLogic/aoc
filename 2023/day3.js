@@ -64,21 +64,28 @@ const not = fn => x => !fn(x);
 
 (function part2() {
 
-    const ratios = (symbol, line) => line
-        .filter(maybeNumber => not(isSymbol)(maybeNumber))
-        .filter(maybeRatio => (startOf(maybeRatio) <= startOf(symbol) + 1) && endOf(maybeRatio) >= startOf(symbol))
+    const adjacentNumbersForLine = (symbol, line) => line
+        // only numbers
+        .filter(seq => not(isSymbol)(seq))
+        // numbers must be adjacent to the symbol
+        .filter(seq => (startOf(seq) <= startOf(symbol) + 1) && endOf(seq) >= startOf(symbol))
+        // to list of values
         .flatMap(valueOf)
         ;
 
     const adjacentNumbers = (symbol, nearLines) => nearLines
-        .map(line => ratios(symbol, line))
-        .filter(seq => seq.length)
+        // potential ratios for each nearby line
+        .map(line => adjacentNumbersForLine(symbol, line))
+        // to single list of values
         .flatMap(x => x)
         ;
 
     const collectAllRatios = (line, i, lines) => line
+        // find the symbols
         .filter(seq => isSymbol(seq))
+        // find adjacent numbers to each symbol
         .map(symbol => adjacentNumbers(symbol, [lines[i - 1], line, lines[i + 1]]))
+        // but only if there are exactly 2 adjacent
         .filter(adjacents => adjacents.length === 2);
     ;
 
