@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-const filename = "day3-input2.txt";
+const filename = "day3-input1.txt";
 const raw = readFileSync(filename).toString().trim().split("\n");
 console.log(raw.join("\n"));
 
@@ -14,7 +14,7 @@ const parseLine = line => findMatches(line).map(match => [
 const startOf = xs => xs[1];
 const endOf = xs => xs[2];
 const valueOf = xs => xs[0];
-const isSymbol = xs => xs[3];
+const isSymbol = xs => xs?.[3];
 const not = fn => x => !fn(x);
 
 (function part1() {
@@ -23,27 +23,30 @@ const not = fn => x => !fn(x);
 
     const isAdjacent = (seq, pos) => (pos >= (startOf(seq) - 1)) && (pos <= endOf(seq));
 
-    const beforeSymbol = (seq, next) => Array.isArray(next) && (startOf(next) === endOf(seq)) && isSymbol(next);
+    const isBeforeSymbol = (seq, next) => isSymbol(next) && (startOf(next) === endOf(seq));
 
-    const afterSymbol = (seq, prev) => Array.isArray(prev) && (startOf(seq) === endOf(prev)) && isSymbol(prev);
+    const isAfterSymbol = (seq, prev) => isSymbol(prev) && (startOf(seq) === endOf(prev));
 
-    const aboveSymbol = (seq, nextLine) => Array.isArray(nextLine) && nextLine
-        .filter(isSymbol)
-        .map(nextLineSeq => startOf(nextLineSeq))
-        .some(pos => isAdjacent(seq, pos));
+    const isVerticallyAdjacent = (seq, line) =>
+        Array.isArray(line) && line
+            // just the symbols
+            .filter(isSymbol)
+            // get the position of the symbol
+            .map(nextLineSeq => startOf(nextLineSeq))
+            // is the symbol adjacent?
+            .some(pos => isAdjacent(seq, pos));
 
-    const underSymbol = (seq, prevLine) => Array.isArray(prevLine) && prevLine
-        .filter(isSymbol)
-        .map(prevLineSeq => startOf(prevLineSeq))
-        .some(pos => isAdjacent(seq, pos));
-
-    const horizontalAnalysis = line => line.map(
-        (seq, i) => (beforeSymbol(seq, line[i + 1]) || afterSymbol(seq, line[i - 1]))
-            ? [...seq, "h"]
-            : seq);
+    const horizontalAnalysis = line =>
+        // for each sequence in the line
+        line.map((seq, i) =>
+            // if there's symbol before or after, then mark "h"
+            (isBeforeSymbol(seq, line[i + 1]) || isAfterSymbol(seq, line[i - 1]))
+                ? [...seq, "h"]
+                : seq);
 
     const verticalAnalysis = (line, i, lines) => line.map(
-        seq => (aboveSymbol(seq, lines[i + 1]) || underSymbol(seq, lines[i - 1]))
+        // if vertically adjacent to the next or previous, then mark "v"
+        seq => (isVerticallyAdjacent(seq, lines[i + 1]) || isVerticallyAdjacent(seq, lines[i - 1]))
             ? [...seq, "v"]
             : seq);
 
