@@ -11,7 +11,7 @@ function marginOfError([time, record]) {
     for (let speed = 0; speed < time; speed++) {
 
         const distance = speed * (time - speed);
-        if (speed % 1000 === 0) console.log(speed, time);
+        if (speed > 0 && speed % 10000000 === 0) console.log(speed, time);
         if (distance > record) wins.push(speed);
 
     }
@@ -45,10 +45,12 @@ function marginOfError([time, record]) {
         .map(([_label, numbers]) => parseInt(numbers.replace(/ /g, "")))
         ;
 
+    console.log("\nParsed", parsed);
+
     const data = marginOfError(parsed)
         ;
 
-    console.log(data);
+    console.log("Part 2", data);
 
 }())
 
