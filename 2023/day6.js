@@ -21,7 +21,6 @@ function marginOfError([time, record]) {
 
 (function part1() {
 
-
     const parsed = raw
         .map(line => line.split(" ").filter(x => x).slice(1).map(x => parseInt(x)))
         .reduce((output, line, i) => i === 0 ? [...line] : line.map((x, j) => [output[j], x]), null)
