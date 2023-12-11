@@ -75,9 +75,6 @@ const expandNodeUniverse = (node, { emptyRowIndexes, emptyColumnIndexes }) => ({
         .filter(x => x !== null)
         ;
 
-    console.log(emptyRowIndexes);
-    console.log(emptyColumnIndexes);
-
     const data = raw
         .flatMap((line, y) => line.split("").map((node, x) => ({ x, y, node })))
         .filter(node => node.node !== ".")
