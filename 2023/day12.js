@@ -10,9 +10,9 @@ const parseLineGroups = groups =>
         .map(x => parseInt(x))
     ;
 
-const parseLineParts = ([symbols, groups]) => //console.log(symbols, groups) ||
+const parseLineParts = ([symbols, groups]) =>
 ({
-    symbols: symbols, // parseLineSymbols(symbols),
+    symbols: symbols,
     groups: parseLineGroups(groups)
 });
 
@@ -45,21 +45,22 @@ const accumulateFitsForLine = ({ symbols, groups, debug = [] }, i) => {
     if (key in memos) return memos[key];
 
     if (!groups.length) return 0;
-    // 2) if this is the last group
+    // if this is the last group
     if (groups.length === 1) {
-        // 3)   return the number of possible positions within the symbols
+        // return the number of possible positions within the symbols
         const result = findFits(symbols, groups[0])
             // we can't be left with any known # over
             .filter(([_, remainingSymbols]) => !remainingSymbols.includes("#"))
             .length;
         memos[key] = result;
         return result;
-        // 4) else
+
     } else {
+
         let count = 0;
-        // 5)   for each possible position, consume necessary symbols and
+        // for each possible position, consume necessary symbols and
         for (let [i, remainingSymbols] of findFits(symbols, groups[0])) {
-            // 6)       add recursive call for remaining symbols and groups
+            // add recursive call for remaining symbols and groups
             count += accumulateFitsForLine({
                 symbols: remainingSymbols,
                 groups: groups.slice(1),
@@ -115,7 +116,7 @@ const part2 = lines =>
     lines
         .map(parseLine)
         .map(unfoldLine)
-        .map((x, i) => accumulateFitsForLine(x))
+        .map(accumulateFitsForLine)
         .reduce((a, b) => a + b)
     ;
 

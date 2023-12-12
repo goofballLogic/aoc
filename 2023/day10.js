@@ -109,23 +109,12 @@ function connect(node, graph) {
         ];
 
     }
-    console.log(start);
 
     data.forEach(line => line.forEach(node => {
 
         if (!node.isPath) node.pipe = "."
 
     }));
-
-
-    console.log(
-        data
-            .map(line => line
-                //.filter(node => !node.isFake)
-                .map(node => node.isPath ? " " : node.pipe)
-                .join(""))
-            .filter(x => x)
-            .join("\n"));
 
     let updated;
     do {
@@ -159,16 +148,6 @@ function connect(node, graph) {
 
     } while (updated);
 
-    console.log(
-        data
-            .map(line => line
-                //.filter(node => !node.isFake)
-                .map(node => node.isPath ? " " : node.pipe)
-                .join(""))
-            .filter(x => x)
-            .join("\n")
-    );
-
     const count = data
         .flatMap(line => line)
         .filter(node => node.pipe === "." && !node.isFake)
@@ -176,6 +155,6 @@ function connect(node, graph) {
         ;
 
 
-    console.log(count);
+    console.log("Part 2", count);
 
 }());
