@@ -40,7 +40,6 @@ const distance = (a, b) =>
             raw.map(line => line.split(""))
         )
             .map(labelLocations)
-            //.map(line => console.log(line.map(x => `    ${x}`.substring(x.length - 1)).join("")) || line)
             .map((line, y) => line.map((node, x) => ({ x, y, node })))
             .flatMap(line => line)
             .filter(node => node.node !== ".")

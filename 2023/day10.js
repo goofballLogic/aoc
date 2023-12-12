@@ -177,6 +177,5 @@ function connect(node, graph) {
 
 
     console.log(count);
-    //console.log(data);
 
 }());
