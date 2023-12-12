@@ -38,12 +38,12 @@ const solveLine = line => {
         .reduce((a, b) => a + b)
         ;
 
-    console.log(data);
+    console.log("Part 1", data);
 
 }());
 
 
-(function part1() {
+(function part2() {
 
     const data = raw
         .map(xs => xs.reverse())
@@ -53,6 +53,6 @@ const solveLine = line => {
         .reduce((a, b) => a + b)
         ;
 
-    console.log(data);
+    console.log("Part 2", data);
 
 }());
