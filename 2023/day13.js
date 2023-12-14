@@ -1,11 +1,6 @@
 import { readFileSync } from "node:fs";
 import { test } from "./test.js";
-
-Array.prototype.firstOrNull = function (strategy) {
-
-    return this.reduce((found, x, i, xs) => found ?? strategy(x, i, xs), null);
-
-};
+import "./evil.js";
 
 const input = 2;
 const day = 13;
