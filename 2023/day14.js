@@ -58,8 +58,8 @@ const slideLineEast = xs =>
         .pipe(segmentLine)
         .map(segment => sortSegment(segment))
         .pipe(desegmentLine)
-
     ;
+
 /*
     O.#OO.  >>>>   .O#.OO
 */
@@ -150,28 +150,27 @@ test(
 
 function stabilise(lines, repetitions) {
 
-    let skipped = false;
-    const spinMemos = {};
+    let skipPending = true;
+    const memos = {};
     let current = lines;
     for (let i = 0; i < repetitions; i++) {
 
         current = spin(current);
-        const key = gridKey(current);
-        if (key in spinMemos) {
+        if (skipPending) {
 
-            if (!skipped) {
+            const key = gridKey(current);
+            if (key in memos) {
 
                 // we've reached stability
-                const memo = spinMemos[key];
-                const i0 = i;
+                const memo = memos[key];
                 i = advanceCounter(i, memo, repetitions);
-                skipped = true;
-                console.log("Skipped from", i0, "to", i);
+                skipPending = false;
+
+            } else {
+
+                memos[key] = { current, i };
+
             }
-
-        } else {
-
-            spinMemos[key] = { current, i };
 
         }
 
