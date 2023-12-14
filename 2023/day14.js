@@ -17,16 +17,9 @@ const gridKey = xs => xs.map(ys => ys.join("")).join(",");
 */
 test("grid key", "12,34", () => gridKey([[1, 2], [3, 4]]));
 
-const rorateClockwiseMemos = {};
-const rotateClockwise = xs => {
-
-    // const key = gridKey(xs);
-    // if (key in rorateClockwiseMemos) return rorateClockwiseMemos[key]
-    let result = xs[0].map((_, i) => nthColumn(xs, i).reverse())
-    //rorateClockwiseMemos[key] = result;
-    return result;
-
-};
+const rotateClockwise = xs =>
+    xs[0].map((_, i) => nthColumn(xs, i).reverse())
+    ;
 /*
     1 2     3 1
     3 4 >>> 4 2
