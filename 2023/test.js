@@ -16,7 +16,7 @@ export function test(description, expected, strategy) {
             } else {
 
                 console.log("\x1b[31;1m X \x1b[0m", consoleDescription);
-                console.log("\tExpected:", expected, ". Actual:", actual);
+                console.log("\tExpected:", JSON.stringify(expected), ". Actual:", JSON.stringify(actual));
 
             }
 

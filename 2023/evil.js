@@ -6,7 +6,7 @@ Array.prototype.firstOrNull = function (strategy) {
 
 Array.prototype.sum = function () {
 
-    return this.reduce((a, b) => a + b);
+    return this.reduce((a, b) => a + b, 0);
 
 };
 
