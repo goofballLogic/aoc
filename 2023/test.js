@@ -1,7 +1,7 @@
 export function test(description, expected, strategy) {
 
     const consoleDescription = description.includes("\n")
-        ? description.replace(/\n/g, "\n    ")
+        ? description.replace(/\n/g, "\n    ") + "\n"
         : description;
 
     if (strategy) {
