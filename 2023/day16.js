@@ -117,7 +117,7 @@ const walk = (map, [dir, line, x], energised) =>
     ;
 
 test(".. Walk E,0,0", [null, { x: 1, "0_1": 1 }], () => walk([".."], [E, 0, 0], { x: 1 }));
-// test(".\\ Walk E,0,0", [[0, 1, "\\"], 1], () => walk([".\\"], [E, 0, 0]));
+test(".\\ Walk E,0,0", [[0, 1, "\\"], { "0_1": 1 }], () => walk([".\\"], [E, 0, 0]));
 
 // const pathsAfterTile = (dir, [line, x, symbol]) =>
 //     transformBeam(dir, symbol)
