@@ -235,7 +235,11 @@ const part2 = lines =>
                 countWalk([E, y, -1]),
                 countWalk([W, y, line.length])
             ), 0),
-        lines[0].split("").reduce((max, _, x) => Math.max(5, max), 0)
+        lines[0].split("").reduce((max, _, x) =>
+            Math.max(
+                max,
+                countWalk([S, x, 0])
+            ), 0)
     )
     ;
 
