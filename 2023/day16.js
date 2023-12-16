@@ -221,6 +221,8 @@ test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(parseTestData(x)));
 test([".|\\", ".\\/"].join("\n"), 5, x => part1(parseTestData(x)));
 
 console.log(raw);
+console.time("Part 1");
 console.log("Part 1", part1(raw));
+console.timeEnd("Part 1");
 
 test(["./\\", ".|/"].join("\n"), 5); //, x => part1(parseTestData(x)));
