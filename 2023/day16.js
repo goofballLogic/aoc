@@ -190,7 +190,7 @@ const part1 = map => {
     while (stack.length) {
 
         let next = stack.pop();
-        console.log(next);
+        //console.log(next);
         [paths, energised] = walkAndTransform(map, next, energised);
         stack.push(...paths);
 
