@@ -8,7 +8,12 @@ const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split(
 
 const N = 0, E = 1, S = 2, W = 3;
 
+const transformBeam = (fromDirection, tile) =>
+    [N, S]
+    ;
 test(
-    "starting coordinates"
-)
+    "transform beam: E|NS",
+    [N, S],
+    () => transformBeam(E, "|")
+);
 console.log(raw);
