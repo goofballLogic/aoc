@@ -221,7 +221,10 @@ test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(parseTestData(x)));
 test([".|\\", ".\\/"].join("\n"), 5, x => part1(parseTestData(x)));
 
 const part2 = lines =>
-    lines.reduce((max, _, y) => Math.max(5, 0), 0)
+    Math.max(
+        lines.reduce((max, _, y) => Math.max(5, max), 0),
+        lines[0].split("").reduce((max, _, x) => Math.max(5, max), 0)
+    )
     ;
 
 test(["./\\", ".|/ part 2"].join("\n"), 5, x => part2(parseTestData(x)));
