@@ -244,7 +244,7 @@ const part2 = map =>
     )
     ;
 
-// test(["./\\", ".|/ part 2"].join("\n"), 5, x => part2(parseTestData(x)));
+test(["./\\", ".|/ part 2"].join("\n"), 5, x => part2(parseTestData(x)));
 
 // console.time("Part 1");
 // console.log("Part 1", part1(raw));
