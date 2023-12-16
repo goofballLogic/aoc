@@ -66,7 +66,6 @@ test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 const walkBy = ({ map, pos: [y, x], move, energised, dir }) => {
 
     let symbol;
-    //energised = structuredClone(energised);
     do {
 
         [y, x] = move([y, x]);
