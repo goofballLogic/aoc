@@ -203,8 +203,8 @@ function countWalk(init, map) {
     while (stack.length) {
 
         let next = stack.pop();
-        // if (next.join("_") in walked) continue; // skip repeated walks
-        // walked[next.join("_")] = true;
+        if (next.join("_") in walked) continue; // skip repeated walks
+        walked[next.join("_")] = true;
         // console.log(next);
         [paths, energised] = walkAndTransform(map, next, energised);
         stack.push(...paths);
