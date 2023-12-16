@@ -230,13 +230,13 @@ test([".|\\", ".\\/"].join("\n"), 5, x => part1(parseTestData(x)));
 const part2 = map =>
     Math.max(
         map.reduce((max, line, y) =>
-            console.log(y) || Math.max(
+            console.log({ y }) || Math.max(
                 max,
                 countWalk([E, y, -1], map),
                 countWalk([W, y, line.length], map)
             ), 0),
         map[0].split("").reduce((max, _, x) =>
-            console.log(x) || Math.max(
+            console.log({ x }) || Math.max(
                 max,
                 countWalk([S, x, 0], map),
                 countWalk([N, x, map[0].length], map)
