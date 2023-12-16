@@ -116,9 +116,10 @@ test(".. Walk E,0,0", null, () => walk([".."], [E, 0, 0]));
 test(".\\ Walk E,0,0", [0, 1, "\\"], () => walk([".\\"], [E, 0, 0]));
 
 const walkAndTransform = (map, path) => {
-    const dest = walk(map, path);
-    const [originalDirection] = path;
-    return dest ? newPaths(originalDirection, dest) : []
+    return walk(map, path)
+        ?.pipe(dest => newPaths(path[0], dest));
+    // const [originalDirection] = path;
+    // return dest ? newPaths(originalDirection, dest) : []
 }
 
 test(
