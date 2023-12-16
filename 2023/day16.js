@@ -70,7 +70,8 @@ const walkEast = (map, [startLine, x]) => {
     return [startLine, x, line[x]];
 };
 
-test(".. 0,0", [0, 1, "."], () => walkEast([".."], [0, 0]));
+test(".. 0,0 walkEast", [0, 1, "."], () => walkEast([".."], [0, 0]));
+test("./. 0,0 walkEast", [0, 1, "/"]);
 
 const walk = (map, [dir, line, x]) =>
     [[E, 0, 1]]
