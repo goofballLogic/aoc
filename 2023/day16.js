@@ -6,4 +6,9 @@ const input = 1;
 const day = 16;
 const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split("\n");
 
+const N = 0, E = 1, S = 2, W = 3;
+
+test(
+    "starting coordinates"
+)
 console.log(raw);
