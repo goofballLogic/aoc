@@ -22,6 +22,10 @@ const tileStrategy = {
     ".": dir => [dir]
 };
 
+const transformBeamWithStrategy = (fromDirection, strategy) =>
+    strategy(fromDirection)
+    ;
+
 const transformBeam = (fromDirection, tile) =>
     (tileStrategy[tile] || tileStrategy["."])(fromDirection);
 ;
