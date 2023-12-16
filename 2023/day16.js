@@ -220,13 +220,13 @@ test([".|", "\\/"].join("\n"), 4, x => part1(parseTestData(x)));
 test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(parseTestData(x)));
 test([".|\\", ".\\/"].join("\n"), 5, x => part1(parseTestData(x)));
 
-console.log(raw);
-console.time("Part 1");
-console.log("Part 1", part1(raw));
-console.timeEnd("Part 1");
-
 const part2 = lines =>
     5
     ;
 
 test(["./\\", ".|/ part 2"].join("\n"), 5, x => part2(parseTestData(x)));
+
+console.time("Part 1");
+console.log("Part 1", part1(raw));
+console.timeEnd("Part 1");
+
