@@ -99,7 +99,7 @@ const walkNorth = (map, pos) =>
     walkBy(map, pos, ([y, x]) => [y - 1, x])
     ;
 
-test("./. 0,2 walkNorth", [1, 0, "/"], () => walkNorth([".", "/", "."], [2, 0]));
+test("./. 2,0 walkNorth", [1, 0, "/"], () => walkNorth([".", "/", "."], [2, 0]));
 
 const walk = (map, [dir, line, x]) =>
     [[E, 0, 1]]
