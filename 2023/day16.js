@@ -63,24 +63,26 @@ test("transform beam: W/S", [S], () => transformBeam(W, "/"));
 test("transform beam: S/W", [W], () => transformBeam(S, "/"));
 test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 
-// const walkBy = (map, [y, x], move) => {
+const walkBy = (map, [y, x], move) => {
 
-//     let symbol;
-//     do {
+    let symbol;
+    let count = 0;
+    do {
 
-//         [y, x] = move([y, x]);
-//         symbol = map[y]?.[x];
+        [y, x] = move([y, x]);
+        symbol = map[y]?.[x];
+        count++;
 
-//     } while (symbol === ".");
-//     return symbol ? [y, x, symbol] : null;
+    } while (symbol === ".");
+    return symbol ? [[y, x, symbol], count] : [null, count - 1];
 
-// };
+};
 
-// const walkEast = (map, pos) =>
-//     walkBy(map, pos, ([y, x]) => [y, x + 1])
-//     ;
+const walkEast = (map, pos) =>
+    walkBy(map, pos, ([y, x]) => [y, x + 1])
+    ;
 
-// test(".. 0,0 walkEast", null, () => walkEast([".."], [0, 0]));
+test(".. 0,0 walkEast", [null, 1], () => walkEast([".."], [0, 0]));
 // test("./. 0,0 walkEast", [0, 1, "/"], () => walkEast(["./."], [0, 0]));
 
 // const walkWest = (map, pos) =>
