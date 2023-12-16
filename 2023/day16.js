@@ -231,6 +231,7 @@ const part2 = lines =>
     Math.max(
         lines.reduce((max, line, y) =>
             Math.max(
+                max,
                 countWalk([E, y, -1]),
                 countWalk([W, y, line.length])
             ), 0),
