@@ -154,10 +154,10 @@ test(
     () => walk([".\\"], [E, 0, 0], {})
 );
 
-// const pathsAfterTile = (dir, [line, x, symbol]) =>
-//     transformBeam(dir, symbol)
-//         .map(newDirection => [newDirection, line, x])
-//     ;
+const pathsAfterTile = (dir, [line, x, symbol]) =>
+    transformBeam(dir, symbol)
+        .map(newDirection => [newDirection, line, x])
+    ;
 
 // const walkAndTransform = (map, path, energised) =>
 //     walk(map, path, energised)
