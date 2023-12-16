@@ -178,24 +178,24 @@ test(
     () => walkAndTransform([".|", "..", "..", "..", ".-"], [S, 0, 1], {})
 );
 
-// const part1 = map => {
+const part1 = map => {
 
-//     let stack = [[E, 0, 0]];
-//     let energised = { "0_0": 1 };
-//     let paths;
-//     while (stack.length) {
+    let stack = [[E, 0, 0]];
+    let energised = { "0_0": 1 };
+    let paths;
+    while (stack.length) {
 
-//         let next = stack.pop();
-//         console.log(next);
-//         [paths, energised] = walkAndTransform(map, next, energised);
-//         stack.push(...paths);
+        let next = stack.pop();
+        console.log(next);
+        [paths, energised] = walkAndTransform(map, next, energised);
+        stack.push(...paths);
 
-//     }
-//     return Object.values(energised).sum();
+    }
+    return Object.values(energised).sum();
 
-// }
+}
 
-// const part1Testdata = x => x.split(" ")[0].split("\n");
+const part1Testdata = x => x.split(" ")[0].split("\n");
 
 // test(["..", ".. part1"].join("\n"), 2, x => part1(part1Testdata(x)));
 // test([".|", ".. part1"].join("\n"), 3, x => part1(part1Testdata(x)));
