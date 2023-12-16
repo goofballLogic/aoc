@@ -17,7 +17,7 @@ const splitWE = fromDirection =>
     ;
 
 const backslashReflect = fromDirection =>
-    [fromDirection === E ? S : fromDirection === W ? N : fromDirection];
+    [fromDirection === E ? S : fromDirection === W ? N : fromDirection === S ? W : E];
 
 const tileStrategy = {
     "|": splitNS,
