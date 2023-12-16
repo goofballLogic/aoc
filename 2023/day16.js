@@ -16,14 +16,20 @@ const splitWE = fromDirection =>
     [W, E].includes(fromDirection) ? [fromDirection] : [W, E]
     ;
 
+//   \
 const backslashReflect = dir => [
-    dir === E ? S : dir === W ? N : dir === S ? W : E
+    dir === E ? S : dir === W ? N : dir === S ? E : W
+];
+
+const slashReflect = dir => [
+    dir === E ? N : dir === W ? S : dir === S ? W : E
 ];
 
 const tileStrategy = {
     "|": splitNS,
     "-": splitWE,
     "\\": backslashReflect,
+    "/": slashReflect,
     ".": dir => [dir]
 };
 
@@ -49,5 +55,10 @@ test("transform beam: S-WE", [W, E], () => transformBeam(S, "-"));
 
 test("transform beam: E\\S", [S], () => transformBeam(E, "\\"));
 test("transform beam: W\\N", [N], () => transformBeam(W, "\\"));
-test("transform beam: S\\W", [W], () => transformBeam(S, "\\"));
-test("transform beam: N\\E", [E], () => transformBeam(N, "\\"));
+test("transform beam: S\\E", [E], () => transformBeam(S, "\\"));
+test("transform beam: N\\W", [W], () => transformBeam(N, "\\"));
+
+test("transform beam: E/N", [N], () => transformBeam(E, "/"));
+test("transform beam: W/S", [S], () => transformBeam(W, "/"));
+test("transform beam: S/W", [W], () => transformBeam(S, "/"));
+test("transform beam: N/E", [E], () => transformBeam(N, "/"));
