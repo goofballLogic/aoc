@@ -146,7 +146,7 @@ const part1 = map =>
         .pipe(([_paths, count]) => count + 1)
     ;
 
-test(["..", ".. part1"].join("\n"), 2, x => part1(x.split("\n")));
+test(["..", ".. part1"].join("\n"), 2, x => part1(x.split(" ")[0].split("\n")));
 test([".|", ".."].join("\n"), 3); //, x => part1(x.split("\n")));
 test([".|", "./"].join("\n"), 4);
 test([".|", "\\/"].join("\n"), 4);
