@@ -148,7 +148,11 @@ test(
     [null, { x: 1, "0_1": { [E]: 1 } }],
     () => walk([".."], [E, 0, 0], { x: 1 })
 );
-// test(".\\ Walk E,0,0", [[0, 1, "\\"], { "0_1": 1 }], () => walk([".\\"], [E, 0, 0]));
+test(
+    ".\\ Walk E,0,0",
+    [[0, 1, "\\"], { "0_1": { [E]: 1 } }],
+    () => walk([".\\"], [E, 0, 0], {})
+);
 
 // const pathsAfterTile = (dir, [line, x, symbol]) =>
 //     transformBeam(dir, symbol)
