@@ -65,7 +65,6 @@ test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 
 const walkEast = (map, [startLine, x]) => {
 
-    const line = map[startLine];
     let symbol;
     do {
 
