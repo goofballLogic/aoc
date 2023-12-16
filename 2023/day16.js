@@ -16,4 +16,3 @@ test(
     [N, S],
     () => transformBeam(E, "|")
 );
-console.log(raw);
