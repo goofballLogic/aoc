@@ -101,6 +101,13 @@ const walkNorth = (map, pos) =>
 
 test("./. 2,0 walkNorth", [1, 0, "/"], () => walkNorth([".", "/", "."], [2, 0]));
 
+const strategy = {
+    [N]: walkNorth,
+    [S]: walkSouth,
+    [W]: walkWest,
+    [E]: walkEast
+};
+
 const walk = (map, [dir, line, x]) =>
     [[E, 0, 1]]
     ;
