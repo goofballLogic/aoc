@@ -74,7 +74,11 @@ const walkBy = ({ map, pos: [y, x], move, energised, dir }) => {
         if (symbol) {
             const key = `${y}_${x}`;
             if (!(key in energised)) energised[key] = {};
-            energised[key][dir] = 1;
+            if (energised[key][dir]) {
+                symbol = null;
+            } else {
+                energised[key][dir] = 1;
+            }
         }
 
     } while (symbol === ".");
@@ -202,5 +206,5 @@ test([".|", ".. part1"].join("\n"), 3, x => part1(part1Testdata(x)));
 test([".|", "./"].join("\n"), 4, x => part1(part1Testdata(x)));
 test([".|", "\\/"].join("\n"), 4, x => part1(part1Testdata(x)));
 test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(part1Testdata(x)));
-// test([".|\\", ".\\/"].join("\n"), 5, x => part1(part1Testdata(x)));
+test([".|\\", ".\\/"].join("\n"), 5, x => part1(part1Testdata(x)));
 
