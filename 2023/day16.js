@@ -8,6 +8,10 @@ const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split(
 
 const N = 0, E = 1, S = 2, W = 3;
 
+const splitNS = fromDirection =>
+    [N, S].includes(fromDirection) ? [fromDirection] : [N, S]
+    ;
+
 const transformBeam = (fromDirection, tile) =>
     tile === "|"
         ? splitNS(fromDirection)
@@ -17,7 +21,5 @@ test("transform beam: E|NS", [N, S], () => transformBeam(E, "|"));
 test("transform beam: W|NS", [N, S], () => transformBeam(W, "|"));
 test("transform beam: N|N", [N], () => transformBeam(N, "|"));
 test("transform beam: S|S", [S], () => transformBeam(S, "|"));
-function splitNS(fromDirection) {
-    return [N, S].includes(fromDirection) ? [fromDirection] : [N, S];
-}
+
 
