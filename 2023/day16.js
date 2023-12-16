@@ -152,6 +152,7 @@ const part1 = map => {
 
         let next = stack.pop();
         [paths, energised] = walkAndTransform(map, next, energised);
+        stack.push(...paths);
 
     }
     return Object.values(energised).sum();
