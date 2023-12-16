@@ -132,12 +132,12 @@ test(
     () => walkNorth({ map: [".", "/", "."], pos: [2, 0], energised: { x: 1 } })
 );
 
-// const walkDirection = {
-//     [N]: walkNorth,
-//     [S]: walkSouth,
-//     [W]: walkWest,
-//     [E]: walkEast
-// };
+const walkDirection = {
+    [N]: walkNorth,
+    [S]: walkSouth,
+    [W]: walkWest,
+    [E]: walkEast
+};
 
 // const walk = (map, [dir, line, x], energised) =>
 //     walkDirection[dir](map, [line, x], energised)
