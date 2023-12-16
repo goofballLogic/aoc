@@ -117,21 +117,21 @@ const walk = (map, [dir, line, x]) =>
 test(".. Walk E,0,0", [null, 1], () => walk([".."], [E, 0, 0]));
 test(".\\ Walk E,0,0", [[0, 1, "\\"], 1], () => walk([".\\"], [E, 0, 0]));
 
-// const pathsAfterTile = (dir, [line, x, symbol]) =>
-//     transformBeam(dir, symbol)
-//         .map(newDirection => [newDirection, line, x])
-//     ;
+const pathsAfterTile = (dir, [line, x, symbol]) =>
+    transformBeam(dir, symbol)
+        .map(newDirection => [newDirection, line, x])
+    ;
 
-// const walkAndTransform = (map, path) =>
-//     walk(map, path)
-//         ?.pipe(dest => pathsAfterTile(path[0], dest))
-//     ;
+const walkAndTransform = (map, path) =>
+    walk(map, path)
+        ?.pipe(([dest, count]) => [pathsAfterTile(path[0], dest), count])
+    ;
 
-// test(
-//     ".|...\.... Walk E,0,0",
-//     [[N, 0, 1], [S, 0, 1]],
-//     () => walkAndTransform([".|...\...."], [E, 0, 0])
-// );
+test(
+    ".|...\.... Walk E,0,0",
+    [[[N, 0, 1], [S, 0, 1]], 1],
+    () => walkAndTransform([".|...\...."], [E, 0, 0])
+);
 // test(
 //     ".|\n..\n..\n..\n.- Walk S,0,1",
 //     [[W, 4, 1], [E, 4, 1]],
