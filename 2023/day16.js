@@ -82,72 +82,72 @@ const walkEast = (map, pos) =>
     walkBy(map, pos, ([y, x]) => [y, x + 1])
     ;
 
-test(".. 0,0 walkEast", [null, 1], () => walkEast([".."], [0, 0]));
-test("./. 0,0 walkEast", [[0, 1, "/"], 1], () => walkEast(["./."], [0, 0]));
+//test(".. 0,0 walkEast", [null, [1]], () => walkEast([".."], [0, 0]));
+//test("./. 0,0 walkEast", [[0, 1, "/"], 1], () => walkEast(["./."], [0, 0]));
 
-const walkWest = (map, pos) =>
-    walkBy(map, pos, ([y, x]) => [y, x - 1])
-    ;
+// const walkWest = (map, pos) =>
+//     walkBy(map, pos, ([y, x]) => [y, x - 1])
+//     ;
 
-test("./. 0,2 walkWest", [[0, 1, "/"], 1], () => walkWest(["./."], [0, 2]));
+// test("./. 0,2 walkWest", [[0, 1, "/"], 1], () => walkWest(["./."], [0, 2]));
 
-const walkSouth = (map, pos) =>
-    walkBy(map, pos, ([y, x]) => [y + 1, x])
-    ;
+// const walkSouth = (map, pos) =>
+//     walkBy(map, pos, ([y, x]) => [y + 1, x])
+//     ;
 
-test(".\n/\n. 0,0 walkSouth", [[1, 0, "/"], 1], () => walkSouth([".", "/", "."], [0, 0]));
+// test(".\n/\n. 0,0 walkSouth", [[1, 0, "/"], 1], () => walkSouth([".", "/", "."], [0, 0]));
 
-const walkNorth = (map, pos) =>
-    walkBy(map, pos, ([y, x]) => [y - 1, x])
-    ;
+// const walkNorth = (map, pos) =>
+//     walkBy(map, pos, ([y, x]) => [y - 1, x])
+//     ;
 
-test("./. 2,0 walkNorth", [[1, 0, "/"], 1], () => walkNorth([".", "/", "."], [2, 0]));
+// test("./. 2,0 walkNorth", [[1, 0, "/"], 1], () => walkNorth([".", "/", "."], [2, 0]));
 
-const walkDirection = {
-    [N]: walkNorth,
-    [S]: walkSouth,
-    [W]: walkWest,
-    [E]: walkEast
-};
+// const walkDirection = {
+//     [N]: walkNorth,
+//     [S]: walkSouth,
+//     [W]: walkWest,
+//     [E]: walkEast
+// };
 
-const walk = (map, [dir, line, x]) =>
-    walkDirection[dir](map, [line, x])
-    ;
+// const walk = (map, [dir, line, x]) =>
+//     walkDirection[dir](map, [line, x])
+//     ;
 
-test(".. Walk E,0,0", [null, 1], () => walk([".."], [E, 0, 0]));
-test(".\\ Walk E,0,0", [[0, 1, "\\"], 1], () => walk([".\\"], [E, 0, 0]));
+// test(".. Walk E,0,0", [null, 1], () => walk([".."], [E, 0, 0]));
+// test(".\\ Walk E,0,0", [[0, 1, "\\"], 1], () => walk([".\\"], [E, 0, 0]));
 
-const pathsAfterTile = (dir, [line, x, symbol]) =>
-    transformBeam(dir, symbol)
-        .map(newDirection => [newDirection, line, x])
-    ;
+// const pathsAfterTile = (dir, [line, x, symbol]) =>
+//     transformBeam(dir, symbol)
+//         .map(newDirection => [newDirection, line, x])
+//     ;
 
-const walkAndTransform = (map, path) =>
-    walk(map, path)
-        .pipe(([dest, count]) => [
-            dest ? pathsAfterTile(path[0], dest) : [],
-            count
-        ])
-    ;
+// const walkAndTransform = (map, path) =>
+//     walk(map, path)
+//         .pipe(([dest, count]) => [
+//             dest ? pathsAfterTile(path[0], dest) : [],
+//             count
+//         ])
+//     ;
 
-test(
-    ".|...\.... Walk E,0,0",
-    [[[N, 0, 1], [S, 0, 1]], 1],
-    () => walkAndTransform([".|...\...."], [E, 0, 0])
-);
-test(
-    ".|\n..\n..\n..\n.- Walk S,0,1",
-    [[[W, 4, 1], [E, 4, 1]], 4],
-    () => walkAndTransform([".|", "..", "..", "..", ".-"], [S, 0, 1])
-);
+// test(
+//     ".|...\.... Walk E,0,0",
+//     [[[N, 0, 1], [S, 0, 1]], 1],
+//     () => walkAndTransform([".|...\...."], [E, 0, 0])
+// );
+// test(
+//     ".|\n..\n..\n..\n.- Walk S,0,1",
+//     [[[W, 4, 1], [E, 4, 1]], 4],
+//     () => walkAndTransform([".|", "..", "..", "..", ".-"], [S, 0, 1])
+// );
 
-const part1 = map =>
-    walkAndTransform(map, [E, 0, 0])
-        .pipe(([_paths, count]) => count + 1)
-    ;
+// const part1 = map =>
+//     walkAndTransform(map, [E, 0, 0])
+//         .pipe(([_paths, count]) => count + 1)
+//     ;
 
-test(["..", ".. part1"].join("\n"), 2, x => part1(x.split(" ")[0].split("\n")));
-test([".|", ".."].join("\n"), 3); //, x => part1(x.split("\n")));
-test([".|", "./"].join("\n"), 4);
-test([".|", "\\/"].join("\n"), 4);
-test([".|.", "/-\\", "..."].join("\n"), 7);
+// test(["..", ".. part1"].join("\n"), 2, x => part1(x.split(" ")[0].split("\n")));
+// test([".|", ".."].join("\n"), 3); //, x => part1(x.split("\n")));
+// test([".|", "./"].join("\n"), 4);
+// test([".|", "\\/"].join("\n"), 4);
+// test([".|.", "/-\\", "..."].join("\n"), 7);
