@@ -115,7 +115,13 @@ const walk = (map, [dir, line, x]) =>
 test(".. Walk E,0,0", null, () => walk([".."], [E, 0, 0]));
 test(".\\ Walk E,0,0", [0, 1, "\\"], () => walk([".\\"], [E, 0, 0]));
 
-test(".|...\.... Walk E,0,0", [[N, 0, 1], [S, 0, 1]]); //, () => walk([".|...\...."], [E, 0, 0]));
+const walkAndTransform = (map, [dir, line, x]) => {
+    const dest = walk(map, [dir, line, x]);
+    return dest
+        ? transformBeam(dir, dest[2]).map(newDirection => [newDirection, dest[0], dest[1]])
+        : []
+}
+test(".|...\.... Walk E,0,0", [[N, 0, 1], [S, 0, 1]], () => walkAndTransform([".|...\...."], [E, 0, 0]));
 test(".|\n..\n..\n..\n.- Walk S,0,1", [[W, 4, 1], [E, 4, 1]]);
 
 
