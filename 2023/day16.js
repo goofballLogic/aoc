@@ -242,7 +242,7 @@ const part2 = map =>
         map[0].split("").reduce((max, _, x) =>
             console.log({ x }) || Math.max(
                 max,
-                countWalk([S, x, 0], map),
+                countWalk([S, x, -1], map),
                 countWalk([N, x, map[0].length], map)
             ), 0)
     )
