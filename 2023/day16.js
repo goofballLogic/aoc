@@ -84,7 +84,7 @@ const walkEast = (map, pos) =>
     ;
 
 test(".. 0,0 walkEast", [null, { "0_1": 1 }], () => walkEast([".."], [0, 0]));
-//test("./. 0,0 walkEast", [[0, 1, "/"], 1], () => walkEast(["./."], [0, 0]));
+test("./. 0,0 walkEast", [[0, 1, "/"], { "0_1": 1 }], () => walkEast(["./."], [0, 0]));
 
 // const walkWest = (map, pos) =>
 //     walkBy(map, pos, ([y, x]) => [y, x - 1])
