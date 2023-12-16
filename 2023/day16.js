@@ -86,7 +86,7 @@ const walkWest = (map, [startLine, x]) => {
         x--;
 
     } while (x >= 0 && line[x] === ".")
-    return x < 0 ? null : [startLine, x, line[x]];
+    return line[x] ? [startLine, x, line[x]] : null;
 
 }
 test(".. 0,1 walkWest", null, () => walkWest([".."], [0, 1]));
