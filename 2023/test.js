@@ -24,7 +24,7 @@ export function test(description, expected, strategy) {
         } catch (err) {
 
             console.log("ERR", consoleDescription);
-            console.log(err);
+            throw err;
 
         }
 
