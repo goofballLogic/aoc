@@ -63,18 +63,19 @@ test("transform beam: W/S", [S], () => transformBeam(W, "/"));
 test("transform beam: S/W", [W], () => transformBeam(S, "/"));
 test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 
-const walkBy = (map, [y, x], move) => {
+const walkBy = (map, [y, x], move, energised = {}) => {
 
     let symbol;
-    let count = 0;
+    energised = structuredClone(energised);
     do {
 
         [y, x] = move([y, x]);
         symbol = map[y]?.[x];
-        count++;
+        if (symbol)
+            energised[`${y}_${x}`] = 1;
 
     } while (symbol === ".");
-    return symbol ? [[y, x, symbol], count] : [null, count - 1];
+    return symbol ? [[y, x, symbol], energised] : [null, energised];
 
 };
 
@@ -82,7 +83,7 @@ const walkEast = (map, pos) =>
     walkBy(map, pos, ([y, x]) => [y, x + 1])
     ;
 
-//test(".. 0,0 walkEast", [null, [1]], () => walkEast([".."], [0, 0]));
+test(".. 0,0 walkEast", [null, { "0_1": 1 }], () => walkEast([".."], [0, 0]));
 //test("./. 0,0 walkEast", [[0, 1, "/"], 1], () => walkEast(["./."], [0, 0]));
 
 // const walkWest = (map, pos) =>

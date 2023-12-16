@@ -42,6 +42,10 @@ function areEqual(expected, actual) {
         if (expected.length !== actual.length) return false;
         return expected.every((a, i) => areEqual(a, actual[i]));
 
+    } else if (expected && typeof expected === "object") {
+
+        return Object.keys(expected).every(key => areEqual(expected[key], actual?.[key]));
+
     } else {
 
         return expected === actual;
