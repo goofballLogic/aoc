@@ -70,8 +70,8 @@ const walkEast = (map, [startLine, x]) => {
 
         x++;
 
-    } while (x < line.length && line[x] === ".")
-    return x === line.length ? null : [startLine, x, line[x]];
+    } while (line[x] === ".")
+    return line[x] ? [startLine, x, line[x]] : null;
 
 };
 
