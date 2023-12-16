@@ -115,14 +115,14 @@ const walk = (map, [dir, line, x]) =>
 test(".. Walk E,0,0", null, () => walk([".."], [E, 0, 0]));
 test(".\\ Walk E,0,0", [0, 1, "\\"], () => walk([".\\"], [E, 0, 0]));
 
-const pathsFrom = (originalDirection, [line, x, symbol]) =>
+const pathsAfterTile = (originalDirection, [line, x, symbol]) =>
     transformBeam(originalDirection, symbol)
         .map(newDirection => [newDirection, line, x])
     ;
 
 const walkAndTransform = (map, path) =>
     walk(map, path)
-        ?.pipe(dest => pathsFrom(path[0], dest))
+        ?.pipe(dest => pathsAfterTile(path[0], dest))
     ;
 
 test(
