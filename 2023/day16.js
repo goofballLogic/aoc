@@ -109,10 +109,10 @@ const strategy = {
 };
 
 const walk = (map, [dir, line, x]) =>
-    [[E, 0, 1]]
+    strategy[dir](map, [line, x]) || []
     ;
 
-test(".. Walk E,0,0", [[E, 0, 1]], () => walk([".."], [E, 0, 0]));
+test(".. Walk E,0,0", [], () => walk([".."], [E, 0, 0]));
 test(".\\ Walk E,0,0", [[S, 0, 1]]);
 test(".|...\.... Walk E,0,0", [[N, 0, 1], [S, 0, 1]]); //, () => walk([".|...\...."], [E, 0, 0]));
 test(".|\n..\n..\n..\n.- Walk S,0,1", [[W, 4, 1], [E, 4, 1]]);
