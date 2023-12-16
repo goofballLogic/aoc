@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { test } from "./test.js";
 import "./evil.js";
 
-const input = 1;
+const input = 2;
 const day = 16;
 const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split("\n");
 
@@ -111,6 +111,10 @@ test(
     [null, { "hello": "world", "0_1": { [E]: 1 } }],
     () => walkEast({ map: [".."], pos: [0, 0], energised: { "hello": "world" } })
 );
+test(
+    ". 0,0 walkEast",
+    [null, { "0_1": { [E]: 1 } }]
+);
 
 const walkWest = ({ map, pos, energised }) =>
     walkBy({ map, pos, move: ([y, x]) => [y, x - 1], energised, dir: W })
@@ -196,7 +200,7 @@ const part1 = map => {
     while (stack.length) {
 
         let next = stack.pop();
-        //console.log(next);
+        // console.log(next);
         [paths, energised] = walkAndTransform(map, next, energised);
         stack.push(...paths);
 
@@ -214,5 +218,5 @@ test([".|", "\\/"].join("\n"), 4, x => part1(part1Testdata(x)));
 test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(part1Testdata(x)));
 test([".|\\", ".\\/"].join("\n"), 5, x => part1(part1Testdata(x)));
 
-console.log(raw);
-console.log("Part 1", part1(raw));
+// console.log(raw);
+// console.log("Part 1", part1(raw));
