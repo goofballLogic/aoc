@@ -64,7 +64,7 @@ test("transform beam: S/W", [W], () => transformBeam(S, "/"));
 test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 
 const walk = ([dir, line, x]) =>
-    [dir, line, x]
+    [[dir, line, x]]
     ;
 
 test(".|...\.... Walk E,0,0", [[N, 0, 1], [S, 0, 1]]);
