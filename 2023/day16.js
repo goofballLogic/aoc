@@ -137,10 +137,11 @@ test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 // );
 
 const part1 = lines =>
-    2
+    lines[0].length
     ;
+
 test(["..", ".."].join("\n"), 2, x => part1(x.split("\n")));
-test([".|", ".."].join("\n"), 3);
+test([".|", ".."].join("\n"), 3); //, x => part1(x.split("\n")));
 test([".|", "./"].join("\n"), 4);
 test([".|", "\\/"].join("\n"), 4);
 test([".|.", "/-\\", "..."].join("\n"), 7);
