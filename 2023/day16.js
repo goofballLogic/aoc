@@ -81,7 +81,7 @@ const walkBy = ({ map, pos: [y, x], move, energised, dir }) => {
 
             } else {
 
-                console.log("New", key, dir);
+                //console.log("New", key, dir);
                 energised[key][dir] = 1;
 
             }
