@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { test } from "./test.js";
 import "./evil.js";
 
-const input = 2;
+const input = 1;
 const day = 16;
 const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split("\n");
 
@@ -214,5 +214,5 @@ test([".|", "\\/"].join("\n"), 4, x => part1(part1Testdata(x)));
 test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(part1Testdata(x)));
 test([".|\\", ".\\/"].join("\n"), 5, x => part1(part1Testdata(x)));
 
-// console.log(raw);
-// console.log("Part 1", part1(raw));
+console.log(raw);
+console.log("Part 1", part1(raw));
