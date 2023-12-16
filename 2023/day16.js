@@ -191,7 +191,7 @@ const part1 = map => {
         stack.push(...paths);
 
     }
-    return Object.values(energised).sum();
+    return Object.values(energised).length;
 
 }
 
