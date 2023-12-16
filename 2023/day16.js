@@ -110,7 +110,12 @@ const walkDirection = {
 
 const walk = (map, [dir, line, x]) => {
     const result = walkDirection[dir](map, [line, x]);
-    return result || [];
+    if (result) {
+        const [newLine, newX, newSymbol] = result;
+        return [newLine, newX, newSymbol];
+    } else {
+        return [];
+    }
 }
     ;
 
