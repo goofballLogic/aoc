@@ -119,24 +119,24 @@ const walk = (map, [dir, line, x], energised) =>
 test(".. Walk E,0,0", [null, { x: 1, "0_1": 1 }], () => walk([".."], [E, 0, 0], { x: 1 }));
 test(".\\ Walk E,0,0", [[0, 1, "\\"], { "0_1": 1 }], () => walk([".\\"], [E, 0, 0]));
 
-// const pathsAfterTile = (dir, [line, x, symbol]) =>
-//     transformBeam(dir, symbol)
-//         .map(newDirection => [newDirection, line, x])
-//     ;
+const pathsAfterTile = (dir, [line, x, symbol]) =>
+    transformBeam(dir, symbol)
+        .map(newDirection => [newDirection, line, x])
+    ;
 
-// const walkAndTransform = (map, path) =>
-//     walk(map, path)
-//         .pipe(([dest, count]) => [
-//             dest ? pathsAfterTile(path[0], dest) : [],
-//             count
-//         ])
-//     ;
+const walkAndTransform = (map, path, energised) =>
+    walk(map, path, energised)
+        .pipe(([dest, count]) => [
+            dest ? pathsAfterTile(path[0], dest) : [],
+            count
+        ])
+    ;
 
-// test(
-//     ".|...\.... Walk E,0,0",
-//     [[[N, 0, 1], [S, 0, 1]], 1],
-//     () => walkAndTransform([".|...\...."], [E, 0, 0])
-// );
+test(
+    ".|...\.... Walk E,0,0",
+    [[[N, 0, 1], [S, 0, 1]], { "0_1": 1 }],
+    () => walkAndTransform([".|...\...."], [E, 0, 0])
+);
 // test(
 //     ".|\n..\n..\n..\n.- Walk S,0,1",
 //     [[[W, 4, 1], [E, 4, 1]], 4],
