@@ -76,24 +76,17 @@ const walkBy = (map, [y, x], move) => {
 
 };
 
-const walkEast = (map, [y, x]) =>
-    walkBy(map, [y, x], ([y, x]) => [y, x + 1])
+const walkEast = (map, pos) =>
+    walkBy(map, pos, ([y, x]) => [y, x + 1])
     ;
 
 test(".. 0,0 walkEast", null, () => walkEast([".."], [0, 0]));
 test("./. 0,0 walkEast", [0, 1, "/"], () => walkEast(["./."], [0, 0]));
 
-const walkWest = (map, [startLine, x]) => {
+const walkWest = (map, pos) =>
+    walkBy(map, pos, ([y, x]) => [y, x - 1])
+    ;
 
-    const line = map[startLine];
-    do {
-
-        x--;
-
-    } while (line[x] === ".")
-    return line[x] ? [startLine, x, line[x]] : null;
-
-}
 test(".. 0,1 walkWest", null, () => walkWest([".."], [0, 1]));
 
 const walk = (map, [dir, line, x]) =>
