@@ -27,8 +27,11 @@ const transformBeamWithStrategy = (fromDirection, strategy) =>
     ;
 
 const transformBeam = (fromDirection, tile) =>
-    (tileStrategy[tile] || tileStrategy["."])(fromDirection);
-;
+    transformBeamWithStrategy(
+        fromDirection,
+        tileStrategy[tile] || tileStrategy["."])
+    ;
+
 
 test("transform beam: E|NS", [N, S], () => transformBeam(E, "|"));
 test("transform beam: W|NS", [N, S], () => transformBeam(W, "|"));
