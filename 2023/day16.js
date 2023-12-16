@@ -64,9 +64,9 @@ test("transform beam: S/W", [W], () => transformBeam(S, "/"));
 test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 
 const walk = (map, [dir, line, x]) =>
-    [[dir, line, x]]
+    [[E, 0, 1]]
     ;
 
-test(".. Walk E,0,0", [[E, 0, 1]]);
+test(".. Walk E,0,0", [[E, 0, 1]], () => walk([".."], [E, 0, 0]));
 test(".|...\.... Walk E,0,0", [[N, 0, 1], [S, 0, 1]]); //, () => walk([".|...\...."], [E, 0, 0]));
 test(".|\n..\n..\n..\n.- Walk S,0,1", [[W, 4, 1], [E, 4, 1]]);
