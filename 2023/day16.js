@@ -17,7 +17,7 @@ const splitWE = fromDirection =>
     ;
 
 const backslashReflect = fromDirection =>
-    [fromDirection];
+    [S];
 
 const tileStrategy = {
     "|": splitNS,
@@ -46,7 +46,7 @@ test("transform beam: W-W", [W], () => transformBeam(W, "-"));
 test("transform beam: N-WE", [W, E], () => transformBeam(N, "-"));
 test("transform beam: S-WE", [W, E], () => transformBeam(S, "-"));
 
-test("transform beam: E\\S", [S]);
+test("transform beam: E\\S", [S], () => transformBeam(E, "\\"));
 test("transform beam: W\\N", [N]);
 test("transform beam: S\\W", [W]);
 test("transform beam: N\\E", [E]);
