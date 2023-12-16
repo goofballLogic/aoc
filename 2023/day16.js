@@ -95,6 +95,12 @@ const walkSouth = (map, pos) =>
 
 test(".\n/\n. 0,0 walkSouth", [1, 0, "/"], () => walkSouth([".", "/", "."], [0, 0]));
 
+const walkNorth = (map, pos) =>
+    walkBy(map, pos, ([y, x]) => [y - 1, x])
+    ;
+
+test("./. 0,2 walkNorth", [1, 0, "/"], () => walkNorth([".", "/", "."], [2, 0]));
+
 const walk = (map, [dir, line, x]) =>
     [[E, 0, 1]]
     ;
