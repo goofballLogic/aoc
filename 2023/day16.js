@@ -113,7 +113,8 @@ test(
 );
 test(
     ". 0,0 walkEast",
-    [null, { "0_1": { [E]: 1 } }]
+    [null, { "0_0": { [E]: 1 } }],
+    () => walkEast({ map: ["."], pos: [0, -1], energised: {} })
 );
 
 const walkWest = ({ map, pos, energised }) =>
