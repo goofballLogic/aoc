@@ -66,3 +66,4 @@ test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 
 
 test(".|...\.... Walk E,0,0", [[N, 0, 1], [S, 0, 1]]);
+test(".|\n..\n..\n..\n.- Walk S,0,1", [[W, 4, 1], [E, 4, 1]]);
