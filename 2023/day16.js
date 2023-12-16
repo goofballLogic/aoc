@@ -81,6 +81,7 @@ const walkBy = ({ map, pos: [y, x], move, energised, dir }) => {
 
             } else {
 
+                console.log("New", key, dir);
                 energised[key][dir] = 1;
 
             }
@@ -219,5 +220,5 @@ test([".|", "\\/"].join("\n"), 4, x => part1(part1Testdata(x)));
 test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(part1Testdata(x)));
 test([".|\\", ".\\/"].join("\n"), 5, x => part1(part1Testdata(x)));
 
-// console.log(raw);
-// console.log("Part 1", part1(raw));
+console.log(raw);
+console.log("Part 1", part1(raw));
