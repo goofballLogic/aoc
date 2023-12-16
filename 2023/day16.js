@@ -205,6 +205,7 @@ function countWalk(init, map) {
         // console.log(next);
         [paths, energised] = walkAndTransform(map, next, energised);
         stack.push(...paths);
+        console.log(stack.length);
 
     }
     return Object.values(energised).length;
@@ -250,4 +251,8 @@ console.time("Part 1");
 console.log("Part 1", part1(raw));
 console.timeEnd("Part 1");
 
+
+// console.time("Part 2");
+// console.log("Part 2", part2(raw));
+// console.timeEnd("Part 2");
 
