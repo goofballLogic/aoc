@@ -16,6 +16,11 @@ const splitWE = fromDirection =>
     [W, E].includes(fromDirection) ? [fromDirection] : [W, E]
     ;
 
+const tileStrategy = {
+    "|": splitNS,
+    "-": splitWE
+};
+
 const transformBeam = (fromDirection, tile) =>
     tile === "|"
         ? splitNS(fromDirection)
