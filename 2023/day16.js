@@ -105,18 +105,18 @@ const walkNorth = (map, pos, energised) =>
 
 test(".\n/\n. 2,0 walkNorth", [[1, 0, "/"], { x: 1, "1_0": 1 }], () => walkNorth([".", "/", "."], [2, 0], { x: 1 }));
 
-// const walkDirection = {
-//     [N]: walkNorth,
-//     [S]: walkSouth,
-//     [W]: walkWest,
-//     [E]: walkEast
-// };
+const walkDirection = {
+    [N]: walkNorth,
+    [S]: walkSouth,
+    [W]: walkWest,
+    [E]: walkEast
+};
 
-// const walk = (map, [dir, line, x]) =>
-//     walkDirection[dir](map, [line, x])
-//     ;
+const walk = (map, [dir, line, x], energised) =>
+    walkDirection[dir](map, [line, x], energised)
+    ;
 
-// test(".. Walk E,0,0", [null, 1], () => walk([".."], [E, 0, 0]));
+test(".. Walk E,0,0", [null, { x: 1, "0_1": 1 }], () => walk([".."], [E, 0, 0], { x: 1 }));
 // test(".\\ Walk E,0,0", [[0, 1, "\\"], 1], () => walk([".\\"], [E, 0, 0]));
 
 // const pathsAfterTile = (dir, [line, x, symbol]) =>
