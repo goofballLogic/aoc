@@ -108,15 +108,8 @@ const walkDirection = {
     [E]: walkEast
 };
 
-const walk = (map, [dir, line, x]) => {
-    const result = walkDirection[dir](map, [line, x]);
-    if (result) {
-        const [newLine, newX, newSymbol] = result;
-        return [newLine, newX, newSymbol];
-    } else {
-        return null;
-    }
-}
+const walk = (map, [dir, line, x]) =>
+    walkDirection[dir](map, [line, x])
     ;
 
 test(".. Walk E,0,0", null, () => walk([".."], [E, 0, 0]));
