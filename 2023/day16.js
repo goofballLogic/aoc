@@ -200,7 +200,7 @@ const part1Testdata = x => x.split(" ")[0].split("\n");
 test(["..", ".. part1"].join("\n"), 2, x => part1(part1Testdata(x)));
 test([".|", ".. part1"].join("\n"), 3, x => part1(part1Testdata(x)));
 test([".|", "./"].join("\n"), 4, x => part1(part1Testdata(x)));
-// test([".|", "\\/"].join("\n"), 4, x => part1(part1Testdata(x)));
+test([".|", "\\/"].join("\n"), 4, x => part1(part1Testdata(x)));
 // test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(part1Testdata(x)));
 // test([".|\\", ".\\/"].join("\n"), 5, x => part1(part1Testdata(x)));
 
