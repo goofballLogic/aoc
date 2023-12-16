@@ -64,15 +64,32 @@ test("transform beam: S/W", [W], () => transformBeam(S, "/"));
 test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 
 const walkEast = (map, [startLine, x]) => {
+
     const line = map[startLine];
     do {
+
         x++;
+
     } while (x < line.length && line[x] === ".")
     return x === line.length ? null : [startLine, x, line[x]];
+
 };
 
 test(".. 0,0 walkEast", null, () => walkEast([".."], [0, 0]));
 test("./. 0,0 walkEast", [0, 1, "/"], () => walkEast(["./."], [0, 0]));
+
+const walkWest = (map, [startLine, x]) => {
+
+    const line = map[startLine];
+    do {
+
+        x--;
+
+    } while (x >= 0 && line[x] === ".")
+    return x < 0 ? null : [startLine, x, line[x]];
+
+}
+test(".. 0,1 walkWest", null, () => walkWest([".."], [0, 1]));
 
 const walk = (map, [dir, line, x]) =>
     [[E, 0, 1]]
