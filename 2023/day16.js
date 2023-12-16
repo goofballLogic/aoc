@@ -194,10 +194,10 @@ test(
     () => walkAndTransform([".|", "..", "..", "..", ".-"], [S, 0, 1], {})
 );
 
-const part1 = map => {
+function countWalk(init, map) {
 
-    let stack = [[E, 0, -1]];
-    let energised = {}; // { "0_0": { [E]: 1 } };
+    let stack = [init];
+    let energised = {};
     let paths;
     while (stack.length) {
 
@@ -211,6 +211,13 @@ const part1 = map => {
 
 }
 
+const part1 = map => {
+
+    const init = [E, 0, -1];
+    return countWalk(init, map);
+
+}
+
 const parseTestData = x => x.split(" ")[0].split("\n");
 
 test(["..", ".. part1"].join("\n"), 2, x => part1(parseTestData(x)));
@@ -220,16 +227,18 @@ test([".|", "\\/"].join("\n"), 4, x => part1(parseTestData(x)));
 test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(parseTestData(x)));
 test([".|\\", ".\\/"].join("\n"), 5, x => part1(parseTestData(x)));
 
-const part2 = lines =>
-    Math.max(
-        lines.reduce((max, _, y) => Math.max(5, max), 0),
-        lines[0].split("").reduce((max, _, x) => Math.max(5, max), 0)
-    )
-    ;
+// const part2 = lines =>
+//     Math.max(
+//         lines.reduce((max, _, y) => Math.max(
+//             Math.max(5, max), 0),
+//             lines[0].split("").reduce((max, _, x) => Math.max(5, max), 0)
+//         )
+//     ;
 
-test(["./\\", ".|/ part 2"].join("\n"), 5, x => part2(parseTestData(x)));
+// test(["./\\", ".|/ part 2"].join("\n"), 5, x => part2(parseTestData(x)));
 
-console.time("Part 1");
-console.log("Part 1", part1(raw));
-console.timeEnd("Part 1");
+// console.time("Part 1");
+// console.log("Part 1", part1(raw));
+// console.timeEnd("Part 1");
+
 
