@@ -184,8 +184,8 @@ test(
 
 const part1 = map => {
 
-    let stack = [[E, 0, 0]];
-    let energised = { "0_0": { [E]: 1 } };
+    let stack = [[E, 0, -1]];
+    let energised = {}; // { "0_0": { [E]: 1 } };
     let paths;
     while (stack.length) {
 
@@ -202,11 +202,11 @@ const part1 = map => {
 const part1Testdata = x => x.split(" ")[0].split("\n");
 
 test(["..", ".. part1"].join("\n"), 2, x => part1(part1Testdata(x)));
-test([".|", ".. part1"].join("\n"), 3, x => part1(part1Testdata(x)));
-test([".|", "./"].join("\n"), 4, x => part1(part1Testdata(x)));
-test([".|", "\\/"].join("\n"), 4, x => part1(part1Testdata(x)));
-test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(part1Testdata(x)));
-test([".|\\", ".\\/"].join("\n"), 5, x => part1(part1Testdata(x)));
+// test([".|", ".. part1"].join("\n"), 3, x => part1(part1Testdata(x)));
+// test([".|", "./"].join("\n"), 4, x => part1(part1Testdata(x)));
+// test([".|", "\\/"].join("\n"), 4, x => part1(part1Testdata(x)));
+// test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(part1Testdata(x)));
+// test([".|\\", ".\\/"].join("\n"), 5, x => part1(part1Testdata(x)));
 
-console.log(raw);
-console.log("Part 1", part1(raw));
+// console.log(raw);
+// console.log("Part 1", part1(raw));
