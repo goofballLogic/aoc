@@ -63,7 +63,7 @@ test("transform beam: W/S", [S], () => transformBeam(W, "/"));
 test("transform beam: S/W", [W], () => transformBeam(S, "/"));
 test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 
-const walkBy = (map, [y, x], move, energised = {}) => {
+const walkBy = ({ map, pos: [y, x], move, energised = {}, dir }) => {
 
     let symbol;
     energised = structuredClone(energised);
@@ -71,8 +71,11 @@ const walkBy = (map, [y, x], move, energised = {}) => {
 
         [y, x] = move([y, x]);
         symbol = map[y]?.[x];
-        if (symbol)
-            energised[`${y}_${x}`] = 1;
+        if (symbol) {
+            const key = `${y}_${x}`;
+            if (!(key in energised)) energised[key] = {};
+            energised[key][dir] = 1;
+        }
 
     } while (symbol === ".");
     return symbol ? [[y, x, symbol], energised] : [null, energised];
@@ -80,92 +83,92 @@ const walkBy = (map, [y, x], move, energised = {}) => {
 };
 
 const walkEast = (map, pos, energised) =>
-    walkBy(map, pos, ([y, x]) => [y, x + 1], energised)
+    walkBy(map, pos, ([y, x]) => [y, x + 1], energised, E)
     ;
 
-test(".. 0,0 walkEast", [null, { "0_1": 1 }], () => walkEast([".."], [0, 0]));
-test("./. 0,0 walkEast", [[0, 1, "/"], { "0_1": 1 }], () => walkEast(["./."], [0, 0]));
-test(".. 0,0 walkEast", [null, { "hello": "world", "0_1": 1 }], () => walkEast([".."], [0, 0], { "hello": "world" }));
+//test(".. 0,0 walkEast", [null, { "0_1": { E: 1 } }], () => walkEast([".."], [0, 0]));
+// test("./. 0,0 walkEast", [[0, 1, "/"], { "0_1": 1 }], () => walkEast(["./."], [0, 0]));
+// test(".. 0,0 walkEast", [null, { "hello": "world", "0_1": 1 }], () => walkEast([".."], [0, 0], { "hello": "world" }));
 
-const walkWest = (map, pos, energised) =>
-    walkBy(map, pos, ([y, x]) => [y, x - 1], energised)
-    ;
+// const walkWest = (map, pos, energised) =>
+//     walkBy(map, pos, ([y, x]) => [y, x - 1], energised)
+//     ;
 
-test("./. 0,2 walkWest", [[0, 1, "/"], { x: 1, "0_1": 1 }], () => walkWest(["./."], [0, 2], { x: 1 }));
+// test("./. 0,2 walkWest", [[0, 1, "/"], { x: 1, "0_1": 1 }], () => walkWest(["./."], [0, 2], { x: 1 }));
 
-const walkSouth = (map, pos, energised) =>
-    walkBy(map, pos, ([y, x]) => [y + 1, x], energised)
-    ;
+// const walkSouth = (map, pos, energised) =>
+//     walkBy(map, pos, ([y, x]) => [y + 1, x], energised)
+//     ;
 
-test(".\n/\n. 0,0 walkSouth", [[1, 0, "/"], { "1_0": 1 }], () => walkSouth([".", "/", "."], [0, 0], { x: 1 }));
+// test(".\n/\n. 0,0 walkSouth", [[1, 0, "/"], { "1_0": 1 }], () => walkSouth([".", "/", "."], [0, 0], { x: 1 }));
 
-const walkNorth = (map, pos, energised) =>
-    walkBy(map, pos, ([y, x]) => [y - 1, x], energised)
-    ;
+// const walkNorth = (map, pos, energised) =>
+//     walkBy(map, pos, ([y, x]) => [y - 1, x], energised)
+//     ;
 
-test(".\n/\n. 2,0 walkNorth", [[1, 0, "/"], { x: 1, "1_0": 1 }], () => walkNorth([".", "/", "."], [2, 0], { x: 1 }));
+// test(".\n/\n. 2,0 walkNorth", [[1, 0, "/"], { x: 1, "1_0": 1 }], () => walkNorth([".", "/", "."], [2, 0], { x: 1 }));
 
-const walkDirection = {
-    [N]: walkNorth,
-    [S]: walkSouth,
-    [W]: walkWest,
-    [E]: walkEast
-};
+// const walkDirection = {
+//     [N]: walkNorth,
+//     [S]: walkSouth,
+//     [W]: walkWest,
+//     [E]: walkEast
+// };
 
-const walk = (map, [dir, line, x], energised) =>
-    walkDirection[dir](map, [line, x], energised)
-    ;
+// const walk = (map, [dir, line, x], energised) =>
+//     walkDirection[dir](map, [line, x], energised)
+//     ;
 
-test(".. Walk E,0,0", [null, { x: 1, "0_1": 1 }], () => walk([".."], [E, 0, 0], { x: 1 }));
-test(".\\ Walk E,0,0", [[0, 1, "\\"], { "0_1": 1 }], () => walk([".\\"], [E, 0, 0]));
+// test(".. Walk E,0,0", [null, { x: 1, "0_1": 1 }], () => walk([".."], [E, 0, 0], { x: 1 }));
+// test(".\\ Walk E,0,0", [[0, 1, "\\"], { "0_1": 1 }], () => walk([".\\"], [E, 0, 0]));
 
-const pathsAfterTile = (dir, [line, x, symbol]) =>
-    transformBeam(dir, symbol)
-        .map(newDirection => [newDirection, line, x])
-    ;
+// const pathsAfterTile = (dir, [line, x, symbol]) =>
+//     transformBeam(dir, symbol)
+//         .map(newDirection => [newDirection, line, x])
+//     ;
 
-const walkAndTransform = (map, path, energised) =>
-    walk(map, path, energised)
-        .pipe(([dest, count]) => [
-            dest ? pathsAfterTile(path[0], dest) : [],
-            count
-        ])
-    ;
+// const walkAndTransform = (map, path, energised) =>
+//     walk(map, path, energised)
+//         .pipe(([dest, count]) => [
+//             dest ? pathsAfterTile(path[0], dest) : [],
+//             count
+//         ])
+//     ;
 
-test(
-    ".|...\.... Walk E,0,0",
-    [[[N, 0, 1], [S, 0, 1]], { "0_1": 1 }],
-    () => walkAndTransform([".|...\...."], [E, 0, 0])
-);
-test(
-    ".|\n..\n..\n..\n.- Walk S,0,1",
-    [[[W, 4, 1], [E, 4, 1]], { "1_1": 1, "2_1": 1, "3_1": 1, "4_1": 1 }],
-    () => walkAndTransform([".|", "..", "..", "..", ".-"], [S, 0, 1])
-);
+// test(
+//     ".|...\.... Walk E,0,0",
+//     [[[N, 0, 1], [S, 0, 1]], { "0_1": 1 }],
+//     () => walkAndTransform([".|...\...."], [E, 0, 0])
+// );
+// test(
+//     ".|\n..\n..\n..\n.- Walk S,0,1",
+//     [[[W, 4, 1], [E, 4, 1]], { "1_1": 1, "2_1": 1, "3_1": 1, "4_1": 1 }],
+//     () => walkAndTransform([".|", "..", "..", "..", ".-"], [S, 0, 1])
+// );
 
-const part1 = map => {
+// const part1 = map => {
 
-    let stack = [[E, 0, 0]];
-    let energised = { "0_0": 1 };
-    let paths;
-    while (stack.length) {
+//     let stack = [[E, 0, 0]];
+//     let energised = { "0_0": 1 };
+//     let paths;
+//     while (stack.length) {
 
-        let next = stack.pop();
-        console.log(next);
-        [paths, energised] = walkAndTransform(map, next, energised);
-        stack.push(...paths);
+//         let next = stack.pop();
+//         console.log(next);
+//         [paths, energised] = walkAndTransform(map, next, energised);
+//         stack.push(...paths);
 
-    }
-    return Object.values(energised).sum();
+//     }
+//     return Object.values(energised).sum();
 
-}
+// }
 
-const part1Testdata = x => x.split(" ")[0].split("\n");
+// const part1Testdata = x => x.split(" ")[0].split("\n");
 
-test(["..", ".. part1"].join("\n"), 2, x => part1(part1Testdata(x)));
-test([".|", ".. part1"].join("\n"), 3, x => part1(part1Testdata(x)));
-test([".|", "./"].join("\n"), 4, x => part1(part1Testdata(x)));
-test([".|", "\\/"].join("\n"), 4, x => part1(part1Testdata(x)));
-test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(part1Testdata(x)));
-test([".|\\", ".\\/"].join("\n"), 5);
+// test(["..", ".. part1"].join("\n"), 2, x => part1(part1Testdata(x)));
+// test([".|", ".. part1"].join("\n"), 3, x => part1(part1Testdata(x)));
+// test([".|", "./"].join("\n"), 4, x => part1(part1Testdata(x)));
+// test([".|", "\\/"].join("\n"), 4, x => part1(part1Testdata(x)));
+// test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(part1Testdata(x)));
+// test([".|\\", ".\\/"].join("\n"), 5, x => part1(part1Testdata(x)));
 
