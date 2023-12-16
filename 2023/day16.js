@@ -75,10 +75,16 @@ const walkBy = ({ map, pos: [y, x], move, energised, dir }) => {
             const key = `${y}_${x}`;
             if (!(key in energised)) energised[key] = {};
             if (energised[key][dir]) {
+
+                // we've been here before from this direction: ignore
                 symbol = null;
+
             } else {
+
                 energised[key][dir] = 1;
+
             }
+
         }
 
     } while (symbol === ".");
@@ -190,7 +196,7 @@ const part1 = map => {
     while (stack.length) {
 
         let next = stack.pop();
-        console.log(next);
+        //console.log(next);
         [paths, energised] = walkAndTransform(map, next, energised);
         stack.push(...paths);
 
