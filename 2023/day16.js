@@ -203,12 +203,12 @@ function countWalk(init, map) {
     while (stack.length) {
 
         let next = stack.pop();
-        if (next in walked) continue; // skip repeated walks
-        next[walked] = true;
+        if (JSON.stringify(next) in walked) continue; // skip repeated walks
+        next[JSON.stringify(next)] = true;
         // console.log(next);
         [paths, energised] = walkAndTransform(map, next, energised);
         stack.push(...paths);
-        console.log(stack.length);
+        //console.log(stack.length);
 
     }
     return Object.values(energised).length;
