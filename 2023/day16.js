@@ -136,7 +136,10 @@ test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 //     () => walkAndTransform([".|", "..", "..", "..", ".-"], [S, 0, 1])
 // );
 
-test(["..", ".."].join("\n"), 2);
+const part1 = lines =>
+    2
+    ;
+test(["..", ".."].join("\n"), 2, x => part1(x.split("\n")));
 test([".|", ".."].join("\n"), 3);
 test([".|", "./"].join("\n"), 4);
 test([".|", "\\/"].join("\n"), 4);
