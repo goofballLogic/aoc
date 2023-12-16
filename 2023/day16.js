@@ -141,8 +141,8 @@ test(
     () => walkAndTransform([".|", "..", "..", "..", ".-"], [S, 0, 1])
 );
 
-const part1 = lines =>
-    walkAndTransform(lines, [E, 0, 0])
+const part1 = map =>
+    walkAndTransform(map, [E, 0, 0])
         .pipe(([_paths, count]) => count + 1)
     ;
 
