@@ -67,7 +67,6 @@ const walkEast = (map, [startLine, x]) => {
     const line = map[startLine];
     do {
         x++;
-        console.log(x, startLine.length);
     } while (x < line.length && line[x] === ".")
     return x === line.length ? null : [startLine, x, line[x]];
 };
