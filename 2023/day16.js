@@ -67,11 +67,12 @@ const walkEast = (map, [startLine, x]) => {
     const line = map[startLine];
     do {
         x++;
-    } while (x < startLine.length && line[x] === ".")
-    return x === startLine.length ? null : [startLine, x, line[x]];
+        console.log(x, startLine.length);
+    } while (x < line.length && line[x] === ".")
+    return x === line.length ? null : [startLine, x, line[x]];
 };
 
-test(".. 0,0 walkEast", [0, 1, "."], () => walkEast([".."], [0, 0]));
+test(".. 0,0 walkEast", null, () => walkEast([".."], [0, 0]));
 test("./. 0,0 walkEast", [0, 1, "/"], () => walkEast(["./."], [0, 0]));
 
 const walk = (map, [dir, line, x]) =>
