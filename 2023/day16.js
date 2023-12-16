@@ -181,7 +181,7 @@ test(
 const part1 = map => {
 
     let stack = [[E, 0, 0]];
-    let energised = { "0_0": 1 };
+    let energised = { "0_0": { [E]: 1 } };
     let paths;
     while (stack.length) {
 
