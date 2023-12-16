@@ -227,19 +227,19 @@ test([".|", "\\/"].join("\n"), 4, x => part1(parseTestData(x)));
 test([".|.", "/-\\", "..."].join("\n"), 7, x => part1(parseTestData(x)));
 test([".|\\", ".\\/"].join("\n"), 5, x => part1(parseTestData(x)));
 
-const part2 = lines =>
+const part2 = map =>
     Math.max(
-        lines.reduce((max, line, y) =>
+        map.reduce((max, line, y) =>
             Math.max(
                 max,
-                countWalk([E, y, -1]),
-                countWalk([W, y, line.length])
+                countWalk([E, y, -1], map),
+                countWalk([W, y, line.length], map)
             ), 0),
-        lines[0].split("").reduce((max, _, x) =>
+        map[0].split("").reduce((max, _, x) =>
             Math.max(
                 max,
-                countWalk([S, x, 0]),
-                countWalk([N, x, lines[0].length])
+                countWalk([S, x, 0], map),
+                countWalk([N, x, map[0].length], map)
             ), 0)
     )
     ;
