@@ -9,7 +9,7 @@ const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split(
 const N = 0, E = 1, S = 2, W = 3;
 
 const transformBeam = (fromDirection, tile) =>
-    [N, S]
+    [N, S, E]
     ;
 test(
     "transform beam: E|NS",
