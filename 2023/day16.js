@@ -137,7 +137,7 @@ test("transform beam: N/E", [E], () => transformBeam(N, "/"));
 // );
 
 test(["..", ".."].join("\n"), 2);
-test(".|\n..", 3);
+test([".|", ".."].join("\n"), 3);
 test(".|\n./", 4);
 test(".|\n\\/", 4);
 test(".|.\n");
