@@ -16,9 +16,13 @@ const splitWE = fromDirection =>
     [W, E].includes(fromDirection) ? [fromDirection] : [W, E]
     ;
 
+const backslashReflect = fromDirection =>
+    [fromDirection];
+
 const tileStrategy = {
     "|": splitNS,
     "-": splitWE,
+    "\\": backslashReflect,
     ".": dir => [dir]
 };
 
