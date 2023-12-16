@@ -124,7 +124,10 @@ const pathsAfterTile = (dir, [line, x, symbol]) =>
 
 const walkAndTransform = (map, path) =>
     walk(map, path)
-        ?.pipe(([dest, count]) => [pathsAfterTile(path[0], dest), count])
+        .pipe(([dest, count]) => [
+            dest ? pathsAfterTile(path[0], dest) : [],
+            count
+        ])
     ;
 
 test(
@@ -139,7 +142,8 @@ test(
 );
 
 const part1 = lines =>
-    lines[0].length
+    walkAndTransform(lines, [E, 0, 0])
+        .pipe(([dest, count]) => count + 1)
     ;
 
 test(["..", ".."].join("\n"), 2, x => part1(x.split("\n")));
