@@ -91,7 +91,11 @@ test(
     [null, { "0_1": { [E]: 1 } }],
     () => walkEast({ map: [".."], pos: [0, 0], energised: {} })
 );
-// test("./. 0,0 walkEast", [[0, 1, "/"], { "0_1": 1 }], () => walkEast(["./."], [0, 0]));
+test(
+    "./. 0,0 walkEast",
+    [[0, 1, "/"], { "0_1": { [E]: 1 } }],
+    () => walkEast({ map: ["./."], pos: [0, 0], energised: {} })
+);
 // test(".. 0,0 walkEast", [null, { "hello": "world", "0_1": 1 }], () => walkEast([".."], [0, 0], { "hello": "world" }));
 
 // const walkWest = (map, pos, energised) =>
