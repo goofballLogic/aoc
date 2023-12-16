@@ -43,3 +43,6 @@ test("transform beam: N-WE", [W, E], () => transformBeam(N, "-"));
 test("transform beam: S-WE", [W, E], () => transformBeam(S, "-"));
 
 test("transform beam: E\\S", [S]);
+test("transform beam: W\\N", [N]);
+test("transform beam: S\\W", [W]);
+test("transform beam: N\\E", [E]);
