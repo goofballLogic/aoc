@@ -114,13 +114,14 @@ const walk = (map, [dir, line, x]) => {
         const [newLine, newX, newSymbol] = result;
         return [newLine, newX, newSymbol];
     } else {
-        return [];
+        return null;
     }
 }
     ;
 
-test(".. Walk E,0,0", [], () => walk([".."], [E, 0, 0]));
+test(".. Walk E,0,0", null, () => walk([".."], [E, 0, 0]));
 test(".\\ Walk E,0,0", [0, 1, "\\"], () => walk([".\\"], [E, 0, 0]));
+
 test(".|...\.... Walk E,0,0", [[N, 0, 1], [S, 0, 1]]); //, () => walk([".|...\...."], [E, 0, 0]));
 test(".|\n..\n..\n..\n.- Walk S,0,1", [[W, 4, 1], [E, 4, 1]]);
 
