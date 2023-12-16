@@ -143,7 +143,7 @@ test(
 
 const part1 = lines =>
     walkAndTransform(lines, [E, 0, 0])
-        .pipe(([dest, count]) => count + 1)
+        .pipe(([_paths, count]) => count + 1)
     ;
 
 test(["..", ".."].join("\n"), 2, x => part1(x.split("\n")));
