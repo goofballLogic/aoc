@@ -18,16 +18,14 @@ const splitWE = fromDirection =>
 
 const tileStrategy = {
     "|": splitNS,
-    "-": splitWE
+    "-": splitWE,
+    ".": dir => [dir]
 };
 
 const transformBeam = (fromDirection, tile) =>
-    tile === "|"
-        ? splitNS(fromDirection)
-        : tile === "-"
-            ? splitWE(fromDirection)
-            : [fromDirection]
-    ;
+    (tileStrategy[tile] || tileStrategy["."])(fromDirection);
+;
+
 test("transform beam: E|NS", [N, S], () => transformBeam(E, "|"));
 test("transform beam: W|NS", [N, S], () => transformBeam(W, "|"));
 test("transform beam: N|N", [N], () => transformBeam(N, "|"));
