@@ -132,11 +132,11 @@ test(
     [[[N, 0, 1], [S, 0, 1]], 1],
     () => walkAndTransform([".|...\...."], [E, 0, 0])
 );
-// test(
-//     ".|\n..\n..\n..\n.- Walk S,0,1",
-//     [[W, 4, 1], [E, 4, 1]],
-//     () => walkAndTransform([".|", "..", "..", "..", ".-"], [S, 0, 1])
-// );
+test(
+    ".|\n..\n..\n..\n.- Walk S,0,1",
+    [[[W, 4, 1], [E, 4, 1]], 4],
+    () => walkAndTransform([".|", "..", "..", "..", ".-"], [S, 0, 1])
+);
 
 const part1 = lines =>
     lines[0].length
