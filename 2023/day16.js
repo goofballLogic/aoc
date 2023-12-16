@@ -11,8 +11,5 @@ const N = 0, E = 1, S = 2, W = 3;
 const transformBeam = (fromDirection, tile) =>
     [N, S]
     ;
-test(
-    "transform beam: E|NS",
-    [N, S],
-    () => transformBeam(E, "|")
-);
+test("transform beam: E|NS", [N, S], () => transformBeam(E, "|"));
+test("transform beam: W|NS", [N, S], () => transformBeam(W, "|"));
