@@ -69,7 +69,7 @@ const walkBy = (map, [y, x], move) => {
     do {
 
         [y, x] = move([y, x]);
-        symbol = map[y][x];
+        symbol = map[y]?.[x];
 
     } while (symbol === ".");
     return symbol ? [y, x, symbol] : null;
@@ -89,8 +89,11 @@ const walkWest = (map, pos) =>
 
 test("./. 0,2 walkWest", [0, 1, "/"], () => walkWest(["./."], [0, 2]));
 
+const walkSouth = (map, pos) =>
+    walkBy(map, pos, ([y, x]) => [y + 1, x])
+    ;
 
-test(".\n/\n. 0,0 walkSouth", [0, 1, "/"]);
+test(".\n/\n. 0,0 walkSouth", [1, 0, "/"], () => walkSouth([".", "/", "."], [0, 0]));
 
 const walk = (map, [dir, line, x]) =>
     [[E, 0, 1]]
