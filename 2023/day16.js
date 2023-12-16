@@ -93,11 +93,11 @@ const walkWest = (map, pos, energised) =>
 
 test("./. 0,2 walkWest", [[0, 1, "/"], { x: 1, "0_1": 1 }], () => walkWest(["./."], [0, 2], { x: 1 }));
 
-const walkSouth = (map, pos) =>
-    walkBy(map, pos, ([y, x]) => [y + 1, x])
+const walkSouth = (map, pos, energised) =>
+    walkBy(map, pos, ([y, x]) => [y + 1, x], energised)
     ;
 
-test(".\n/\n. 0,0 walkSouth", [[1, 0, "/"], { "1_0": 1 }], () => walkSouth([".", "/", "."], [0, 0]));
+test(".\n/\n. 0,0 walkSouth", [[1, 0, "/"], { "1_0": 1 }], () => walkSouth([".", "/", "."], [0, 0], { x: 1 }));
 
 const walkNorth = (map, pos) =>
     walkBy(map, pos, ([y, x]) => [y - 1, x])
