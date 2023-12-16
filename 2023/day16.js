@@ -254,8 +254,6 @@ console.time("Part 1");
 console.log("Part 1", part1(raw));
 console.timeEnd("Part 1");
 
-
-// console.time("Part 2");
-// console.log("Part 2", part2(raw));
-// console.timeEnd("Part 2");
-
+console.time("Part 2");
+console.log("Part 2", part2(raw));
+console.timeEnd("Part 2");
