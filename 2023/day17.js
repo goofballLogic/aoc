@@ -6,12 +6,23 @@ const input = 1;
 const day = 17;
 const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split("\n");
 
+const extendPath = ({ map, path }) =>
+    [
+        [
+            ...path,
+            [0, 1, parseInt(map[0][1])]
+        ]
+    ]
+    ;
+
 const walk = ({ map, pos: [y, x], dest }) => {
 
-    //let paths = extendPath([]);
-    const steps = [[y, x, 0], [0, 1, parseInt(map[0][1])]];
-    console.log(steps);
-    return steps[steps.length - 1][2];
+    let paths = extendPath({ map, path: [[y, x, 0]] });
+    console.log(paths);
+    return paths
+        .map(steps => steps[steps.length - 1][2])
+        .sum()
+        ;
 
 };
 
