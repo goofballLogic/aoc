@@ -7,3 +7,4 @@ const day = 17;
 const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split("\n");
 
 test("12\n34");
+test("1111\n2222");
