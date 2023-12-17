@@ -10,6 +10,7 @@ const walk = ({ map, pos: [y, x], dest }) => {
 
     // add one to x
     const nextPos = [y, x + 1];
+    const lastTurned = 1;
     return 2;
 
 };
