@@ -6,8 +6,10 @@ const input = 1;
 const day = 17;
 const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split("\n");
 
-const walk = ({ map, pos, dest }) => {
+const walk = ({ map, pos: [y, x], dest }) => {
 
+    // add one to x
+    const nextPos = [y, x + 1];
     return 2;
 
 };
