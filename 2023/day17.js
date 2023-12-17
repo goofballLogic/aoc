@@ -6,8 +6,12 @@ const input = 1;
 const day = 17;
 const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split("\n");
 
-const part1 = map =>
+const walk = (map, [y, x]) =>
     2
+    ;
+
+const part1 = map =>
+    walk(map, [0, 0])
     ;
 
 test("12", 2, () => part1(["12"]));
