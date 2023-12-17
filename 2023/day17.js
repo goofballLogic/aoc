@@ -6,6 +6,4 @@ const input = 1;
 const day = 17;
 const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split("\n");
 
-console.log(raw);
-
 test("12,34");
