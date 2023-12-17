@@ -10,7 +10,7 @@ const walk = ({ map, pos: [y, x], dest }) => {
 
     const steps = [[0, 1, parseInt(map[0][1])]];
     console.log(steps);
-    return 2;
+    return steps[steps.length - 1][2];
 
 };
 
