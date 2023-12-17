@@ -9,10 +9,15 @@ const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split(
 const walk = ({ map, pos: [y, x], dest }) => {
 
     return 2;
+
 };
 
 const part1 = map =>
-    walk({ map, pos: [0, 0], dest: [map.length - 1, map[0].length] })
+    walk({
+        map,
+        pos: [0, 0],
+        dest: [map.length - 1, map[0].length]
+    })
     ;
 
 test("12", 2, () => part1(["12"]));
