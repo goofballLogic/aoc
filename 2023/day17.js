@@ -8,7 +8,7 @@ const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split(
 
 const walk = ({ map, pos: [y, x], dest }) => {
 
-    const steps = [[0, 1, map[0][1]]];
+    const steps = [[0, 1, parseInt(map[0][1])]];
     console.log(steps);
     return 2;
 
