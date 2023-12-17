@@ -9,4 +9,5 @@ const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split(
 test("12\n34", 6);
 test("13\n24", 6)
 test("11111\n22222", 7);
-test("1234\n1234\n1234");
+test("1234\n1234\n1234", 11);
+test("11111\n11111\n11111\n11111\n11111");
