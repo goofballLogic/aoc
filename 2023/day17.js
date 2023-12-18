@@ -93,13 +93,13 @@ test(
     ],
     () => nextStates(longMap, { dir: E, pos: [0, 2], len: 2 })
 )
-test(
-    `${longMapText.join("\n")} E,0,3 len 3 next states`,
-    [
-        { dir: S, pos: [1, 3], w: 2, len: 1 }
-    ],
-    //() => nextStates(longMap, { dir: E, pos: [0, 2], len: 2 })
-)
+// test(
+//     `${longMapText.join("\n")} E,0,3 len 3 next states`,
+//     [
+//         { dir: S, pos: [1, 3], w: 2, len: 1 }
+//     ],
+//     () => nextStates(longMap, { dir: E, pos: [0, 2], len: 2 })
+// )
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
 // test("13\n24", 6); //, () => part1(["13", "24"]));
