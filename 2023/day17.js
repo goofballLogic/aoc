@@ -77,7 +77,14 @@ test(
     ],
     () => nextStates(longMap, { dir: E, pos: [0, 1], len: 1 })
 )
-
+test(
+    `${longMapText} E,0,2 len 2 next states`,
+    [
+        { dir: E, pos: [0, 2], w: 1, len: 2 },
+        { dir: S, pos: [1, 1], w: 2, len: 2 }
+    ],
+    //() => nextStates(longMap, { dir: E, pos: [0, 1], len: 1 })
+)
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
 // test("13\n24", 6); //, () => part1(["13", "24"]));
