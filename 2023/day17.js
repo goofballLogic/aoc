@@ -22,7 +22,7 @@ const nextPosForDir = (dir, [y, x]) =>
 
 const mappedState = (map, state) =>
     ({ ...state, w: map[state.pos[0]]?.[state.pos[1]] })
-        .pipe(nextState => nextState.w && nextState)
+        .pipe(nextState => (nextState.w && nextState.len < 4) && nextState)
     ;
 
 const nextStateForDir = (dir, map, state) =>
