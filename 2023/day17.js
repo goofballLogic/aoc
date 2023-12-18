@@ -66,7 +66,7 @@ const snakeMapText = ["19111", "19191", "19191", "11191", "99991"];
 const snakeMap = snakeMapText.map(line => line.split("").map(x => parseInt(x)));
 test(
     snakeMapText.join("\n") + " N,2,2 next states",
-    [{ dir: N, pos: [2, 2] }],
+    [{ dir: N, pos: [1, 2], w: 1 }, { dir: E, pos: [2, 3], w: 9 }, { dir: W, pos: [2, 1], w: 9 }],
 );
 
 
