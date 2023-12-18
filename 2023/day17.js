@@ -22,14 +22,17 @@ const nextPosForDir = (dir, [y, x]) =>
 
 const mappedState = (map, state) =>
     ({ ...state, w: map[state.pos[0]]?.[state.pos[1]] })
+        .pipe(nextState => nextState.w && nextState)
     ;
 
 const nextStateForDir = (dir, map, state) =>
-    mappedState(map, {
-        dir,
-        pos: nextPosForDir(dir, state.pos),
-        len: dir === state.dir ? (state.len || 0) + 1 : 1
-    })
+    mappedState(map,
+        {
+            dir,
+            pos: nextPosForDir(dir, state.pos),
+            len: dir === state.dir ? (state.len || 0) + 1 : 1
+        }
+    )
     ;
 
 const nextStates = (map, state) =>
@@ -37,7 +40,7 @@ const nextStates = (map, state) =>
         nextStateForDir(straight(state), map, state),
         nextStateForDir(turnRight(state), map, state),
         nextStateForDir(turnLeft(state), map, state)
-    ].filter(({ w }) => w)
+    ].filter(x => x)
     ;
 
 test(
