@@ -49,8 +49,11 @@ test(
     [{ dir: E, pos: [0, 1], w: 3 }, { dir: S, pos: [1, 0], w: 2 }],
     () => nextStates([[1, 3], [2, 4]], { dir: E, pos: [0, 0] })
 );
+const longMapText = ["11111", "22222"];
+const longMap = longMapText.map(line => line.split("").map(x => parseInt(x)));
+
 test(
-    "11111\n22222 E,0,0 next states",
+    `${longMap.join("\n")} E,0,0 next states`,
     [{ dir: E, pos: [0, 1], w: 1 }, { dir: S, pos: [1, 0], w: 2 }],
     () => nextStates([[1, 1, 1, 1, 1], [2, 2, 2, 2, 2]], { dir: E, pos: [0, 0] })
 );
@@ -67,7 +70,6 @@ test(
     () => nextStates(snakeMap, { dir: N, pos: [2, 2] })
 );
 
-console.log(nextStates(["12"], { dir: E, pos: [0, 0] }));
 
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
