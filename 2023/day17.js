@@ -16,7 +16,7 @@ const nextPosForDir = (dir, [y, x]) =>
         : [y, x]
     ;
 const nextStateForDir = (dir, map, { pos }) =>
-    [{ dir, pos: nextPosForDir(dir, pos) }];
+    ({ dir, pos: nextPosForDir(dir, pos) });
 
 const nextStates = (map, state) =>
     [
@@ -24,8 +24,8 @@ const nextStates = (map, state) =>
         //goRight(state)
     ].filter(x => x);
 
-test("12 E,0,0 next states", [[{ dir: E, pos: [0, 1] }]], () => nextStates([[1, 2]], { dir: E, pos: [0, 0] }));
-test("12\n34 E,0,0 next states", [[{ dir: E, pos: [0, 1] }, { dir: S, pos: [1, 0] }]]);
+test("12 E,0,0 next states", [{ dir: E, pos: [0, 1] }], () => nextStates([[1, 2]], { dir: E, pos: [0, 0] }));
+test("12\n34 E,0,0 next states", [{ dir: E, pos: [0, 1] }, { dir: S, pos: [1, 0] }]);
 test("12", 2); //, () => part1(["12"]));
 test("12\n34", 6); //, () => part1(["12", "34"]));
 test("13\n24", 6); //, () => part1(["13", "24"]));
