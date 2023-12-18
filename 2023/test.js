@@ -27,7 +27,8 @@ export function test(description, expected, strategy) {
 
         } catch (err) {
 
-            console.log("ERR", consoleDescription);
+            if (!(err instanceof TestFailure))
+                console.log("ERR", consoleDescription);
             throw err;
 
         }
