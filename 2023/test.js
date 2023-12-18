@@ -31,6 +31,7 @@ export function test(description, expected, strategy) {
     } else {
 
         if (expected !== undefined) {
+            console.log("\x1b[37m___\x1b[0m", consoleDescription, "(expected: ", JSON.stringify(expected), ")");
         } else {
             console.log("\x1b[37m___\x1b[0m", consoleDescription);
         }
