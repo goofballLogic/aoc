@@ -67,8 +67,7 @@ test(
     () => nextStates(snakeMap, { dir: N, pos: [2, 2] })
 );
 
-
-
+console.log(nextStates(["12"], { dir: E, pos: [0, 0] }));
 
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
