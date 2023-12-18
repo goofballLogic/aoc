@@ -8,7 +8,10 @@ const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split(
 
 const N = 0, E = 1, S = 2, W = 3;
 
-test("12 E,0,0 next states", [E, 0, 1]);
+const nextStates = ({ dir, pos: [y, x] }) =>
+    [[{ dir: E, pos: [0, 1] }]];
+
+test("12 E,0,0 next states", [[{ dir: E, pos: [0, 1] }]], () => nextStates({ dir: E, pos: [0, 0] }));
 
 test("12", 2); //, () => part1(["12"]));
 test("12\n34", 6); //, () => part1(["12", "34"]));
