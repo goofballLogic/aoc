@@ -32,7 +32,7 @@ export function test(description, expected, strategy) {
 
         if (expected !== undefined) {
 
-            console.log("\x1b[37m___\x1b[0m", consoleDescription.replace(/\n$/, ""), "-\x1b[34m Expecting:", JSON.stringify(expected), consoleDescription.endsWith("\n") ? "\n" : "");
+            console.log("\x1b[37m___\x1b[0m", consoleDescription.replace(/\n$/, ""), "-\x1b[36m Expecting:", JSON.stringify(expected), consoleDescription.endsWith("\n") ? "\n" : "");
 
         } else {
 
