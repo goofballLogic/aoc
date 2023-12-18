@@ -80,10 +80,10 @@ test(
 test(
     `${longMapText.join("\n")} E,0,2 len 2 next states`,
     [
-        { dir: E, pos: [0, 2], w: 1, len: 2 },
-        { dir: S, pos: [1, 1], w: 2, len: 2 }
+        { dir: E, pos: [0, 3], w: 1, len: 3 },
+        { dir: S, pos: [1, 2], w: 2, len: 3 }
     ],
-    //() => nextStates(longMap, { dir: E, pos: [0, 1], len: 1 })
+    () => nextStates(longMap, { dir: E, pos: [0, 2], len: 2 })
 )
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
