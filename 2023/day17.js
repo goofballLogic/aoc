@@ -24,7 +24,11 @@ const mappedState = (map, state) =>
     ({ ...state, w: map[state.pos[0]]?.[state.pos[1]] });
 
 const nextStateForDir = (dir, map, state) =>
-    mappedState(map, { dir, pos: nextPosForDir(dir, state.pos), len: (state.len || 0) + 1 })
+    mappedState(map, {
+        dir,
+        pos: nextPosForDir(dir, state.pos),
+        len: dir === state.dir ? (state.len || 0) + 1 : 1
+    })
     ;
 
 const nextStates = (map, state) =>
@@ -73,7 +77,7 @@ test(
     `${longMapText.join("\n")} E,0,1 len 1 next states`,
     [
         { dir: E, pos: [0, 2], w: 1, len: 2 },
-        { dir: S, pos: [1, 1], w: 2, len: 2 }
+        { dir: S, pos: [1, 1], w: 2, len: 1 }
     ],
     () => nextStates(longMap, { dir: E, pos: [0, 1], len: 1 })
 )
@@ -81,9 +85,16 @@ test(
     `${longMapText.join("\n")} E,0,2 len 2 next states`,
     [
         { dir: E, pos: [0, 3], w: 1, len: 3 },
-        { dir: S, pos: [1, 2], w: 2, len: 3 }
+        { dir: S, pos: [1, 2], w: 2, len: 1 }
     ],
     () => nextStates(longMap, { dir: E, pos: [0, 2], len: 2 })
+)
+test(
+    `${longMapText.join("\n")} E,0,3 len 3 next states`,
+    [
+        { dir: S, pos: [1, 3], w: 2, len: 1 }
+    ],
+    //() => nextStates(longMap, { dir: E, pos: [0, 2], len: 2 })
 )
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
