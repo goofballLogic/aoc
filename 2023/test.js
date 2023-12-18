@@ -1,3 +1,7 @@
+class TestFailure extends Error {
+
+}
+
 export function test(description, expected, strategy) {
 
     const consoleDescription = description.includes("\n")
@@ -17,7 +21,7 @@ export function test(description, expected, strategy) {
 
                 console.log("\x1b[31;1m X \x1b[0m", consoleDescription);
                 console.log("\tExpected:", JSON.stringify(expected), ". Actual:", JSON.stringify(actual));
-                throw new Error("Tests failed");
+                throw new TestFailure("Tests failed");
 
             }
 
