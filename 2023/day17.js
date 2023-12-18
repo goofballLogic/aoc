@@ -10,12 +10,13 @@ const N = 0, E = 1, S = 2, W = 3;
 
 const straight = ({ dir }) => dir;
 
-const goStraight = map => [{ dir: E, pos: [0, 1] }];
-
-const goRight = map => [{ dir: S, pos: [1, 0] }];
-
-const nextStateForDir = (dir, map, state) =>
-    [{ dir, pos: [0, 1] }];
+const nextPosForDir = (dir, [y, x]) =>
+    dir === E
+        ? [y, x + 1]
+        : [y, x]
+    ;
+const nextStateForDir = (dir, map, { pos }) =>
+    [{ dir, pos: nextPosForDir(dir, pos) }];
 
 const nextStates = (map, state) =>
     [
