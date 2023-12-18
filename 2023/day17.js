@@ -22,7 +22,7 @@ const nextPosForDir = (dir, [y, x]) =>
 
 const mappedState = (map, state) =>
     ({ ...state, w: map[state.pos[0]]?.[state.pos[1]] })
-        .pipe(nextState => ({ ...nextState, ws: (state.ws || 0) + nextState.w }))
+        .pipe(nextState => ({ ...nextState, wsum: (state.ws || 0) + nextState.w }))
         .pipe(nextState => (nextState.w && nextState.len < 4) && nextState)
     ;
 
@@ -46,22 +46,22 @@ const nextStates = (map, state) =>
 
 test(
     "12 E,0,0 next states",
-    [{ dir: E, pos: [0, 1], w: 2, len: 1, ws: 2 }],
+    [{ dir: E, pos: [0, 1], w: 2, len: 1, wsum: 2 }],
     () => nextStates([[1, 2]], { dir: E, pos: [0, 0] })
 );
 test(
     "12\n34 E,0,0 next states",
     [
-        { dir: E, pos: [0, 1], w: 2, len: 1, ws: 2 },
-        { dir: S, pos: [1, 0], w: 3, len: 1, ws: 3 }
+        { dir: E, pos: [0, 1], w: 2, len: 1, wsum: 2 },
+        { dir: S, pos: [1, 0], w: 3, len: 1, wsum: 3 }
     ],
     () => nextStates([[1, 2], [3, 4]], { dir: E, pos: [0, 0] })
 );
 test(
     "13\n24 E,0,0 next states",
     [
-        { dir: E, pos: [0, 1], w: 3, len: 1, ws: 3 },
-        { dir: S, pos: [1, 0], w: 2, len: 1, ws: 2 }
+        { dir: E, pos: [0, 1], w: 3, len: 1, wsum: 3 },
+        { dir: S, pos: [1, 0], w: 2, len: 1, wsum: 2 }
     ],
     () => nextStates([[1, 3], [2, 4]], { dir: E, pos: [0, 0] })
 );
@@ -70,14 +70,14 @@ const longMap = longMapText.map(line => line.split("").map(x => parseInt(x)));
 test(
     `${longMapText.join("\n")} E,0,0 next states`,
     [
-        { dir: E, pos: [0, 1], w: 1, len: 1, ws: 1 },
-        { dir: S, pos: [1, 0], w: 2, len: 1, ws: 2 }
+        { dir: E, pos: [0, 1], w: 1, len: 1, wsum: 1 },
+        { dir: S, pos: [1, 0], w: 2, len: 1, wsum: 2 }
     ],
     () => nextStates(longMap, { dir: E, pos: [0, 0] })
 );
 test(
     "1234\n1234\n1234 W,0,0 next states",
-    [{ dir: S, pos: [1, 0], w: 1, len: 1, ws: 1 }],
+    [{ dir: S, pos: [1, 0], w: 1, len: 1, wsum: 1 }],
     () => nextStates([[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]], { dir: W, pos: [0, 0] })
 );
 const snakeMapText = ["19111", "19191", "19191", "11191", "99991"];
@@ -85,32 +85,32 @@ const snakeMap = snakeMapText.map(line => line.split("").map(x => parseInt(x)));
 test(
     snakeMapText.join("\n") + " N,2,2 next states",
     [
-        { dir: N, pos: [1, 2], w: 1, len: 1, ws: 1 },
-        { dir: E, pos: [2, 3], w: 9, len: 1, ws: 9 },
-        { dir: W, pos: [2, 1], w: 9, len: 1, ws: 9 }
+        { dir: N, pos: [1, 2], w: 1, len: 1, wsum: 1 },
+        { dir: E, pos: [2, 3], w: 9, len: 1, wsum: 9 },
+        { dir: W, pos: [2, 1], w: 9, len: 1, wsum: 9 }
     ],
     () => nextStates(snakeMap, { dir: N, pos: [2, 2] })
 );
 test(
     `${longMapText.join("\n")} E,0,1 len 1 next states`,
     [
-        { dir: E, pos: [0, 2], w: 1, len: 2, ws: 1 },
-        { dir: S, pos: [1, 1], w: 2, len: 1, ws: 2 }
+        { dir: E, pos: [0, 2], w: 1, len: 2, wsum: 1 },
+        { dir: S, pos: [1, 1], w: 2, len: 1, wsum: 2 }
     ],
     () => nextStates(longMap, { dir: E, pos: [0, 1], len: 1 })
 )
 test(
     `${longMapText.join("\n")} E,0,2 len 2 next states`,
     [
-        { dir: E, pos: [0, 3], w: 1, len: 3, ws: 1 },
-        { dir: S, pos: [1, 2], w: 2, len: 1, ws: 2 }
+        { dir: E, pos: [0, 3], w: 1, len: 3, wsum: 1 },
+        { dir: S, pos: [1, 2], w: 2, len: 1, wsum: 2 }
     ],
     () => nextStates(longMap, { dir: E, pos: [0, 2], len: 2 })
 )
 test(
     `${longMapText.join("\n")} E,0,3 len 3 next states`,
     [
-        { dir: S, pos: [1, 3], w: 2, len: 1, ws: 2 }
+        { dir: S, pos: [1, 3], w: 2, len: 1, wsum: 2 }
     ],
     () => nextStates(longMap, { dir: E, pos: [0, 3], len: 3 })
 );
