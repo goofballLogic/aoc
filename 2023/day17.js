@@ -8,10 +8,17 @@ const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split(
 
 const N = 0, E = 1, S = 2, W = 3;
 
-const nextStates = ({ dir, pos: [y, x] }) =>
-    [[{ dir: E, pos: [0, 1] }]];
+const goStraight = map => [{ dir: E, pos: [0, 1] }];
 
-test("12 E,0,0 next states", [[{ dir: E, pos: [0, 1] }]], () => nextStates({ dir: E, pos: [0, 0] }));
+const goRight = map => [{ dir: S, pos: [1, 0] }];
+
+const nextStates = (map, state) =>
+    [
+        goStraight(map, state),
+        //goRight(state)
+    ].filter(x => x);
+
+test("12 E,0,0 next states", [[{ dir: E, pos: [0, 1] }]], () => nextStates([[1, 2]], { dir: E, pos: [0, 0] }));
 test("12\n34 E,0,0 next states", [[{ dir: E, pos: [0, 1] }, { dir: S, pos: [1, 0] }]]);
 test("12", 2); //, () => part1(["12"]));
 test("12\n34", 6); //, () => part1(["12", "34"]));
