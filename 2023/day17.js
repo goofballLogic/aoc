@@ -10,8 +10,8 @@ const N = 0, E = 1, S = 2, W = 3;
 const compass = [N, E, S, W];
 
 const straight = ({ dir }) => dir;
-const turnRight = ({ dir }) => compass[dir + 1] || N;
-const turnLeft = ({ dir }) => compass[dir - 1] || W;
+const turnRight = ({ dir }) => dir === W ? N : compass[dir + 1];
+const turnLeft = ({ dir }) => dir === N ? W : compass[dir - 1];
 
 const nextPosForDir = (dir, [y, x]) =>
     dir === E ? [y, x + 1]
@@ -32,7 +32,8 @@ const nextStates = (map, state) =>
         nextStateForDir(straight(state), map, state),
         nextStateForDir(turnRight(state), map, state),
         nextStateForDir(turnLeft(state), map, state)
-    ].filter(({ w }) => w);
+    ].filter(({ w }) => w)
+    ;
 
 test(
     "12 E,0,0 next states",
@@ -73,7 +74,8 @@ test(
     [
         { dir: E, pos: [0, 2], w: 1, len: 2 },
         { dir: S, pos: [1, 1], w: 2, len: 2 }
-    ]
+    ],
+    () => nextStates(longMap, { dir: E, pos: [0, 1], len: 1 })
 )
 
 // test("12", 2); //, () => part1(["12"]));
