@@ -68,10 +68,13 @@ test(
     [{ dir: N, pos: [1, 2], w: 1, len: 1 }, { dir: E, pos: [2, 3], w: 9, len: 1 }, { dir: W, pos: [2, 1], w: 9, len: 1 }],
     () => nextStates(snakeMap, { dir: N, pos: [2, 2] })
 );
-// test(
-//     `${longMapText} E,0,1 len 1 next states`,
-//     [{ dir: S, pos: [1, 1], w: 2, len: 2 }, { dir: }]
-// )
+test(
+    `${longMapText} E,0,1 len 1 next states`,
+    [
+        { dir: E, pos: [0, 2], w: 1, len: 2 },
+        { dir: S, pos: [1, 1], w: 2, len: 2 }
+    ]
+)
 
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
