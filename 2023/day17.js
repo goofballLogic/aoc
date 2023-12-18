@@ -21,7 +21,8 @@ const nextPosForDir = (dir, [y, x]) =>
     ;
 
 const mappedState = (map, state) =>
-    ({ ...state, w: map[state.pos[0]]?.[state.pos[1]] });
+    ({ ...state, w: map[state.pos[0]]?.[state.pos[1]] })
+    ;
 
 const nextStateForDir = (dir, map, state) =>
     mappedState(map, {
