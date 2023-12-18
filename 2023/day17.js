@@ -14,12 +14,9 @@ const turnRight = ({ dir }) => compass[dir + 1] || N;
 const turnLeft = ({ dir }) => compass[dir - 1] || W;
 
 const nextPosForDir = (dir, [y, x]) =>
-    dir === E
-        ? [y, x + 1]
-        : dir === S
-            ? [y + 1, x]
-            : dir === W
-                ? [y, x - 1]
+    dir === E ? [y, x + 1]
+        : dir === S ? [y + 1, x]
+            : dir === W ? [y, x - 1]
                 : [y - 1, x] // N
     ;
 
