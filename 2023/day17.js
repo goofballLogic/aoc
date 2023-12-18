@@ -22,13 +22,14 @@ const nextPosForDir = (dir, [y, x]) =>
 
 const mappedState = (map, state) =>
     ({ ...state, w: map[state.pos[0]]?.[state.pos[1]] })
-        .pipe(nextState => ({ ...nextState, wsum: (state.ws || 0) + nextState.w }))
+        .pipe(nextState => ({ ...nextState, wsum: (state.wsum || 0) + nextState.w }))
         .pipe(nextState => (nextState.w && nextState.len < 4) && nextState)
     ;
 
 const nextStateForDir = (dir, map, state) =>
     mappedState(map,
         {
+            ...state,
             dir,
             pos: nextPosForDir(dir, state.pos),
             len: dir === state.dir ? (state.len || 0) + 1 : 1
@@ -92,12 +93,12 @@ test(
     () => nextStates(snakeMap, { dir: N, pos: [2, 2] })
 );
 test(
-    `${longMapText.join("\n")} E,0,1 len 1 next states`,
+    `${longMapText.join("\n")} E,0,1 len 1, sum 1 next states`,
     [
-        { dir: E, pos: [0, 2], w: 1, len: 2, wsum: 1 },
-        { dir: S, pos: [1, 1], w: 2, len: 1, wsum: 2 }
+        { dir: E, pos: [0, 2], w: 1, len: 2, wsum: 2 },
+        { dir: S, pos: [1, 1], w: 2, len: 1, wsum: 3 }
     ],
-    () => nextStates(longMap, { dir: E, pos: [0, 1], len: 1 })
+    () => nextStates(longMap, { dir: E, pos: [0, 1], len: 1, wsum: 1 })
 )
 test(
     `${longMapText.join("\n")} E,0,2 len 2 next states`,
