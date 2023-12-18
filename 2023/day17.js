@@ -55,7 +55,7 @@ const longMap = longMapText.map(line => line.split("").map(x => parseInt(x)));
 test(
     `${longMapText.join("\n")} E,0,0 next states`,
     [{ dir: E, pos: [0, 1], w: 1 }, { dir: S, pos: [1, 0], w: 2 }],
-    () => nextStates([[1, 1, 1, 1, 1], [2, 2, 2, 2, 2]], { dir: E, pos: [0, 0] })
+    () => nextStates(longMap, { dir: E, pos: [0, 0] })
 );
 test(
     "1234\n1234\n1234 W,0,0 next states",
