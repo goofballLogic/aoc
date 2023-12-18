@@ -103,17 +103,17 @@ test(
 test(
     `${longMapText.join("\n")} E,0,2 len 2 next states`,
     [
-        { dir: E, pos: [0, 3], w: 1, len: 3, wsum: 1 },
-        { dir: S, pos: [1, 2], w: 2, len: 1, wsum: 2 }
+        { dir: E, pos: [0, 3], w: 1, len: 3, wsum: 3 },
+        { dir: S, pos: [1, 2], w: 2, len: 1, wsum: 4 }
     ],
-    () => nextStates(longMap, { dir: E, pos: [0, 2], len: 2 })
+    () => nextStates(longMap, { dir: E, pos: [0, 2], len: 2, wsum: 2 })
 )
 test(
     `${longMapText.join("\n")} E,0,3 len 3 next states`,
     [
-        { dir: S, pos: [1, 3], w: 2, len: 1, wsum: 2 }
+        { dir: S, pos: [1, 3], w: 2, len: 1, wsum: 5 }
     ],
-    () => nextStates(longMap, { dir: E, pos: [0, 3], len: 3 })
+    () => nextStates(longMap, { dir: E, pos: [0, 3], len: 3, wsum: 3 })
 );
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
