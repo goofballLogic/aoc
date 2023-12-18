@@ -30,7 +30,10 @@ export function test(description, expected, strategy) {
 
     } else {
 
-        console.log("\x1b[37m___\x1b[0m", consoleDescription);
+        if (expected !== undefined) {
+        } else {
+            console.log("\x1b[37m___\x1b[0m", consoleDescription);
+        }
 
     }
 }
