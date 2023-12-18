@@ -70,7 +70,7 @@ test(
     () => nextStates(snakeMap, { dir: N, pos: [2, 2] })
 );
 test(
-    `${longMapText} E,0,1 len 1 next states`,
+    `${longMapText.join("\n")} E,0,1 len 1 next states`,
     [
         { dir: E, pos: [0, 2], w: 1, len: 2 },
         { dir: S, pos: [1, 1], w: 2, len: 2 }
@@ -78,7 +78,7 @@ test(
     () => nextStates(longMap, { dir: E, pos: [0, 1], len: 1 })
 )
 test(
-    `${longMapText} E,0,2 len 2 next states`,
+    `${longMapText.join("\n")} E,0,2 len 2 next states`,
     [
         { dir: E, pos: [0, 2], w: 1, len: 2 },
         { dir: S, pos: [1, 1], w: 2, len: 2 }
