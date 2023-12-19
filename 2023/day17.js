@@ -133,9 +133,7 @@ const startingStates = Object.fromEntries(
 );
 
 const cheapestNode = stateMap =>
-    Object
-        .entries(stateMap)
-        .reduce((a, b) => b[1].wsum < a[1].wsum ? b : a);
+    Object.entries(stateMap).reduce((a, b) => b[1].wsum < a[1].wsum ? b : a);
 
 test(
     "Cheapest node",
@@ -152,28 +150,35 @@ test(
 );
 
 const part1 = map => {
-    const newStates = Object.values(startingStates)
-        .flatMap(state => nextStates(map, state))
-        .map(state => [stateKey(state), state])
 
-    const working = {};
+    const working = { ...startingStates };
+    const destPrefix = `${map.length - 1}_${map[0].length - 1}`;
+    console.log(destPrefix);
+    while (Object.keys(working).some(k => !k.startsWith(destPrefix))) {
 
-    for (const [key, state] of newStates) {
+        const [cheapKey, cheapState] = cheapestNode(working);
+        delete working[cheapKey];
+        const newStates = nextStates(map, cheapState);
+        for (const newState of newStates) {
 
-        if (key in working) {
-            if (working[key].wsum > state.wsum)
-                working[key] = state;
-        } else {
-            working[key] = state;
+            const key = stateKey(newState);
+            if (key in working) {
+                if (working[key].wsum > newState.wsum)
+                    working[key] = newState;
+            } else {
+                working[key] = newState;
+            }
         }
+        ;
+        console.log(working, startingStates);
+
     }
-    ;
     return cheapestNode(working)[1].wsum;
 
 };
 
 test("12", 2, () => part1([[1, 2]]));
-test("12\n34", 6); //, () => part1(["12", "34"]));
+test("12\n34", 6, () => part1([[1, 2], [3, 4]]));
 // test("13\n24", 6); //, () => part1(["13", "24"]));
 // test("11111\n22222", 7);
 // test("1234\n1234\n1234", 11);
