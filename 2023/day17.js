@@ -156,7 +156,6 @@ const part1 = map => {
     let [cheapKey, cheapState] = cheapestNode(working);
     while (!cheapKey.startsWith(destPrefix)) {
 
-        console.log(working);
         // remove this one from future considerations
         delete working[cheapKey];
         // calulate new states from this starting point
@@ -174,7 +173,6 @@ const part1 = map => {
         [cheapKey, cheapState] = cheapestNode(working);
 
     }
-    console.log(working);
     return cheapestNode(working)[1].wsum;
 
 };
@@ -185,5 +183,4 @@ test("13\n24", 6, () => part1([[1, 3], [2, 4]]));
 test("11111\n22222", 7, () => part1([[1, 1, 1, 1, 1], [2, 2, 2, 2, 2]]));
 test("1234\n1234\n1234", 11, () => part1([[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]));
 test("19111\n19191\n11191", 10, () => part1([[1, 9, 1, 1, 1], [1, 9, 1, 9, 1], [1, 1, 1, 9, 1]]));
-//console.log(part1(snakeMap));
 test("19111\n19191\n19191\n11191\n99991", 18, () => part1(snakeMap));
