@@ -149,8 +149,9 @@ test(
     })
 );
 
-console.log(startingStates);
 console.log(raw.map(line => line.join("")).join("\n"));
+
+console.log(Object.values(startingStates).map(state => nextStates(raw, state)));
 
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
