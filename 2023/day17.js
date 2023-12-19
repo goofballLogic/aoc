@@ -149,8 +149,6 @@ test(
     })
 );
 
-console.log(startingStates);
-
 const part1 = map => {
     console.log(
         Object.values(startingStates)
