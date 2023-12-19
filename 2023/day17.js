@@ -164,9 +164,11 @@ const part1 = map => {
         for (const newState of newStates) {
 
             const key = stateKey(newState);
+            const previous = working[key];
             working[key] = (key in working)
-                ? working[key].wsum > newState.wsum ? newState : working[key]
+                ? previous.wsum > newState.wsum ? newState : previous
                 : newState;
+
         }
         [cheapKey, cheapState] = cheapestNode(working);
 
