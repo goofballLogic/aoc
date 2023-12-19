@@ -187,4 +187,4 @@ test("19111\n19191\n19191\n11191\n99991", 18, () => part1(snakeMap));
 
 console.time("Part 1");
 console.log(part1(raw));
-console.timeEnd();
+console.timeEnd("Part 1");
