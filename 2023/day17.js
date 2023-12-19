@@ -120,16 +120,16 @@ test(
     () => nextStates(longMap, { dir: E, pos: [0, 3], len: 3, wsum: 3 })
 );
 
-const key = ({ dir, pos: [y, x], len }) => `${dir}_${y}_${x}_${len}`;
+const stateKey = ({ dir, pos: [y, x], len }) => `${dir}_${y}_${x}_${len}`;
 
-test("key for E,0,2 len 1", "1_0_2_1", () => key({ dir: E, pos: [0, 2], len: 1 }));
+test("stateKey for E,0,2 len 1", "1_0_2_1", () => stateKey({ dir: E, pos: [0, 2], len: 1 }));
 
 const startingStates = Object.fromEntries(
     [
         { dir: E, pos: [0, 0], len: 0, wsum: 0 },
         { dir: S, pos: [0, 0], len: 0, wsum: 0 }
     ]
-        .map(state => [key(state), state])
+        .map(state => [stateKey(state), state])
 );
 
 const cheapestNode = stateMap =>
@@ -150,12 +150,13 @@ test(
 );
 
 const part1 = map => {
-    console.log(
-        Object.values(startingStates)
-            .flatMap(state => nextStates(map, state))
-            .map(state => [key(state), state])
-    )
-        ;
+    const newStates = Object.values(startingStates)
+        .flatMap(state => nextStates(map, state))
+        .map(state => [stateKey(state), state])
+    for (const [key, state] of newStates) {
+        console.log(key, state);
+    }
+    ;
     return 2;
 };
 
