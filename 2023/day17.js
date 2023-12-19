@@ -171,6 +171,7 @@ const part1 = map => {
 
         }
         [cheapKey, cheapState] = cheapestNode(working);
+        console.log(Object.keys(working).length);
 
     }
     return cheapestNode(working)[1].wsum;
