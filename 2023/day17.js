@@ -153,7 +153,7 @@ const part1 = map => {
 
     const working = { ...startingStates };
     const destPrefix = `${map.length - 1}_${map[0].length - 1}`;
-    console.log(destPrefix);
+    console.log(working);
     while (Object.keys(working).some(k => !k.startsWith(destPrefix))) {
 
         const [cheapKey, cheapState] = cheapestNode(working);
@@ -170,9 +170,9 @@ const part1 = map => {
             }
         }
         ;
-        console.log(working, startingStates);
 
     }
+    console.log(working);
     return cheapestNode(working)[1].wsum;
 
 };
