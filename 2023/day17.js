@@ -126,14 +126,14 @@ test("key for E,0,2 len 1", "1_0_2_1", () => key({ dir: E, pos: [0, 2], len: 1 }
 
 const startingStates = Object.fromEntries(
     [
-        { dir: E, pos: [0, 0], len: 0, ws: 0 },
-        { dir: S, pos: [0, 0], len: 0, ws: 0 }
+        { dir: E, pos: [0, 0], len: 0, wsum: 0 },
+        { dir: S, pos: [0, 0], len: 0, wsum: 0 }
     ]
         .map(state => [key(state), state])
 );
 
 const cheapestNode = stateMap =>
-    Object.entries(stateMap).reduce((a, b) => b[1].ws < a[1].ws ? b : a);
+    Object.entries(stateMap).reduce((a, b) => b[1].wsum < a[1].wsum ? b : a);
 
 test(
     "Cheapest node",
@@ -142,10 +142,10 @@ test(
 );
 test(
     "Cheapest node",
-    ["2_0_0_0", { ws: 1 }],
+    ["2_0_0_0", { wsum: 1 }],
     () => cheapestNode({
-        "1_0_0_0": { ws: 2 },
-        "2_0_0_0": { ws: 1 }
+        "1_0_0_0": { wsum: 2 },
+        "2_0_0_0": { wsum: 1 }
     })
 );
 
