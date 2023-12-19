@@ -151,6 +151,7 @@ test(
 
 console.log(raw.map(line => line.join("")).join("\n"));
 
+console.log(startingStates);
 console.log(Object.values(startingStates)
     .flatMap(state => nextStates(raw, state))
     .map(state => [key(state), state]));
