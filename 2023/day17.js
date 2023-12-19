@@ -154,9 +154,9 @@ const part1 = map => {
     const working = { ...startingStates };
     const destPrefix = `${map.length - 1}_${map[0].length - 1}`;
     console.log(destPrefix);
-    console.log(working);
     while (Object.keys(working).some(k => !k.startsWith(destPrefix))) {
 
+        console.log(working);
         const [cheapKey, cheapState] = cheapestNode(working);
         delete working[cheapKey];
         const newStates = nextStates(map, cheapState);
