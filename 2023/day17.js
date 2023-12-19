@@ -152,7 +152,7 @@ test(
 const part1 = map => {
     console.log(
         Object.values(startingStates)
-            .flatMap(state => console.log(state) || nextStates(map, state))
+            .flatMap(state => nextStates(map, state))
             .map(state => [key(state), state])
     )
         ;
