@@ -149,14 +149,16 @@ test(
     })
 );
 
-console.log(raw.map(line => line.join("")).join("\n"));
-
 console.log(startingStates);
-console.log(Object.values(startingStates)
+Object.values(startingStates)
     .flatMap(state => nextStates(raw, state))
-    .map(state => [key(state), state]));
+    .map(state => [key(state), state]);
 
-// test("12", 2); //, () => part1(["12"]));
+const part1 = map => {
+    return 2;
+};
+
+test("12", 2, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
 // test("13\n24", 6); //, () => part1(["13", "24"]));
 // test("11111\n22222", 7);
