@@ -150,9 +150,6 @@ test(
 );
 
 console.log(startingStates);
-Object.values(startingStates)
-    .flatMap(state => nextStates(raw, state))
-    .map(state => [key(state), state]);
 
 const part1 = map => {
     console.log(
