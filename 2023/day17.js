@@ -153,10 +153,20 @@ const part1 = map => {
     const newStates = Object.values(startingStates)
         .flatMap(state => nextStates(map, state))
         .map(state => [stateKey(state), state])
+
+    const working = {};
+
     for (const [key, state] of newStates) {
-        console.log(key, state);
+
+        if (key in working) {
+            if (working[key].wsum > state.wsum)
+                working[key] = state;
+        } else {
+            working[key] = state;
+        }
     }
     ;
+    console.log(working);
     return 2;
 };
 
