@@ -153,25 +153,22 @@ const part1 = map => {
 
     const working = { ...startingStates };
     const destPrefix = `${map.length - 1}_${map[0].length - 1}`;
-    console.log(destPrefix);
-    while (Object.keys(working).some(k => !k.startsWith(destPrefix))) {
+    let [cheapKey, cheapState] = cheapestNode(working);
+    while (!cheapKey.startsWith(destPrefix)) {
 
-        console.log(working);
-        const [cheapKey, cheapState] = cheapestNode(working);
-        if (cheapKey.startsWith(destPrefix)) break;
+        // remove this one from future considerations
         delete working[cheapKey];
+        // calulate new states from this starting point
         const newStates = nextStates(map, cheapState);
+        // update our working nmap with the newly calculated states (if cheaper than existing)
         for (const newState of newStates) {
 
             const key = stateKey(newState);
-            if (key in working) {
-                if (working[key].wsum > newState.wsum)
-                    working[key] = newState;
-            } else {
-                working[key] = newState;
-            }
+            working[key] = (key in working)
+                ? working[key].wsum > newState.wsum ? newState : working[key]
+                : newState;
         }
-        ;
+        [cheapKey, cheapState] = cheapestNode(working);
 
     }
     console.log(working);
