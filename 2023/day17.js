@@ -155,6 +155,12 @@ Object.values(startingStates)
     .map(state => [key(state), state]);
 
 const part1 = map => {
+    console.log(
+        Object.values(startingStates)
+            .flatMap(state => nextStates(map, state))
+            .map(state => [key(state), state])
+    )
+        ;
     return 2;
 };
 
