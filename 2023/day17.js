@@ -138,11 +138,19 @@ console.log(startingStates);
 const cheapestNode = stateMap =>
     Object.entries(stateMap).reduce((a, b) => b[1].ws < a[1].ws ? b : a);
 
-test("Cheapest node", ["1_0_0_0", { dir: E, pos: [0, 0], len: 0, ws: 0 }], () => cheapestNode(startingStates));
-test("Cheapest node", ["2_0_0_0", { ws: 1 }], () => cheapestNode({
-    "1_0_0_0": { ws: 2 },
-    "2_0_0_0": { ws: 1 }
-}));
+test(
+    "Cheapest node",
+    ["1_0_0_0", startingStates["1_0_0_0"]],
+    () => cheapestNode(startingStates)
+);
+test(
+    "Cheapest node",
+    ["2_0_0_0", { ws: 1 }],
+    () => cheapestNode({
+        "1_0_0_0": { ws: 2 },
+        "2_0_0_0": { ws: 1 }
+    })
+);
 
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
