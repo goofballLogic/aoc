@@ -136,7 +136,7 @@ console.log(raw.map(line => line.join("")).join("\n"));
 console.log(startingStates);
 
 const cheapestNode = stateMap =>
-    Object.entries(stateMap).reduce((apair, bpair) => console.log(apair, bpair) || bpair[1].ws < apair[1].ws ? bpair : apair)[0];
+    Object.entries(stateMap).reduce((apair, bpair) => bpair[1].ws < apair[1].ws ? bpair : apair)[0];
 
 test("Cheapest node", "1_0_0_0", () => cheapestNode(startingStates));
 test("Cheapest node", "2_0_0_0", () => cheapestNode({ "1_0_0_0": { ws: 2 }, "2_0_0_0": { ws: 1 } }));
