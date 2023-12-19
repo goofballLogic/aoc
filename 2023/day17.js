@@ -120,9 +120,9 @@ test(
     () => nextStates(longMap, { dir: E, pos: [0, 3], len: 3, wsum: 3 })
 );
 
-const stateKey = ({ dir, pos: [y, x], len }) => `${dir}_${y}_${x}_${len}`;
+const stateKey = ({ dir, pos: [y, x], len }) => `${y}_${x}_${dir}_${len}`;
 
-test("stateKey for E,0,2 len 1", "1_0_2_1", () => stateKey({ dir: E, pos: [0, 2], len: 1 }));
+test("stateKey for E,0,2 len 1", "0_2_1_1", () => stateKey({ dir: E, pos: [0, 2], len: 1 }));
 
 const startingStates = Object.fromEntries(
     [
@@ -133,19 +133,21 @@ const startingStates = Object.fromEntries(
 );
 
 const cheapestNode = stateMap =>
-    Object.entries(stateMap).reduce((a, b) => b[1].wsum < a[1].wsum ? b : a);
+    Object
+        .entries(stateMap)
+        .reduce((a, b) => b[1].wsum < a[1].wsum ? b : a);
 
 test(
     "Cheapest node",
-    ["1_0_0_0", startingStates["1_0_0_0"]],
+    ["0_0_1_0", startingStates["0_0_1_0"]],
     () => cheapestNode(startingStates)
 );
 test(
     "Cheapest node",
-    ["2_0_0_0", { wsum: 1 }],
+    ["0_0_2_0", { wsum: 1 }],
     () => cheapestNode({
-        "1_0_0_0": { wsum: 2 },
-        "2_0_0_0": { wsum: 1 }
+        "0_0_1_0": { wsum: 2 },
+        "0_0_2_0": { wsum: 1 }
     })
 );
 
