@@ -166,8 +166,10 @@ const part1 = map => {
         }
     }
     ;
-    console.log(working);
-    return 2;
+    const best = cheapestNode(working);
+    console.log(best);
+    return best[1].wsum;
+
 };
 
 test("12", 2, () => part1([[1, 2]]));
