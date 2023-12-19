@@ -166,9 +166,7 @@ const part1 = map => {
         }
     }
     ;
-    const best = cheapestNode(working);
-    console.log(best);
-    return best[1].wsum;
+    return cheapestNode(working)[1].wsum;
 
 };
 
