@@ -4,7 +4,11 @@ import "./evil.js";
 
 const input = 1;
 const day = 17;
-const raw = readFileSync(`day${day}-input${input}.txt`).toString().trim().split("\n");
+const raw = readFileSync(`day${day}-input${input}.txt`)
+    .toString()
+    .trim()
+    .split("\n")
+    .map(line => line.split("").map(x => parseInt(x)));
 
 const N = 0, E = 1, S = 2, W = 3;
 const compass = [N, E, S, W];
@@ -115,6 +119,28 @@ test(
     ],
     () => nextStates(longMap, { dir: E, pos: [0, 3], len: 3, wsum: 3 })
 );
+
+const key = ({ dir, pos: [y, x], len }) => `${dir}_${y}_${x}_${len}`;
+
+test("key for E,0,2 len 1", "1_0_2_1", () => key({ dir: E, pos: [0, 2], len: 1 }));
+
+const startingStates = Object.fromEntries(
+    [
+        { dir: E, pos: [0, 0], len: 0, ws: 0 },
+        { dir: S, pos: [0, 0], len: 0, ws: 0 }
+    ]
+        .map(state => [key(state), state])
+);
+
+console.log(raw.map(line => line.join("")).join("\n"));
+console.log(startingStates);
+
+const cheapestNode = stateMap =>
+    Object.entries(stateMap).reduce((apair, bpair) => console.log(apair, bpair) || bpair[1].ws < apair[1].ws ? bpair : apair)[0];
+
+test("Cheapest node", "1_0_0_0", () => cheapestNode(startingStates));
+test("Cheapest node", "2_0_0_0", () => cheapestNode({ "1_0_0_0": { ws: 2 }, "2_0_0_0": { ws: 1 } }));
+
 // test("12", 2); //, () => part1(["12"]));
 // test("12\n34", 6); //, () => part1(["12", "34"]));
 // test("13\n24", 6); //, () => part1(["13", "24"]));
