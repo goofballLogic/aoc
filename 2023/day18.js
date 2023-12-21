@@ -10,6 +10,7 @@ const raw = readFileSync(`day${day}-input${input}.txt`)
     .trim()
     .split("\n")
     .map(x => x.split(" "))
+    .map(([a, x, c]) => [a, parseInt(x), c])
     ;
 
 console.log(raw);
