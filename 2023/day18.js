@@ -65,7 +65,7 @@ function dimensions(coords) {
 
 }
 
-test("U1", [0, -1, 0, 0], () =>
+test("U1 dimensions", [0, -1, 0, 0], () =>
     dimensions(
         draw([["U", 1]])
     ));
