@@ -2,16 +2,16 @@ import { test } from "../test.js";
 
 function around(maxx, maxy, x, y) {
     const ret = [];
-    for (let xx = Math.max(0, x - 1); xx < Math.min(maxx, x + 1); x++) {
-        for (let yy = Math.max(0, y - 1); yy < Math.min(maxy, y + 1); y++)
-            ret.push([xx, yy]);
-    }
+    for (let xx = Math.max(0, x - 1); xx < Math.min(maxx, x + 1) + 1; xx++)
+        for (let yy = Math.max(0, y - 1); yy < Math.min(maxy, y + 1) + 1; yy++)
+            if (xx !== x || yy !== y) ret.push([xx, yy]);
     return ret;
 }
 
 test(
     "10,10,0,0 around",
-    [[0, 1], [1, 0], [1, 1]]
+    [[0, 1], [1, 0], [1, 1]],
+    () => around(10, 10, 0, 0)
 );
 
 export function flood({ map: { lines }, empty = ".", x = 0, y = 0 }) {
