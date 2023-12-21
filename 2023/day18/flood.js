@@ -58,7 +58,7 @@ test(
 export function flood({ map, empty = ".", x = 0, y = 0 }) {
 
     const maxx = map[0].length - 1;
-    const maxy = map[1].length - 1;
+    const maxy = map.length - 1;
     const visited = new Set();
     const filled = [];
     const visitable = [[x, y]];
