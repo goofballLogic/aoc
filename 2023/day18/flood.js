@@ -96,30 +96,30 @@ const pairs = data => data.split(",").map(pair => pair.split("").map(x => parseI
 test(
     "...\n.#.\n...",
     pairs("00,01,02,10,12,20,21,22"),
-    () => flood({ map: ["...", ".#.", "..."] })
+    x => flood({ map: x.split("\n") })
 );
 test(
     ".......\n.#####.\n.#.....\n.#.####\n.#.#..#\n.#....#\n.######",
     pairs("00,01,02,03,04,05,06,10,20,22,23,24,25,30,32,35,40,42,44,45,50,52,54,55,60,61,62"),
-    () => flood({ map: ".......\n.#####.\n.#.....\n.#.####\n.#.#..#\n.#....#\n.######".split("\n") })
+    x => flood({ map: x.split("\n") })
 );
 test(
     ".#.\n###\n.#.",
     pairs("00,02,20,22"),
-    () => flood({ map: ".#.\n###\n.#.".split("\n") })
+    x => flood({ map: x.split("\n") })
 );
 test(
     "###\n#.#\n###",
     [],
-    () => flood({ map: "###\n#.#\n###".split("\n"), x: -1, y: -1 })
+    x => flood({ map: x.split("\n"), x: -1, y: -1 })
 );
 test(
     "###\n###\n##.",
     [[2, 2]],
-    () => flood({ map: "###\n###\n##.".split("\n"), x: -1, y: -1 })
+    x => flood({ map: x.split("\n"), x: -1, y: -1 })
 );
 test(
-    "##\n.#\n.#",
-    [[0, 1], [0, 2]],
-    x => flood({ map: x.split("\n"), x: -1, y: -1 })
+    "##\n##\n.#\n.#",
+    [[0, 2], [0, 3]],
+    //x => flood({ map: x.split("\n"), x: -1, y: -1 })
 );
