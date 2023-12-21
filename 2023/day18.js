@@ -9,6 +9,6 @@ const raw = readFileSync(`day${day}-input${input}.txt`)
     .toString()
     .trim()
     .split("\n")
-    .map(line => line.split("").map(x => parseInt(x)));
+    ;
 
 console.log(raw);
