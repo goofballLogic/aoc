@@ -4,7 +4,7 @@ import "./evil.js";
 import { flood } from "./day18/flood.js";
 
 
-const input = 2;
+const input = 1;
 const day = 18;
 const raw = readFileSync(`day${day}-input${input}.txt`)
     .toString()
@@ -152,3 +152,17 @@ const decodeInstruction = instruction =>
     ;
 
 test("(#70c710)", ["R", 461937], decodeInstruction);
+
+const part2 = instructions =>
+    instructions
+        .map(decodeInstruction)
+        .pipe(draw)
+        .pipe(mapCoords)
+        //.tee(map => console.log(map.map(line => line.join("")).join("\n")))
+        .pipe(map => [map, flood({ map, x: -1, y: -1 })])
+        .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
+    ;
+
+console.time("Part 2");
+console.log("Part 2", part1(data));
+console.timeEnd("Part 2");
