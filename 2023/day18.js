@@ -53,22 +53,31 @@ function draw(instructions) {
 test("U1", [[0, 0], [0, -1]], () => draw([["U", 1]]));
 test("U1 R1", [[0, 0], [0, -1], [1, -1]], () => draw([["U", 1], ["R", 1]]));
 
-function dimensions(coords) {
-
-    const [minX, minY, maxX, maxY] = coords.reduce((prev, next) => [
-        Math.min(prev[0], next[0]),
-        Math.min(prev[1], next[1]),
-        Math.max(prev[2], next[0]),
-        Math.max(prev[3], next[1])
-    ], [Infinity, Infinity, -Infinity, -Infinity]);
-    return [minX, minY, maxX, maxY];
-
-}
+const dimensions = coords =>
+    coords
+        .reduce((prev, next) => [
+            Math.min(prev[0], next[0]),
+            Math.min(prev[1], next[1]),
+            Math.max(prev[2], next[0]),
+            Math.max(prev[3], next[1])
+        ], [Infinity, Infinity, -Infinity, -Infinity])
+    ;
 
 test("U1 dimensions", [0, -1, 0, 0], () =>
     dimensions(
         draw([["U", 1]])
     ));
+
+const remapCoords = (coords, dx, dy) =>
+    coords
+        .map(([x, y]) => [x + dx, y + dy])
+    ;
+
+const mapCoords = coords =>
+    coords
+    ;
+
+test("U1 L1 mapCoords", ["##", ".."]);
 
 // draw ma
 // count map
