@@ -38,6 +38,11 @@ test("go 0 0 D 1", [0, 1], () => go(0, 0, "D", 1));
 test("go 0 0 L 1", [-1, 0], () => go(0, 0, "L", 1));
 test("go 0 0 R 1", [1, 0], () => go(0, 0, "R", 1));
 
+/**
+ *
+ * @param {[[string, number]]} instructions
+ * @returns [[number, number]]
+ */
 function draw(instructions) {
 
     const map = [[0, 0]];
@@ -73,7 +78,7 @@ test("U1 calcDimension", [0, -1, 0, 0], () =>
  * @param {[[number,number]]} coords
  * @param {number} dx
  * @param {number} dy
- * @returns
+ * @returns [[number, number]]
  */
 const remapCoords = (coords, dx, dy) =>
     coords
@@ -85,15 +90,19 @@ const mapCoords = coords => {
     const dimensions = calcDimensions(coords);
     const width = dimensions[2] - dimensions[0] + 1;
     const height = dimensions[3] - dimensions[1] + 1;
-    const map = Array(height).map(() => Array(width).fill("."));
+    console.log(width, height);
+    const map = Array(height).fill("").map(() => Array(width).fill("."));
+    console.log(map);
     const remappedCoords = remapCoords(coords, dimensions[0] * -1, dimensions[1] * -1);
-    for (const coord of remappedCoords) {
+    console.log(remappedCoords);
+    for (const coord of remappedCoords)
         map[coord[1]][coord[0]] = "#";
-    }
+    return map;
+
 }
     ;
 
-test("U1 L1 mapCoords", [["#", "#"], [".", "."]]);
+test("U1 L1 mapCoords", [["#", "#"], [".", "#"]], () => mapCoords(draw([["U", 1], ["L", 1]])));
 
 // draw ma
 // count map
