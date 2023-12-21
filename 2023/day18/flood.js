@@ -2,9 +2,14 @@ import { test } from "../test.js";
 
 function around(maxx, maxy, x, y) {
     const ret = [];
-    for (let xx = Math.max(0, x - 1); xx < Math.min(maxx, x + 1) + 1; xx++)
-        for (let yy = Math.max(0, y - 1); yy < Math.min(maxy, y + 1) + 1; yy++)
-            if (xx !== x || yy !== y) ret.push([xx, yy]);
+    if (x > 0 && y > 0) ret.push([x - 1, y - 1]);
+    if (x > 0) ret.push([x - 1, y]);
+    if (x > 0 && y < maxy) ret.push([x - 1, y + 1]);
+    if (y > 0) ret.push([x, y - 1]);
+    if (y < maxy) ret.push([x, y + 1]);
+    if (x < maxx && y > 0) ret.push([x + 1, y - 1]);
+    if (x < maxx) ret.push([x + 1, y]);
+    if (x < maxx && y < maxy) ret.push([x + 1, y + 1]);
     return ret;
 }
 
