@@ -51,7 +51,7 @@ function draw(instructions) {
 }
 
 test("U1", [[0, 0], [0, -1]], () => draw([["U", 1]]));
-test("U1 R1", [[0, 0], [0, -1], [1, -1]]);
+test("U1 R1", [[0, 0], [0, -1], [1, -1]], () => draw([["U", 1], ["R", 1]]));
 
 // draw ma
 // count map
