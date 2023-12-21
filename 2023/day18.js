@@ -38,7 +38,22 @@ test("go 0 0 D 1", [0, 1], () => go(0, 0, "D", 1));
 test("go 0 0 L 1", [-1, 0], () => go(0, 0, "L", 1));
 test("go 0 0 R 1", [1, 0], () => go(0, 0, "R", 1));
 
-// draw map
+function draw(instructions) {
+
+    const map = [[0, 0]];
+    let [x, y] = [0, 0];
+    for (const instruction of instructions) {
+        console.log(instruction);
+        [x, y] = go(x, y, ...instruction);
+        map.push([x, y]);
+    }
+    return map;
+
+}
+
+test("U1", [[0, 0], [0, -1]], () => draw([["U", 1]]));
+
+// draw ma
 // count map
 // flood inside
 // count inside
