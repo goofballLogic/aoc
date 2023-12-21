@@ -43,7 +43,6 @@ function draw(instructions) {
     const map = [[0, 0]];
     let [x, y] = [0, 0];
     for (const instruction of instructions) {
-        console.log(instruction);
         [x, y] = go(x, y, ...instruction);
         map.push([x, y]);
     }
@@ -52,6 +51,7 @@ function draw(instructions) {
 }
 
 test("U1", [[0, 0], [0, -1]], () => draw([["U", 1]]));
+test("U1 R1", [[0, 0], [0, -1], [1, -1]]);
 
 // draw ma
 // count map
