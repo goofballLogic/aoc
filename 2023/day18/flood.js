@@ -1,6 +1,6 @@
 import { test } from "../test.js";
 
-export function flood({ map: { lines }, empty = ".", x = -1, y = -1 }) {
+export function flood({ map: { lines }, empty = ".", x = 0, y = 0 }) {
 
 
 }
