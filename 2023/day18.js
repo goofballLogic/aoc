@@ -61,12 +61,11 @@ function dimensions(coords) {
         Math.max(prev[2], next[0]),
         Math.max(prev[3], next[1])
     ], [Infinity, Infinity, -Infinity, -Infinity]);
-    console.log(minX, minY, maxX, maxY);
-    return [maxX - minX + 1, maxY - minY + 1];
+    return [minX, minY, maxX, maxY];
 
 }
 
-test("U1", [1, 2], () =>
+test("U1", [0, -1, 0, 0], () =>
     dimensions(
         draw([["U", 1]])
     ));
