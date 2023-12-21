@@ -120,9 +120,15 @@ test(
     () => mapCoords(draw([["U", 1], ["L", 1], ["D", 2], ["R", 2]]))
 );
 
-// draw ma
+// draw map
 // count map
 // flood inside
 // count inside
 // inside + map
 
+const part1 = instructions =>
+    instructions
+        .pipe(draw)
+    ;
+
+console.log(part1(data));
