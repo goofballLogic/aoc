@@ -122,10 +122,8 @@ test(
 );
 
 // draw map
-// count map
-// flood inside
-// count inside
-// inside + map
+// flood outside
+// map - outside
 
 const part1 = instructions =>
     instructions
