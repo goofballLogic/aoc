@@ -12,17 +12,21 @@ const raw = readFileSync(`day${day}-input${input}.txt`)
     ;
 
 const data = raw
-    .map(x => x.split(" "))
-    .map(([a, x, c]) => [a, parseInt(x), c])
+    .map(i => i.split(" "))
+    .map(([a, i, c]) => [a, parseInt(i), c])
     ;
 
 console.log(data);
+
+function drawMap(map, [a, i], [x, y]) {
+
+}
+
+test("R 3 from 0 0"); //, //[], ["R", 3], [0, 0]);
 
 // draw map
 // count map
 // flood inside
 // count inside
 // inside + map
-function draw(lines, instruction) {
 
-}
