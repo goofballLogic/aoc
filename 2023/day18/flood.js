@@ -24,8 +24,30 @@ test(
     () => around(10, 10, 10, 10)
 );
 
-export function flood({ map: { lines }, empty = ".", x = 0, y = 0 }) {
+export function flood({ map, empty = ".", x = 0, y = 0 }) {
 
+    const maxx = map[0].length;
+    const maxy = map[1].length;
+    const visited = [];
+    const filled = [];
+    const visitable = [[x, y]];
+    let visitablei = 0;
+    while (visitablei < visitable.length) {
+
+        const [vx, vy] = visitable[visitablei];
+        visitablei++;
+
+        const key = `${vx}_${vy}`;
+        if (!visited.includes(key)) {
+
+            if (map[vy]?.[vx] === empty) filled.push(key);
+            visitable.push(...around(maxx, maxy, vx, vy));
+            visited.push(key);
+
+        }
+
+    }
+    return filled.sort().map(x => x.split("_").map(y => parseInt(y)));
 
 }
 
@@ -33,7 +55,8 @@ const pairs = data => data.split(",").map(pair => pair.split("").map(x => parseI
 
 test(
     "...\n.#.\n...",
-    pairs("00,01,02,10,12,20,21,22")
+    pairs("00,01,02,10,12,20,21,22"),
+    () => flood({ map: ["...", ".#.", "..."] })
 );
 test(
     ".......\n.#####.\n.#.....\n.#.####\n.#.#..#\n.#....#\n.######",
