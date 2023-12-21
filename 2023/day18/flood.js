@@ -74,7 +74,6 @@ export function flood({ map, empty = ".", x = 0, y = 0 }) {
             if ((spot || empty) === empty) {
 
                 visitable.push(...around(maxx, maxy, vx, vy, true));
-                console.log(visitable.slice(visitablei));
 
             }
 

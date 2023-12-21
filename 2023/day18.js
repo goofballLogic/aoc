@@ -9,6 +9,16 @@ const raw = readFileSync(`day${day}-input${input}.txt`)
     .toString()
     .trim()
     .split("\n")
+    .map(x => x.split(" "))
     ;
 
 console.log(raw);
+
+// draw map
+// count map
+// flood inside
+// count inside
+// inside + map
+function draw(lines, instruction) {
+
+}
