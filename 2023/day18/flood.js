@@ -66,7 +66,7 @@ export function flood({ map, empty = ".", x = 0, y = 0 }) {
         if (!visited.has(key)) {
 
             if (map[vy]?.[vx] === empty) filled.push(key);
-            visitable.push(...around(maxx, maxy, vx, vy));
+            visitable.push(...around(maxx, maxy, vx, vy, true));
             visited.add(key);
 
         }
