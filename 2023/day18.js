@@ -151,4 +151,4 @@ const decodeInstruction = instruction =>
     )
     ;
 
-test("(#70c710)");
+test("(#70c710)", ["R", 461937]);
