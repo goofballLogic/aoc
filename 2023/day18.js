@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { test } from "./test.js";
 import "./evil.js";
+import { flood } from "./day18/flood.js";
 
 
 const input = 1;
@@ -130,8 +131,7 @@ const part1 = instructions =>
     instructions
         .pipe(draw)
         .pipe(mapCoords)
-        .map(line => line.join(""))
-        .join("\n")
+        .pipe(map => flood({ map }))
     ;
 
 console.log(part1(data));
