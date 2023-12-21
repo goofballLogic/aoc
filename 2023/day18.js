@@ -131,7 +131,7 @@ const part1 = instructions =>
     instructions
         .pipe(draw)
         .pipe(mapCoords)
-        .pipe(map => flood({ map }))
+        .pipe(map => flood({ map, x: -1, y: -1 }))
     ;
 
 console.log(part1(data));
