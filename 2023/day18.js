@@ -22,13 +22,15 @@ function go(x, y, a, i) {
     switch (a) {
         case "U":
             return [x, y - 1];
+        case "D":
+            return [x, y + 1];
         default:
             return [x, y];
     }
 }
 
 test("go 0 0 U 1", [0, -1], () => go(0, 0, "U", 1));
-test("go 0 0 D 1", [0, 1]);
+test("go 0 0 D 1", [0, 1], () => go(0, 0, "D", 1));
 test("go 0 0 L 1", [-1, 0]);
 test("go 0 0 R 1", [1, 0]);
 
