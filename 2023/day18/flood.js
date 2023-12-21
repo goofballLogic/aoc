@@ -87,7 +87,7 @@ export function flood({ map, empty = ".", x = 0, y = 0 }) {
         visited.add(key);
 
     }
-    console.log(new Set(visitable.map(([x, y]) => `${x}_${y}`)));
+    console.log(Array.from(new Set(visitable.map(([x, y]) => `${x}_${y}`))).sort());
     return filled.sort().map(x => x.split("_").map(y => parseInt(y)));
 
 }
@@ -112,5 +112,5 @@ test(
 test(
     "###\n#.#\n###",
     [],
-    () => flood({ map: "###\n#.#\n###".split("\n") })
+    () => flood({ map: "###\n#.#\n###".split("\n"), x: -1, y: -1 })
 )
