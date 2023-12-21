@@ -18,11 +18,11 @@ const data = raw
 
 console.log(data);
 
-function drawMap(map, [a, i], [x, y]) {
+function drawMap({ map, x, y }, [a, i]) {
 
 }
 
-test("R 3 from 0 0", [[".###"]]); //, //[], ["R", 3], [0, 0]);
+test("R 3 from 0 0", { map: [[".###"]], x: 3, y: 0 });
 test("D 1 from 0 0", [["."], ["#"]]);
 test("L 2 from 0 0", [["##."]]);
 test("U 1 from 0 0", [["#", "."]]);
