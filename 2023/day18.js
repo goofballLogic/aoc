@@ -156,9 +156,11 @@ test("(#70c710)", ["R", 461937], decodeInstruction);
 const part2 = instructions =>
     instructions
         .map(decodeInstruction)
+        .tee(() => console.log(1))
         .pipe(draw)
+        .tee(() => console.log(2))
         .pipe(mapCoords)
-        //.tee(map => console.log(map.map(line => line.join("")).join("\n")))
+        .tee(map => console.log(map.map(line => line.join("")).join("\n")))
         .pipe(map => [map, flood({ map, x: -1, y: -1 })])
         .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
     ;
