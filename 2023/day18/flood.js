@@ -2,12 +2,18 @@ import { test } from "../test.js";
 
 function around(maxx, maxy, x, y, allowOverflow = false) {
     const ret = [];
-    if (x > 0 && y > 0) ret.push([x - 1, y - 1]);
-    if (x > 0) ret.push([x - 1, y]);
-    if (x > 0 && y < maxy) ret.push([x - 1, y + 1]);
-    if (y > 0) ret.push([x, y - 1]);
+    const minx = allowOverflow ? -1 : 0;
+    const miny = allowOverflow ? -1 : 0;
+    if (allowOverflow) {
+        maxx++;
+        maxy++;
+    }
+    if (x > minx && y > miny) ret.push([x - 1, y - 1]);
+    if (x > minx) ret.push([x - 1, y]);
+    if (x > minx && y < maxy) ret.push([x - 1, y + 1]);
+    if (y > miny) ret.push([x, y - 1]);
     if (y < maxy) ret.push([x, y + 1]);
-    if (x < maxx && y > 0) ret.push([x + 1, y - 1]);
+    if (x < maxx && y > miny) ret.push([x + 1, y - 1]);
     if (x < maxx) ret.push([x + 1, y]);
     if (x < maxx && y < maxy) ret.push([x + 1, y + 1]);
     return ret;
@@ -27,6 +33,9 @@ test(
     "2,2,1,1 around",
     [[0, 0], [0, 1], [0, 2], [1, 0], [1, 2], [2, 0], [2, 1], [2, 2]],
     () => around(2, 2, 1, 1)
+)
+test(
+    "1,1,0,0 around"
 )
 
 export function flood({ map, empty = ".", x = 0, y = 0 }) {
