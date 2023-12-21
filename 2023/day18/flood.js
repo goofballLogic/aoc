@@ -65,11 +65,21 @@ export function flood({ map, empty = ".", x = 0, y = 0 }) {
         const key = `${vx}_${vy}`;
         if (!visited.has(key)) {
 
-            if (map[vy]?.[vx] === empty) filled.push(key);
-            visitable.push(...around(maxx, maxy, vx, vy, true));
-            visited.add(key);
+            const spot = map[vy]?.[vx];
+            if (spot === empty) {
+
+                filled.push(key);
+
+            }
+            if ((spot || empty) === empty) {
+
+                visitable.push(...around(maxx, maxy, vx, vy, true));
+                console.log(visitable.slice(visitablei));
+
+            }
 
         }
+        visited.add(key);
 
     }
     return filled.sort().map(x => x.split("_").map(y => parseInt(y)));
@@ -95,5 +105,6 @@ test(
 );
 test(
     "###\n#.#\n###",
-    pairs("")
+    [],
+    () => flood({ map: "###\n#.#\n###".split("\n") })
 )
