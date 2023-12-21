@@ -123,5 +123,5 @@ test(
 test(
     "##\n##\n.#\n.#",
     [[0, 2], [0, 3]],
-    //x => flood({ map: x.split("\n"), x: -1, y: -1 })
+    x => flood({ map: x.split("\n"), x: -1, y: -1 })
 );
