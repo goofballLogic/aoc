@@ -21,22 +21,22 @@ console.log(data);
 function go(x, y, a, i) {
     switch (a) {
         case "U":
-            return [x, y - 1];
+            return [x, y - i];
         case "D":
-            return [x, y + 1];
+            return [x, y + i];
         case "L":
-            return [x - 1, y];
+            return [x - i, y];
         case "R":
-            return [x + 1, y];
+            return [x + i, y];
         default:
             return [x, y];
     }
 }
 
 test("go 0 0 U 1", [0, -1], () => go(0, 0, "U", 1));
-test("go 0 0 D 1", [0, 1], () => go(0, 0, "D", 1));
-test("go 0 0 L 1", [-1, 0], () => go(0, 0, "L", 1));
-test("go 0 0 R 1", [1, 0], () => go(0, 0, "R", 1));
+test("go 0 0 D 2", [0, 2], () => go(0, 0, "D", 2));
+test("go 0 0 L 3", [-3, 0], () => go(0, 0, "L", 3));
+test("go 0 0 R 4", [4, 0], () => go(0, 0, "R", 4));
 
 /**
  *
@@ -68,10 +68,11 @@ const calcDimensions = coords =>
         ], [Infinity, Infinity, -Infinity, -Infinity])
     ;
 
-test("U1 calcDimension", [0, -1, 0, 0], () =>
-    calcDimensions(
-        draw([["U", 1]])
-    ));
+test(
+    "U1 calcDimension",
+    [0, -1, 0, 0],
+    () => calcDimensions(draw([["U", 1]]))
+);
 
 /**
  *
@@ -87,6 +88,7 @@ const remapCoords = (coords, dx, dy) =>
 
 const mapCoords = coords => {
 
+    console.log(coords);
     const dimensions = calcDimensions(coords);
     const width = dimensions[2] - dimensions[0] + 1;
     const height = dimensions[3] - dimensions[1] + 1;
@@ -95,15 +97,33 @@ const mapCoords = coords => {
     console.log(map);
     const remappedCoords = remapCoords(coords, dimensions[0] * -1, dimensions[1] * -1);
     console.log(remappedCoords);
-    for (const coord of remappedCoords)
-        map[coord[1]][coord[0]] = "#";
+
+    for (let i = 1; i < remappedCoords.length; i++) {
+
+        let [x1, y1] = remappedCoords[i - 1];
+        let [x2, y2] = remappedCoords[i];
+        if (x1 > x2) [x1, x2] = [x2, x1];
+        if (y1 > y2) [y1, y2] = [y2, y1];
+        for (let x = x1; x <= x2; x++)
+            for (let y = y1; y <= y2; y++)
+                map[y][x] = "#";
+
+    }
     return map;
 
 }
     ;
 
-test("U1 L1 mapCoords", [["#", "#"], [".", "#"]], () => mapCoords(draw([["U", 1], ["L", 1]])));
-test("U1 L1 D2 R2 mapCoords", [["#", "#", "."], ["#", "#", "."], ["#", "#", "#"]]);
+test(
+    "U1 L1 mapCoords",
+    [["#", "#"], [".", "#"]],
+    () => mapCoords(draw([["U", 1], ["L", 1]]))
+);
+test(
+    "U1 L1 D2 R2 mapCoords",
+    [["#", "#", "."], ["#", "#", "."], ["#", "#", "#"]],
+    () => mapCoords(draw([["U", 1], ["L", 1], ["D", 2], ["R", 2]]))
+);
 
 // draw ma
 // count map
