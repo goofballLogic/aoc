@@ -8,6 +8,7 @@ function around(maxx, maxy, x, y, allowOverflow = false) {
         maxx++;
         maxy++;
     }
+    console.log(maxx, maxy);
     if (x > minx && y > miny) ret.push([x - 1, y - 1]);
     if (x > minx) ret.push([x - 1, y]);
     if (x > minx && y < maxy) ret.push([x - 1, y + 1]);
