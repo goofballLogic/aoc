@@ -92,6 +92,7 @@ const mapCoords = coords => {
     const dimensions = calcDimensions(coords);
     const width = dimensions[2] - dimensions[0] + 1;
     const height = dimensions[3] - dimensions[1] + 1;
+    console.log(width, height);
     const map = Array(height).fill("").map(() => Array(width).fill("."));
     const remappedCoords = remapCoords(coords, dimensions[0] * -1, dimensions[1] * -1);
     for (let i = 1; i < remappedCoords.length; i++) {
@@ -156,11 +157,8 @@ test("(#70c710)", ["R", 461937], decodeInstruction);
 const part2 = instructions =>
     instructions
         .map(decodeInstruction)
-        .tee(() => console.log(1))
         .pipe(draw)
-        .tee(() => console.log(2))
         .pipe(mapCoords)
-        .tee(map => console.log(map.map(line => line.join("")).join("\n")))
         .pipe(map => [map, flood({ map, x: -1, y: -1 })])
         .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
     ;
