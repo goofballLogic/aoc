@@ -23,3 +23,10 @@ Object.prototype.pipe = function (strategy, n = 1) {
 
 };
 
+Object.prototype.tee = function (strategy) {
+
+    strategy(this);
+    return this;
+
+}
+
