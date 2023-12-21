@@ -88,16 +88,11 @@ const remapCoords = (coords, dx, dy) =>
 
 const mapCoords = coords => {
 
-    console.log(coords);
     const dimensions = calcDimensions(coords);
     const width = dimensions[2] - dimensions[0] + 1;
     const height = dimensions[3] - dimensions[1] + 1;
-    console.log(width, height);
     const map = Array(height).fill("").map(() => Array(width).fill("."));
-    console.log(map);
     const remappedCoords = remapCoords(coords, dimensions[0] * -1, dimensions[1] * -1);
-    console.log(remappedCoords);
-
     for (let i = 1; i < remappedCoords.length; i++) {
 
         let [x1, y1] = remappedCoords[i - 1];
