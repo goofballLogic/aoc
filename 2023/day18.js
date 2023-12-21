@@ -26,7 +26,7 @@ test("R 3 from 0 0", { map: [[".###"]], x: 3, y: 0 });
 test("D 1 from 0 0", { map: [["."], ["#"]], x: 0, y: 1 });
 test("L 2 from 0 0", { map: [["##."]], x: 0, y: 0 });
 test("U 1 from 0 0", { map: [["#", "."]], x: 0, y: 0 });
-test("U 1 from 2 2", [["...", "..#", "..."]]);
+test("U 1 from 2 2", { map: [["...", "..#", "..."]], x: 2, y: 1 });
 
 // draw map
 // count map
