@@ -103,6 +103,7 @@ const mapCoords = coords => {
     ;
 
 test("U1 L1 mapCoords", [["#", "#"], [".", "#"]], () => mapCoords(draw([["U", 1], ["L", 1]])));
+test("U1 L1 D2 R2 mapCoords", [["#", "#", "."], ["#", "#", "."], ["#", "#", "#"]]);
 
 // draw ma
 // count map
