@@ -41,7 +41,8 @@ test(
 );
 test(
     "10,10,-1,-1,true around",
-    [[0, 0], [0, 1], [0, 2]]
+    [[-1, 0], [0, -1], [0, 0]],
+    () => around(10, 10, -1, -1, true)
 )
 
 export function flood({ map, empty = ".", x = 0, y = 0 }) {
