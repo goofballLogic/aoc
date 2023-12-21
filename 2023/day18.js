@@ -18,15 +18,14 @@ const data = raw
 
 console.log(data);
 
-function drawMap({ map, x, y }, [a, i]) {
+function go(x, y, a, i) {
 
 }
 
-test("R 3 from 0 0", { map: [[".###"]], x: 3, y: 0 });
-test("D 1 from 0 0", { map: [["."], ["#"]], x: 0, y: 1 });
-test("L 2 from 0 0", { map: [["##."]], x: 0, y: 0 });
-test("U 1 from 0 0", { map: [["#", "."]], x: 0, y: 0 });
-test("U 1 from 2 2", { map: [["...", "..#", "..."]], x: 2, y: 1 });
+test("go 0 0 U 1", [0, -1]);
+test("go 0 0 D 1", [0, 1]);
+test("go 0 0 L 1", [-1, 0]);
+test("go 0 0 R 1", [1, 0]);
 
 // draw map
 // count map
