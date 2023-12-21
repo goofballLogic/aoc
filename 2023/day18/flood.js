@@ -49,6 +49,11 @@ test(
     [[1, 1], [1, 2], [2, 1]]
 )
 
+/**
+ *
+ * @param {*} param0
+ * @returns
+ */
 export function flood({ map, empty = ".", x = 0, y = 0 }) {
 
     const maxx = map[0].length;

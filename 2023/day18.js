@@ -53,7 +53,7 @@ function draw(instructions) {
 test("U1", [[0, 0], [0, -1]], () => draw([["U", 1]]));
 test("U1 R1", [[0, 0], [0, -1], [1, -1]], () => draw([["U", 1], ["R", 1]]));
 
-const dimensions = coords =>
+const calcDimensions = coords =>
     coords
         .reduce((prev, next) => [
             Math.min(prev[0], next[0]),
@@ -63,21 +63,37 @@ const dimensions = coords =>
         ], [Infinity, Infinity, -Infinity, -Infinity])
     ;
 
-test("U1 dimensions", [0, -1, 0, 0], () =>
-    dimensions(
+test("U1 calcDimension", [0, -1, 0, 0], () =>
+    calcDimensions(
         draw([["U", 1]])
     ));
 
+/**
+ *
+ * @param {[[number,number]]} coords
+ * @param {number} dx
+ * @param {number} dy
+ * @returns
+ */
 const remapCoords = (coords, dx, dy) =>
     coords
         .map(([x, y]) => [x + dx, y + dy])
     ;
 
-const mapCoords = coords =>
-    coords
+const mapCoords = coords => {
+
+    const dimensions = calcDimensions(coords);
+    const width = dimensions[2] - dimensions[0] + 1;
+    const height = dimensions[3] - dimensions[1] + 1;
+    const map = Array(height).map(() => Array(width).fill("."));
+    const remappedCoords = remapCoords(coords, dimensions[0] * -1, dimensions[1] * -1);
+    for (const coord of remappedCoords) {
+        map[coord[1]][coord[0]] = "#";
+    }
+}
     ;
 
-test("U1 L1 mapCoords", ["##", ".."]);
+test("U1 L1 mapCoords", [["#", "#"], [".", "."]]);
 
 // draw ma
 // count map
