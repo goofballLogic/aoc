@@ -81,12 +81,13 @@ export function flood({ map, empty = ".", x = 0, y = 0 }) {
                 visitable.push(...around(maxx, maxy, vx, vy, true));
 
             }
+            console.log(vx, vy);
 
         }
         visited.add(key);
 
     }
-    console.log(Array.from(new Set(visitable.map(([x, y]) => `${x}_${y}`))).sort());
+    //    console.log(Array.from(new Set(visitable.map(([x, y]) => `${x}_${y}`))).sort());
     return filled.sort().map(x => x.split("_").map(y => parseInt(y)));
 
 }
