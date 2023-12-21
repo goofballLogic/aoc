@@ -134,7 +134,9 @@ const part1 = instructions =>
         .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
     ;
 
+console.time("Part 1");
 console.log("Part 1", part1(data));
+console.timeEnd("Part 1");
 
 const decodeInstructionParts = (meters, dir) =>
     [
