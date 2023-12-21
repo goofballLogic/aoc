@@ -130,6 +130,7 @@ const part1 = instructions =>
     instructions
         .pipe(draw)
         .pipe(mapCoords)
+        .map(line => line.join(""))
     ;
 
 console.log(part1(data));
