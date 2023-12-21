@@ -53,6 +53,24 @@ function draw(instructions) {
 test("U1", [[0, 0], [0, -1]], () => draw([["U", 1]]));
 test("U1 R1", [[0, 0], [0, -1], [1, -1]], () => draw([["U", 1], ["R", 1]]));
 
+function dimensions(coords) {
+
+    const [minX, minY, maxX, maxY] = coords.reduce((prev, next) => [
+        Math.min(prev[0], next[0]),
+        Math.min(prev[1], next[1]),
+        Math.max(prev[2], next[0]),
+        Math.max(prev[3], next[1])
+    ], [Infinity, Infinity, -Infinity, -Infinity]);
+    console.log(minX, minY, maxX, maxY);
+    return [maxX - minX + 1, maxY - minY + 1];
+
+}
+
+test("U1", [1, 2], () =>
+    dimensions(
+        draw([["U", 1]])
+    ));
+
 // draw ma
 // count map
 // flood inside
