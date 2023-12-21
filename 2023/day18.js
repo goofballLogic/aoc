@@ -131,6 +131,7 @@ const part1 = instructions =>
         .pipe(draw)
         .pipe(mapCoords)
         .map(line => line.join(""))
+        .join("\n")
     ;
 
 console.log(part1(data));
