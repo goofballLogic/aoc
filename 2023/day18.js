@@ -129,6 +129,7 @@ test(
 const part1 = instructions =>
     instructions
         .pipe(draw)
+        .pipe(mapCoords)
     ;
 
 console.log(part1(data));
