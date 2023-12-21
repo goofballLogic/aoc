@@ -22,7 +22,7 @@ function drawMap(map, [a, i], [x, y]) {
 
 }
 
-test("R 3 from 0 0"); //, //[], ["R", 3], [0, 0]);
+test("R 3 from 0 0", [["###"]]); //, //[], ["R", 3], [0, 0]);
 test("D 1 from 0 0");
 
 // draw map
