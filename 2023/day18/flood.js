@@ -87,6 +87,7 @@ export function flood({ map, empty = ".", x = 0, y = 0 }) {
         visited.add(key);
 
     }
+    console.log(visitable);
     return filled.sort().map(x => x.split("_").map(y => parseInt(y)));
 
 }
