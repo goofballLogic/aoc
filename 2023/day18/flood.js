@@ -8,7 +8,6 @@ function around(maxx, maxy, x, y, allowOverflow = false) {
         maxx++;
         maxy++;
     }
-    console.log(maxx, maxy);
     if (x > minx && y > miny) ret.push([x - 1, y - 1]);
     if (x > minx) ret.push([x - 1, y]);
     if (x > minx && y < maxy) ret.push([x - 1, y + 1]);
@@ -82,13 +81,11 @@ export function flood({ map, empty = ".", x = 0, y = 0 }) {
                 visitable.push(...around(maxx, maxy, vx, vy, true));
 
             }
-            console.log(vx, vy);
 
         }
         visited.add(key);
 
     }
-    //    console.log(Array.from(new Set(visitable.map(([x, y]) => `${x}_${y}`))).sort());
     return filled.sort().map(x => x.split("_").map(y => parseInt(y)));
 
 }
