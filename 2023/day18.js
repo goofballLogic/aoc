@@ -131,7 +131,7 @@ const part1 = instructions =>
     instructions
         .pipe(draw)
         .pipe(mapCoords)
-        .tee(map => console.log(map.map(line => line.join(""))))
+        .tee(map => console.log(map.map(line => line.join("")).join("\n")))
         .pipe(map => flood({ map, x: -1, y: -1 }))
     ;
 
