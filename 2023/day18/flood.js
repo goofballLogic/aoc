@@ -1,6 +1,6 @@
 import { test } from "../test.js";
 
-function around(maxx, maxy, x, y) {
+function around(maxx, maxy, x, y, allowOverflow = false) {
     const ret = [];
     if (x > 0 && y > 0) ret.push([x - 1, y - 1]);
     if (x > 0) ret.push([x - 1, y]);
@@ -71,5 +71,5 @@ test(
 test(
     ".#.\n###\n.#.",
     pairs("00,02,20,22"),
-    //() => flood({ map: ".#.\n###\n.#.".split("\n") })
+    () => flood({ map: ".#.\n###\n.#.".split("\n") })
 );
