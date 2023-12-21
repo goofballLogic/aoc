@@ -130,7 +130,8 @@ const part1 = instructions =>
         .pipe(draw)
         .pipe(mapCoords)
         .tee(map => console.log(map.map(line => line.join("")).join("\n")))
-        .pipe(map => flood({ map, x: -1, y: -1 }))
+        .pipe(map => [map, flood({ map, x: -1, y: -1 })])
+        .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
     ;
 
 console.log(part1(data));
