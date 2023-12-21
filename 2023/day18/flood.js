@@ -20,7 +20,8 @@ test(
 );
 test(
     "10,10,10,10 around",
-    [[9, 9], [9, 10], [10, 9]]
+    [[9, 9], [9, 10], [10, 9]],
+    () => around(10, 10, 10, 10)
 );
 
 export function flood({ map: { lines }, empty = ".", x = 0, y = 0 }) {
