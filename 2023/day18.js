@@ -4,7 +4,7 @@ import "./evil.js";
 import { flood } from "./day18/flood.js";
 
 
-const input = 1;
+const input = 2;
 const day = 18;
 const raw = readFileSync(`day${day}-input${input}.txt`)
     .toString()
