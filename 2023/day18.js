@@ -35,6 +35,7 @@ console.timeEnd("Part 1");
 const part2 = instructions =>
     instructions
         .map(decodeInstruction)
+        .tee(console.log)
         .pipe(draw)
         .pipe(mapCoords)
         .pipe(map => [map, flood({ map, x: -1, y: -1 })])

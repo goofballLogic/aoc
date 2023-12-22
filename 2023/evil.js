@@ -10,6 +10,13 @@ Array.prototype.sum = function () {
 
 };
 
+Array.prototype.tee = function (strategy) {
+
+    this.forEach(strategy);
+    return this;
+
+}
+
 Object.prototype.pipe = function (strategy, n = 1) {
 
     const total = n;
@@ -23,7 +30,7 @@ Object.prototype.pipe = function (strategy, n = 1) {
 
 };
 
-Object.prototype.tee = function (strategy) {
+Object.prototype.tap = function (strategy) {
 
     strategy(this);
     return this;
