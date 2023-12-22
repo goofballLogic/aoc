@@ -136,14 +136,9 @@ const addYRedundanciesInPlace = (ranges, removed) => {
 test(
     "00 10 20 01 21 02 12 22 addYRedundanciesInPlace",
     [
-        [0, 0, 0, 0],
-        [1, 0, 1, 0],
-        [2, 0, 2, 0],
-        [0, 1, 0, 2],
-        [2, 1, 2, 2],
-        [0, 3, 0, 3],
-        [1, 3, 1, 3],
-        [2, 3, 2, 3]
+        [0, 0, 0, 0], [1, 0, 1, 0], [2, 0, 2, 0],
+        [0, 1, 0, 2], [2, 1, 2, 2],
+        [0, 3, 0, 3], [1, 3, 1, 3], [2, 3, 2, 3]
     ],
     () => {
         const coords = [
@@ -152,6 +147,66 @@ test(
             [0, 2, 0, 2], [1, 2, 1, 2], [2, 2, 2, 2]
         ];
         addYRedundanciesInPlace(coords, [[1, 1]]);
+        return coords;
+    }
+);
+
+
+const addXRedundanciesInPlace = (ranges, removed) => {
+
+    const sortedRanges = [...ranges].sort((a, b) => a[0] - b[0]);
+    const sortedRemoved = [...removed].sort((a, b) => a[0] - b[0]);
+    let offset = 0;
+    let currentRemovedAt = null;
+    let currentOffset = 0;
+
+    for (const range of sortedRanges) {
+
+        range[0] += offset;
+        range[2] += offset + currentOffset;
+        if (currentRemovedAt !== null && currentRemovedAt < range[0]) {
+
+            range[0] += currentOffset;
+            offset += currentOffset;
+            currentRemovedAt = null;
+            currentOffset = 0;
+
+        }
+        const removedAt = sortedRemoved[0]?.[0];
+        if (removedAt === range[0]) {
+            const [_, removedSize] = sortedRemoved.shift();
+            range[2] += removedSize;
+            if (currentRemovedAt != removedAt) {
+                currentRemovedAt = removedAt;
+                currentOffset = removedSize;
+            }
+        }
+
+    }
+
+}
+    ;
+
+/*
+    ###                 ####
+    #.#                 #..#
+    #.#                 #..#
+    ### x: [[1,1]] >    ####
+*/
+test(
+    "00 10 20 01 21 02 22 30 31 32 addXRedundanciesInPlace",
+    [
+        [0, 0, 0, 0], [1, 0, 2, 0], [3, 0, 3, 0],
+        [0, 1, 0, 2], [3, 1, 3, 2],
+        [0, 3, 0, 3], [1, 3, 2, 3], [3, 3, 3, 3]
+    ],
+    () => {
+        const coords = [
+            [0, 0, 0, 0], [1, 0, 1, 0], [2, 0, 2, 0],
+            [0, 1, 0, 2], [2, 1, 2, 2],
+            [0, 3, 0, 3], [1, 3, 1, 3], [2, 3, 2, 3]
+        ];
+        addXRedundanciesInPlace(coords, [[1, 1]]);
         return coords;
     }
 );
