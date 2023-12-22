@@ -4,9 +4,7 @@ import { flood } from "./day18/flood.js";
 import { mapCoords } from "./day18/mapCoords.js";
 import { decodeInstruction } from "./day18/decodeInstruction.js";
 import { draw } from "./day18/draw.js";
-
-import { test } from "./test.js";
-import { compressInPlace } from "./day18/compression.js";
+import { compressCoordinates } from "./day18/compression.js";
 
 const input = 1;
 const day = 18;
@@ -24,7 +22,7 @@ const data = raw
 const part1 = instructions =>
     instructions
         .pipe(draw)
-        .pipe(compressInPlace)
+        .pipe(compressCoordinates)
         .pipe(([coords, compressed]) => {
             const calc =
                 coords
