@@ -93,16 +93,35 @@ test(
 
 const addYRedundanciesInPlace = (ranges, removed) => {
 
+    const sortedRanges = [...ranges].sort((a, b) => a[1] - b[1]);
     const sortedRemoved = [...removed].sort((a, b) => a[0] - b[0]);
     let offset = 0;
-    for (const [expandAt, size] of sortedRemoved) {
+    let currentRemovedAt = null;
+    let currentOffset = 0;
 
-        ranges.forEach(range => {
-            range[1] += offset;
-            range[3] += offset;
-            if (range[1] === expandAt) range[3] += size;
-        });
-        offset += size;
+    console.log(sortedRanges);
+    for (const range of sortedRanges) {
+
+        console.log(range);
+        range[1] += offset;
+        range[3] += offset + currentOffset;
+        if (currentRemovedAt !== null && currentRemovedAt < range[1]) {
+
+            range[1] += currentOffset;
+            offset += currentOffset;
+            currentRemovedAt = null;
+            currentOffset = 0;
+
+        }
+        const removedAt = sortedRemoved[0]?.[0];
+        if (removedAt === range[1]) {
+            const [_, removedSize] = sortedRemoved.shift();
+            range[3] += removedSize;
+            if (currentRemovedAt != removedAt) {
+                currentRemovedAt = removedAt;
+                currentOffset = removedSize;
+            }
+        }
 
     }
 
@@ -127,7 +146,16 @@ test(
         [0, 3, 0, 3],
         [1, 3, 1, 3],
         [2, 3, 2, 3]
-    ]
+    ],
+    () => {
+        const coords = [
+            [0, 0, 0, 0], [1, 0, 1, 0], [2, 0, 2, 0],
+            [0, 1, 0, 1], [2, 1, 2, 1],
+            [0, 2, 0, 2], [1, 2, 1, 2], [2, 2, 2, 2]
+        ];
+        addYRedundanciesInPlace(coords, [[1, 1]]);
+        return coords;
+    }
 );
 
 const uncompressCoordinates = ([pairs, { x, y }]) => {
