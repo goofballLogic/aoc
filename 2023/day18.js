@@ -43,7 +43,7 @@ const part1 = instructions =>
             const mapSize = area(dimensions);
             console.log("Map size", mapSize);
 
-            return 42;
+            return mapSize - outerFloodArea;
 
         })
     ;
