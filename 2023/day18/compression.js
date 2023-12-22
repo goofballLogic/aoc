@@ -91,6 +91,21 @@ test(
     () => compressCoordinates([[0, 0], [3, 0], [3, 3], [0, 3]])
 );
 
+const addYRedundanciesInPlace = (ranges, yRedundancies) =>
+    ranges
+    ;
+
+
+/*
+                        ###
+    ###                 #.#
+    #.#                 #.#
+    ### y: [[1,1]] >    ###
+*/
+test(
+    "00 10 20 01 21 02 12 22 addYRedundanciesInPlace"
+);
+
 const uncompressCoordinates = ([pairs, { x, y }]) => {
 
     // to ranges
