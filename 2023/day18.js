@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import "./evil.js";
 import { flood } from "./day18/flood.js";
-import { mapCoords } from "./day18/mapCoords.js";
+import { calcDimensions, mapCoords } from "./day18/mapCoords.js";
 import { decodeInstruction } from "./day18/decodeInstruction.js";
 import { draw } from "./day18/draw.js";
 import { compressCoordinates, decompressCoordinates } from "./day18/compression.js";
@@ -24,20 +24,19 @@ const inspectMap = map => map.map(line => line.join("")).join("\n");
 const part1 = instructions =>
     instructions
         .pipe(draw)
-        .pipe(compressCoordinates)
-        .pipe(([coords, compressed]) => {
-            const calc =
-                coords
+        .pipe(coords => [coords, ...compressCoordinates(coords)])
+        .pipe(([coords, compressedCoords, compressedRanges]) => {
+            const outerFlood =
+                compressedCoords
                     .pipe(mapCoords)
-                    .pipe(map => [map, flood({ map, x: -1, y: -1 })])
-                    .tap(([map, flooded]) => console.log(inspectMap(map), flooded))
-                    .pipe(([map, flooded]) => [map, decompressCoordinates(flooded, compressed)])
-                    .tap(([map, flooded]) => console.log(inspectMap(map), flooded))
-                    .pipe(([map, flooded]) =>
-                        map[0].length * map.length
-                        - flooded.length
-                    );
-            return calc;
+                    .pipe(map => flood({ map, x: -1, y: -1 }))
+                    .pipe(flooded => decompressCoordinates(flooded, compressedRanges));
+
+            console.log(outerFlood);
+            const dimensions = calcDimensions(coords);
+            console.log(dimensions);
+
+            return 42;
 
         })
     ;

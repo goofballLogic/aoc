@@ -1,7 +1,7 @@
 import { test } from "../test.js";
 import { draw } from "./draw.js";
 
-const calcDimensions = coords => coords
+export const calcDimensions = coords => coords
     .reduce((prev, next) => [
         Math.min(prev[0], next[0]),
         Math.min(prev[1], next[1]),
