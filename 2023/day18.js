@@ -55,7 +55,7 @@ const part2 = instructions =>
                 //.pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
                 ;
             //
-            return 42;
+            return false;
 
         })
     ;
