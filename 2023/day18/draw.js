@@ -43,11 +43,6 @@ test("U1 R1", [[0, 0], [0, -1], [1, -1]], () => draw([["U", 1], ["R", 1]]));
 */
 
 const pairs = data =>
-    data
-        .split(" ")
-        .map(pair =>
-            pair
-                .split("")
-                .map(x => parseInt(x)));
+    data.split(" ").map(pair => pair.split("").map(x => parseInt(x)));
 
 test("00 30 33 03", pairs("00 30 32 03"));
