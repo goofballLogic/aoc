@@ -99,10 +99,8 @@ const addYRedundanciesInPlace = (ranges, removed) => {
     let currentRemovedAt = null;
     let currentOffset = 0;
 
-    console.log(sortedRanges);
     for (const range of sortedRanges) {
 
-        console.log(range);
         range[1] += offset;
         range[3] += offset + currentOffset;
         if (currentRemovedAt !== null && currentRemovedAt < range[1]) {
