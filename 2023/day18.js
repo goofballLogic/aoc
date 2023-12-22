@@ -32,7 +32,7 @@ const part1 = instructions =>
                     //.tee(x => console.log(x))
                     .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
                 ;
-            //console.log(compressed);
+            console.log(compressed);
             return calc;
 
         });
