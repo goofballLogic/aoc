@@ -22,9 +22,11 @@ function removeRedundanciesInPlace(sortedPairs, redundant, observe, transform) {
     const sortedRedundant = [...redundant].sort((a, b) => a[0] - b[0]);
     let offset = 0;
     sortedPairs.forEach(pair => {
+
         while (sortedRedundant.length && sortedRedundant[0][0] < observe(pair))
             offset -= sortedRedundant.shift()[1];
         transform(pair, offset);
+
     });
 
 }
