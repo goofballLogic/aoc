@@ -29,6 +29,7 @@ const part1 = instructions =>
             const outerFlood =
                 compressedCoords
                     .pipe(mapCoords)
+                    .tee(line => console.log(line.join("")))
                     .pipe(map => flood({ map, x: -1, y: -1 }))
                     .pipe(flooded => decompressCoordinates(flooded, compressedRanges));
 
