@@ -115,13 +115,13 @@ const compress = pairs => {
 const asPairs = data => data.split(" ").map(pair => pair.split("").map(x => parseInt(x)));
 /*
     ####
-    #..#   ####
-    #..#   #..#
-    #### > #### y: [[1, 1]], x: [[]]
+    #..#   ###
+    #..#   #.#
+    #### > ### y: [[1, 1]], x: [[1, 1]]
 */
 test(
     "00 30 33 03",
-    [asPairs("00 30 32 02"), { y: [[1, 1]], x: [] }]
+    [asPairs("00 20 22 02"), { y: [[1, 1]], x: [] }]
 );
 
 
