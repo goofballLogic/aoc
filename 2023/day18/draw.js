@@ -42,6 +42,9 @@ test("U1 R1", [[0, 0], [0, -1], [1, -1]], () => draw([["U", 1], ["R", 1]]));
     #### > ####
 */
 
+const compress = pairs =>
+    pairs;
+
 const pairs = data =>
     data.split(" ").map(pair => pair.split("").map(x => parseInt(x)));
 
