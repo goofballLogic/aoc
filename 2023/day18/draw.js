@@ -73,7 +73,11 @@ function removeRedundancies(sortedPairs, redundant, transform) {
 test(
     "00 10 13 03 06 16 removeRedundancies",
     [[0, 0], [1, 0], [1, 2], [0, 2], [0, 4], [1, 4]],
-
+    // () => removeRedundancies(
+    //     [[0, 0], [1, 0], [1, 3], [0, 3], [0, 6], [1, 6]],
+    //     [[1, 1], [4, 1]],
+    //     ([x, y], offset) => [x, y + offset]
+    // )
 );
 
 const compress = pairs => {
