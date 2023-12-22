@@ -41,13 +41,13 @@ const calculateRedundantVerticalRanges = linesOnWhichSomethingHappens =>
         .slice(1)
         .reduce(
             ([ranges, previous], y) => [
-                ranges.concat([previous, y - previous]),
+                ranges.concat([[previous + 1, y - previous - 2]]),
                 y
             ],
-            [[], linesOnWhichSomethingHappens]
+            [[], linesOnWhichSomethingHappens[0]]
         )[0];
 
-test("0,3 redundancies", [[1, 1]]);
+test("0,3 redundancies", [[1, 1]], () => calculateRedundantVerticalRanges([0, 3]));
 
 const compress = pairs => {
 
