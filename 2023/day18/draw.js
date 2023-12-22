@@ -35,12 +35,9 @@ export function draw(instructions) {
 test("U1", [[0, 0], [0, -1]], () => draw([["U", 1]]));
 test("U1 R1", [[0, 0], [0, -1], [1, -1]], () => draw([["U", 1], ["R", 1]]));
 
-const compress = pairs => {
 
-    const linesOnWhichSomethingHappens = pairs
-        .map(([x, y]) => y)
-        .sort();
-    const redundantVerticalRanges = linesOnWhichSomethingHappens
+const calculateRedundantVerticalRanges = linesOnWhichSomethingHappens =>
+    linesOnWhichSomethingHappens
         .slice(1)
         .reduce(
             ([ranges, previous], y) => [
@@ -50,12 +47,21 @@ const compress = pairs => {
             [[], linesOnWhichSomethingHappens]
         )[0];
 
+test("0,3 redundancies", [[1, 1]]);
+
+const compress = pairs => {
+
+    const linesOnWhichSomethingHappens = pairs
+        .map(([x, y]) => y)
+        .sort();
+    const redundantVerticalRanges = calculateRedundantVerticalRanges(linesOnWhichSomethingHappens);
+
+    console.log(redundantVerticalRanges);
     pairs;
 
 }
 
-const pairs = data =>
-    data.split(" ").map(pair => pair.split("").map(x => parseInt(x)));
+const pairs = data => data.split(" ").map(pair => pair.split("").map(x => parseInt(x)));
 /*
     ####
     #..#   ####
@@ -66,3 +72,5 @@ test(
     "00 30 33 03",
     [pairs("00 30 32 02"), { y: [[1, 1]], x: [] }]
 );
+
+
