@@ -40,11 +40,11 @@ const compress = pairs => {
     const linesOnWhichSomethingHappens = pairs
         .map(([x, y]) => y)
         .sort();
-    const spareVerticalRanges = linesOnWhichSomethingHappens
+    const redundantVerticalRanges = linesOnWhichSomethingHappens
         .slice(1)
         .reduce(
             ([ranges, previous], y) => [
-                ranges.concat([previous, y]),
+                ranges.concat([previous, y - previous]),
                 y
             ],
             [[], linesOnWhichSomethingHappens]
@@ -60,7 +60,9 @@ const pairs = data =>
     ####
     #..#   ####
     #..#   #..#
-    #### > #### 0,1 y:1
+    #### > #### y: [[1, 1]], x: [[]]
 */
 test(
-    "00 30 33 03", [pairs("00 30 32 03"), [[0, 1, 0, 1]]]);
+    "00 30 33 03",
+    [pairs("00 30 32 02"), { y: [[1, 1]], x: [] }]
+);
