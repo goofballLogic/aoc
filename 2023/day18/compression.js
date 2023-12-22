@@ -91,6 +91,19 @@ test(
     () => compressCoordinates([[0, 0], [3, 0], [3, 3], [0, 3]])
 );
 
+const uncompressCoordinates = ([pairs, { x, y }]) => {
+
+    // to ranges
+    const working = pairs.map(([x, y]) => [x, y, x, y]);
+    // decompress y coordinates
+    addYRedundanciesInPlace(working, y);
+    // decompress x coordinates
+    addXRedundanciesInPlace(working, x);
+    return working;
+
+}
+    ;
+
 /*
                                     ####
     ###                             #..#
