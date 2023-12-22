@@ -45,6 +45,7 @@ console.timeEnd("Part 1");
 const part2 = instructions =>
     instructions
         .map(decodeInstruction)
+        .tee(x => console.log(x))
         .pipe(draw)
         .pipe(compressCoordinates)
         .pipe(([coords, compressed]) => {
