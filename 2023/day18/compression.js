@@ -202,12 +202,16 @@ const addXRedundanciesInPlace = (ranges, removed) => {
         }
         const removedAt = sortedRemoved[0]?.[0];
         if (removedAt === range[0]) {
+
             const [_, removedSize] = sortedRemoved.shift();
             range[2] += removedSize;
             if (currentRemovedAt != removedAt) {
+
                 currentRemovedAt = removedAt;
                 currentOffset = removedSize;
+
             }
+
         }
 
     }
@@ -229,6 +233,7 @@ test(
         [0, 3, 0, 3], [1, 3, 2, 3], [3, 3, 3, 3]
     ],
     () => {
+
         const coords = [
             [0, 0, 0, 0], [1, 0, 1, 0], [2, 0, 2, 0],
             [0, 1, 0, 2], [2, 1, 2, 2],
@@ -236,7 +241,9 @@ test(
         ];
         addXRedundanciesInPlace(coords, [[1, 1]]);
         return coords;
+
     }
+    
 );
 
 const uncompressCoordinates = ([pairs, { x, y }]) => {
