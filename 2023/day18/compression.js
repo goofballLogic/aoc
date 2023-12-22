@@ -68,9 +68,11 @@ const removeXRedundanciesInPlace = (pairs, redundant) => removeRedundanciesInPla
 export const compressCoordinates = pairs => {
 
     const working = structuredClone(pairs);
-    const significantY = working.map(([_, y]) => y).distinct().sort();
-    const significantX = working.map(([x, _]) => x).distinct().sort();
+    const significantY = working.map(([_, y]) => y).distinct().sort((a, b) => a - b);
+    const significantX = working.map(([x, _]) => x).distinct().sort((a, b) => a - b);
+    console.log(significantY);
     const y = redundancies(significantY);
+    console.log(y);
     const x = redundancies(significantX);
     removeYRedundanciesInPlace(working, y);
     removeXRedundanciesInPlace(working, x);
@@ -89,6 +91,26 @@ test(
     "00 30 33 03 compressCoordinates",
     [asPairs("00 20 22 02"), { y: [[1, 1]], x: [[1, 1]] }],
     () => compressCoordinates([[0, 0], [3, 0], [3, 3], [0, 3]])
+);
+test(
+    "example compressCoordinates",
+    compressCoordinates([
+        [0, 0],
+        [461937, 0],
+        [461937, 56407],
+        [818608, 56407],
+        [818608, 919647],
+        [1186328, 919647],
+        [1186328, 1186328],
+        [609066, 1186328],
+        [609066, 356353],
+        [497056, 356353],
+        [497056, 1186328],
+        [5411, 1186328],
+        [5411, 500254],
+        [0, 500254],
+        [0, 0]
+    ])
 );
 
 const addYRedundanciesInPlace = (ranges, removed) => {
