@@ -1,4 +1,4 @@
-import { test } from "./test.js";
+import { test } from "../test.js";
 
 function go(x, y, a, i) {
     switch (a) {

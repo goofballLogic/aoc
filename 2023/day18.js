@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { test } from "./test.js";
 import "./evil.js";
 import { flood } from "./day18/flood.js";
-import { draw } from "./draw.js";
+import { draw } from "./day18/draw.js";
 
 const input = 1;
 const day = 18;
