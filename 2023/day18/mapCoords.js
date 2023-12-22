@@ -13,7 +13,7 @@ test(
     [0, -1, 0, 0],
     () => calcDimensions(draw([["U", 1]]))
 );
-const remapCoords = (coords, dx, dy) => coords
+export const remapCoords = (coords, dx, dy) => coords
     .map(([x, y]) => [x + dx, y + dy]);
 
 export const mapCoords = coords => {

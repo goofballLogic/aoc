@@ -123,31 +123,23 @@ test(
 const addYRedundanciesInPlace = (ranges, removed) => {
 
     const sortedRanges = [...ranges].sort((a, b) => a[1] - b[1]);
-    const sortedRemoved = [...removed].sort((a, b) => a[0] - b[0]);
-    let offset = 0;
-    let currentRemovedAt = null;
-    let currentOffset = 0;
+    const sortedRemoved = [...removed].sort((a, b) => b[0] - a[0]);
+    while (sortedRemoved.length) {
 
-    for (const range of sortedRanges) {
+        const [removedAt, removedSize] = sortedRemoved.pop();
+        for (let range of sortedRanges) {
 
-        range[1] += offset;
-        range[3] += offset + currentOffset;
-        if (currentRemovedAt !== null && currentRemovedAt < range[1]) {
+            if (range[1] === removedAt) {
 
-            range[1] += currentOffset;
-            offset += currentOffset;
-            currentRemovedAt = null;
-            currentOffset = 0;
+                range[3] += removedSize;
 
-        }
-        const removedAt = sortedRemoved[0]?.[0];
-        if (removedAt === range[1]) {
-            const [_, removedSize] = sortedRemoved.shift();
-            range[3] += removedSize;
-            if (currentRemovedAt != removedAt) {
-                currentRemovedAt = removedAt;
-                currentOffset = removedSize;
+            } else if (range[1] > removedAt) {
+
+                range[1] += removedSize;
+                range[3] += removedSize;
+
             }
+
         }
 
     }
@@ -180,36 +172,23 @@ test(
     }
 );
 
-
 const addXRedundanciesInPlace = (ranges, removed) => {
 
     const sortedRanges = [...ranges].sort((a, b) => a[0] - b[0]);
-    const sortedRemoved = [...removed].sort((a, b) => a[0] - b[0]);
-    let offset = 0;
-    let currentRemovedAt = null;
-    let currentOffset = 0;
+    const sortedRemoved = [...removed].sort((a, b) => b[0] - a[0]);
+    while (sortedRemoved.length) {
 
-    for (const range of sortedRanges) {
+        const [removedAt, removedSize] = sortedRemoved.pop();
+        for (let range of sortedRanges) {
 
-        range[0] += offset;
-        range[2] += offset + currentOffset;
-        if (currentRemovedAt !== null && currentRemovedAt < range[0]) {
+            if (range[0] === removedAt) {
 
-            range[0] += currentOffset;
-            offset += currentOffset;
-            currentRemovedAt = null;
-            currentOffset = 0;
+                range[2] += removedSize;
 
-        }
-        const removedAt = sortedRemoved[0]?.[0];
-        if (removedAt === range[0]) {
+            } else if (range[0] > removedAt) {
 
-            const [_, removedSize] = sortedRemoved.shift();
-            range[2] += removedSize;
-            if (currentRemovedAt != removedAt) {
-
-                currentRemovedAt = removedAt;
-                currentOffset = removedSize;
+                range[0] += removedSize;
+                range[2] += removedSize;
 
             }
 
@@ -274,7 +253,43 @@ test(
         [0, 3, 0, 3], [1, 3, 2, 3], [3, 3, 3, 3]
     ],
     () => decompressCoordinates(
-        [[0, 0], [1, 0], [2, 0], [0, 1], [2, 1], [0, 2], [1, 2], [2, 2]],
+        [
+            [0, 0], [1, 0], [2, 0],
+            [0, 1], [2, 1],
+            [0, 2], [1, 2], [2, 2]
+        ],
         { x: [[1, 1]], y: [[1, 1]] }
+    )
+);
+
+/*
+                                          #####
+    ####                                  #...#
+    #..#                                  #...#
+    #..#                                  #...#
+    ##.###                                ##..###########
+     #...#                                 #............#
+     ##### y: [[2,1]], x: [[2,1],[5,8]] >  ##############
+*/
+test(
+    "decompressCoordinates",
+    [
+        [0, 0, 0, 0], [1, 0, 1, 0], [2, 0, 3, 0], [4, 0, 4, 0],
+        [0, 1, 0, 1], [4, 1, 4, 1],
+        [0, 2, 0, 3], [4, 2, 4, 3],
+        [0, 4, 0, 4], [1, 4, 1, 4], [4, 4, 4, 4], [5, 4, 13, 4], [14, 4, 14, 4],
+        [1, 5, 1, 5], [14, 5, 14, 5],
+        [1, 6, 1, 6], [2, 6, 3, 6], [4, 6, 4, 6], [5, 6, 13, 6], [14, 6, 14, 6]
+    ],
+    () => decompressCoordinates(
+        [
+            [0, 0], [1, 0], [2, 0], [3, 0],
+            [0, 1], [3, 1],
+            [0, 2], [3, 2],
+            [0, 3], [1, 3], [3, 3], [4, 3], [5, 3],
+            [1, 4], [5, 4],
+            [1, 5], [2, 5], [3, 5], [4, 5], [5, 5]
+        ],
+        { x: [[2, 1], [5, 8]], y: [[2, 1]] }
     )
 );
