@@ -81,6 +81,24 @@ test(
     )
 );
 
+const removeYRedundancies = (pairs, redundant) =>
+    removeRedundancies(
+        [...pairs].sort((a, b) => a[1] - b[1]),
+        redundant,
+        ([_, y]) => y,
+        ([x, y], offset) => [x, y + offset]
+
+    )
+    ;
+const removeXRedundancies = (pairs, redundant) =>
+    removeRedundancies(
+        [...pairs].sort((a, b) => a[0] - b[0]),
+        redundant,
+        ([x, _]) => x,
+        ([x, y], offset) => [x + offset, y]
+    )
+    ;
+
 const compress = pairs => {
 
     const significantY = pairs.map(([_, y]) => y).distinct().sort();
@@ -88,13 +106,9 @@ const compress = pairs => {
     const y = redundancies(significantY);
     const x = redundancies(significantX);
 
-    const ySortedPairs = [...pairs].sort((a, b) => a[1] - b[1]);
-    const yPrunedPairs = removeRedundancies(ySortedPairs, y, ([x, y], offset) => [x, y + offset]);
+    const prunedPairs = removeXRedundancies(removeYRedundancies(pairs, y), x);
 
-    console.log(yPrunedPairs);
-    const xSortedPairs = [...pairs].sort((a, b) => a[0] - b[0]);
-
-    return [pairs, { x, y }];
+    return [prunedPairs, { x, y }];
 
 }
 
