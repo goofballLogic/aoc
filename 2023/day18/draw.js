@@ -57,58 +57,60 @@ test("0,1,3 redundancies", [], () => redundancies([0, 1, 3]));
 test("0,3,6 redundancies", [[1, 1], [4, 1]], () => redundancies([0, 3, 6]));
 
 
-function removeRedundancies(sortedPairs, redundant, observe, transform) {
+function removeRedundanciesInPlace(sortedPairs, redundant, observe, transform) {
 
     const sortedRedundant = [...redundant].sort((a, b) => a[0] - b[0]);
     let offset = 0;
-    const prunedPairs = sortedPairs.map(pair => {
+    sortedPairs.forEach(pair => {
         while (sortedRedundant.length && sortedRedundant[0][0] < observe(pair))
-            offset += sortedRedundant.shift()[1];
-        return transform(pair, -offset);
+            offset -= sortedRedundant.shift()[1];
+        transform(pair, offset);
     });
-    return prunedPairs;
 
 }
 
 test(
-    "00 10 13 03 06 16 removeRedundancies",
+    "00 10 13 03 06 16 removeRedundanciesInPlace",
     [[0, 0], [1, 0], [1, 2], [0, 2], [0, 4], [1, 4]],
-    () => removeRedundancies(
-        [[0, 0], [1, 0], [1, 3], [0, 3], [0, 6], [1, 6]],
-        [[1, 1], [4, 1]],
-        ([_, y]) => y,
-        ([x, y], offset) => [x, y + offset]
-    )
+    () => {
+        const coords = [[0, 0], [1, 0], [1, 3], [0, 3], [0, 6], [1, 6]];
+        removeRedundanciesInPlace(
+            coords,
+            [[1, 1], [4, 1]],
+            ([_, y]) => y,
+            (pair, offset) => { pair[1] += offset; }
+        );
+        return coords;
+    }
 );
 
-const removeYRedundancies = (pairs, redundant) =>
-    removeRedundancies(
+const removeYRedundanciesInPlace = (pairs, redundant) =>
+    removeRedundanciesInPlace(
         [...pairs].sort((a, b) => a[1] - b[1]),
         redundant,
         ([_, y]) => y,
-        ([x, y], offset) => [x, y + offset]
+        (pair, offset) => { pair[1] += offset; }
 
     )
     ;
-const removeXRedundancies = (pairs, redundant) =>
-    removeRedundancies(
+const removeXRedundanciesInPlace = (pairs, redundant) =>
+    removeRedundanciesInPlace(
         [...pairs].sort((a, b) => a[0] - b[0]),
         redundant,
         ([x, _]) => x,
-        ([x, y], offset) => [x + offset, y]
+        (pair, offset) => { pair[0] += offset; }
     )
     ;
 
-const compress = pairs => {
+const compressInPlace = pairs => {
 
     const significantY = pairs.map(([_, y]) => y).distinct().sort();
     const significantX = pairs.map(([x, _]) => x).distinct().sort();
     const y = redundancies(significantY);
     const x = redundancies(significantX);
-
-    const prunedPairs = removeXRedundancies(removeYRedundancies(pairs, y), x);
-
-    return [prunedPairs, { x, y }];
+    removeYRedundanciesInPlace(pairs, y);
+    removeXRedundanciesInPlace(pairs, x);
+    return [pairs, { x, y }];
 
 }
 
@@ -120,8 +122,9 @@ const asPairs = data => data.split(" ").map(pair => pair.split("").map(x => pars
     #### > ### y: [[1, 1]], x: [[1, 1]]
 */
 test(
-    "00 30 33 03",
-    [asPairs("00 20 22 02"), { y: [[1, 1]], x: [] }]
+    "00 30 33 03 compressInPlace",
+    [asPairs("00 20 22 02"), { y: [[1, 1]], x: [[1, 1]] }],
+    () => compressInPlace([[0, 0], [3, 0], [3, 3], [0, 3]])
 );
 
 
