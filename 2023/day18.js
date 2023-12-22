@@ -18,7 +18,7 @@ const data = raw
     .map(([a, i, c]) => [a, parseInt(i), c])
     ;
 
-console.log(data);
+
 
 const part1 = instructions =>
     instructions
