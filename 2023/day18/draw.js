@@ -53,7 +53,7 @@ const calculateRedundantVerticalRanges = linesOnWhichSomethingHappens =>
 test("0,3 redundancies", [[1, 1]], () => calculateRedundantVerticalRanges([0, 3]));
 test("0,4 redundancies", [[1, 2]], () => calculateRedundantVerticalRanges([0, 4]));
 test("0,1,3 redundancies", [], () => calculateRedundantVerticalRanges([0, 1, 3]));
-
+test("0,3,6 redundancies", [[1, 1], [4, 1]], () => calculateRedundantVerticalRanges([0, 3, 6]));
 const compress = pairs => {
 
     const linesOnWhichSomethingHappens = pairs
