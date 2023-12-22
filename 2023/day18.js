@@ -39,11 +39,6 @@ test("go 0 0 D 2", [0, 2], () => go(0, 0, "D", 2));
 test("go 0 0 L 3", [-3, 0], () => go(0, 0, "L", 3));
 test("go 0 0 R 4", [4, 0], () => go(0, 0, "R", 4));
 
-/**
- *
- * @param {[[string, number]]} instructions
- * @returns [[number, number]]
- */
 function draw(instructions) {
 
     const map = [[0, 0]];
@@ -75,13 +70,6 @@ test(
     () => calcDimensions(draw([["U", 1]]))
 );
 
-/**
- *
- * @param {[[number,number]]} coords
- * @param {number} dx
- * @param {number} dy
- * @returns [[number, number]]
- */
 const remapCoords = (coords, dx, dy) =>
     coords
         .map(([x, y]) => [x + dx, y + dy])
@@ -92,7 +80,6 @@ const mapCoords = coords => {
     const dimensions = calcDimensions(coords);
     const width = dimensions[2] - dimensions[0] + 1;
     const height = dimensions[3] - dimensions[1] + 1;
-    console.log(width, height);
     const map = Array(height).fill("").map(() => Array(width).fill("."));
     const remappedCoords = remapCoords(coords, dimensions[0] * -1, dimensions[1] * -1);
     for (let i = 1; i < remappedCoords.length; i++) {
@@ -122,15 +109,10 @@ test(
     () => mapCoords(draw([["U", 1], ["L", 1], ["D", 2], ["R", 2]]))
 );
 
-// draw map
-// flood outside
-// map - outside
-
 const part1 = instructions =>
     instructions
         .pipe(draw)
         .pipe(mapCoords)
-        //.tee(map => console.log(map.map(line => line.join("")).join("\n")))
         .pipe(map => [map, flood({ map, x: -1, y: -1 })])
         .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
     ;
