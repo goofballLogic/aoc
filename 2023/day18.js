@@ -35,7 +35,8 @@ const part1 = instructions =>
             console.log(compressed);
             return calc;
 
-        });
+        })
+    ;
 
 console.time("Part 1");
 console.log("Part 1", part1(data));
@@ -45,11 +46,22 @@ const part2 = instructions =>
     instructions
         .map(decodeInstruction)
         .pipe(draw)
-        .pipe(mapCoords)
-        .pipe(map => [map, flood({ map, x: -1, y: -1 })])
-        .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
+        .pipe(compressCoordinates)
+        .pipe(([coords, compressed]) => {
+            const calc =
+                coords
+                    .pipe(mapCoords)
+                    .tee(x => console.log(x.join("")))
+                //.pipe(map => [map, flood({ map, x: -1, y: -1 })])
+                //.tee(x => console.log(x))
+                //.pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
+                ;
+            console.log(compressed);
+            return calc;
+
+        })
     ;
 
-// console.time("Part 2");
-// console.log("Part 2", part1(data));
-// console.timeEnd("Part 2");
+console.time("Part 2");
+console.log("Part 2", part1(data));
+console.timeEnd("Part 2");
