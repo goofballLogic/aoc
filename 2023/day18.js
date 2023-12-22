@@ -48,8 +48,8 @@ const part2 = instructions =>
         .pipe(draw)
         .pipe(compressCoordinates)
         .pipe(([coords, compressed]) => {
-            console.log(coords);
-            console.log(compressed);
+            // console.log(coords);
+            // console.log(compressed);
             const calc =
                 coords
                     .pipe(mapCoords)
