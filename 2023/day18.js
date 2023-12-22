@@ -24,6 +24,7 @@ const data = raw
 const part1 = instructions =>
     instructions
         .pipe(draw)
+        .tee(x => console.log(x.join("")))
         .pipe(compressInPlace)
         .pipe(([coords, compressed]) => {
             const calc =
