@@ -15,11 +15,14 @@ test(
 );
 const remapCoords = (coords, dx, dy) => coords
     .map(([x, y]) => [x + dx, y + dy]);
+
 export const mapCoords = coords => {
 
     const dimensions = calcDimensions(coords);
     const width = dimensions[2] - dimensions[0] + 1;
     const height = dimensions[3] - dimensions[1] + 1;
+    console.log(coords);
+    console.log(dimensions);
     const map = Array(height).fill("").map(() => Array(width).fill("."));
     const remappedCoords = remapCoords(coords, dimensions[0] * -1, dimensions[1] * -1);
     for (let i = 1; i < remappedCoords.length; i++) {

@@ -24,13 +24,18 @@ const data = raw
 const part1 = instructions =>
     instructions
         .pipe(draw)
-        //.pipe(compressInPlace)
-        .tap(x => console.log(x))
-        .pipe(mapCoords)
-        //.tee(x => console.log(x.join("")))
-        .pipe(map => [map, flood({ map, x: -1, y: -1 })])
-        .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
-    ;
+        .pipe(compressInPlace)
+        .pipe(([coords, compressed]) => {
+            const calc =
+                coords
+                    .pipe(mapCoords)
+                    //.tee(x => console.log(x.join("")))
+                    .pipe(map => [map, flood({ map, x: -1, y: -1 })])
+                    .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
+                ;
+            return calc;
+
+        });
 
 console.time("Part 1");
 console.log("Part 1", part1(data));

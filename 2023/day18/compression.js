@@ -3,13 +3,17 @@ import { test } from "../test.js";
 const redundancies = significant => significant
     .slice(1)
     .reduce(
-        ([ranges, previous], y) => y > previous + 2
-            ? [
-                ranges.concat([[previous + 1, y - previous - 2]]),
-                y
-            ]
-            : [],
-        [[], significant[0]]
+        ([ranges, previous], next) =>
+            [
+                (next > previous + 2)
+                    ? ranges.concat([[previous + 1, next - previous - 2]])
+                    : ranges,
+                next
+            ],
+        [
+            [],
+            significant[0]
+        ]
     )[0];
 
 test("0,3 redundancies", [[1, 1]], () => redundancies([0, 3]));
