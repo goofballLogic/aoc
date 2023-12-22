@@ -19,6 +19,8 @@ const data = raw
     .map(([a, i, c]) => [a, parseInt(i), c])
     ;
 
+const inspectMap = map => map.map(line => line.join("")).join("\n");
+
 const part1 = instructions =>
     instructions
         .pipe(draw)
@@ -28,9 +30,9 @@ const part1 = instructions =>
                 coords
                     .pipe(mapCoords)
                     .pipe(map => [map, flood({ map, x: -1, y: -1 })])
-                    .tap(([map, flooded]) => console.log(map, flooded))
+                    .tap(([map, flooded]) => console.log(inspectMap(map), flooded))
                     .pipe(([map, flooded]) => [map, decompressCoordinates(flooded, compressed)])
-                    .tap(([map, flooded]) => console.log(map.map(line => line.join("")).join("\n"), flooded))
+                    .tap(([map, flooded]) => console.log(inspectMap(map), flooded))
                     .pipe(([map, flooded]) =>
                         map[0].length * map.length
                         - flooded.length
