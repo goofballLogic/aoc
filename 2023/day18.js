@@ -33,10 +33,14 @@ const part1 = instructions =>
                     .pipe(map => flood({ map, x: -1, y: -1 }))
                     .pipe(flooded => decompressCoordinates(flooded, compressedRanges));
 
-            console.log(outerFlood);
+            console.log("Outer flood", outerFlood);
+            const outerFloodArea = outerFlood
+                .map(area)
+                ;
+            console.log("Outer flood area", outerFloodArea);
             const dimensions = calcDimensions(coords);
-            const size = (dimensions[2] - dimensions[0] + 1) * (dimensions[3] - dimensions[1] + 1);
-            console.log(size);
+            const mapSize = area(dimensions);
+            console.log("Map size", mapSize);
 
             return 42;
 
@@ -70,3 +74,7 @@ const part2 = instructions =>
 console.time("Part 2");
 console.log("Part 2", part2(data));
 console.timeEnd("Part 2");
+function area(dimensions) {
+    return (dimensions[2] - dimensions[0] + 1) * (dimensions[3] - dimensions[1] + 1);
+}
+
