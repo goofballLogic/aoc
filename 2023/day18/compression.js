@@ -247,7 +247,7 @@ test(
 
 );
 
-const uncompressCoordinates = ([pairs, { x, y }]) => {
+export const decompressCoordinates = (pairs, { x, y }) => {
 
     // to ranges
     const working = pairs.map(([x, y]) => [x, y, x, y]);
@@ -267,14 +267,14 @@ const uncompressCoordinates = ([pairs, { x, y }]) => {
     ### y: [[1,1]], x: [[1,1]] > ####
 */
 test(
-    "00 10 20 01 21 02 12 22 y: [[1,1]], x: [[1,1]]",
+    "00 10 20 01 21 02 12 22 y: [[1,1]], x: [[1,1]] decompressCoordinates",
     [
         [0, 0, 0, 0], [1, 0, 2, 0], [3, 0, 3, 0],
         [0, 1, 0, 2], [3, 1, 3, 2],
         [0, 3, 0, 3], [1, 3, 2, 3], [3, 3, 3, 3]
     ],
-    () => uncompressCoordinates([
+    () => decompressCoordinates(
         [[0, 0], [1, 0], [2, 0], [0, 1], [2, 1], [0, 2], [1, 2], [2, 2]],
         { x: [[1, 1]], y: [[1, 1]] }
-    ])
+    )
 );

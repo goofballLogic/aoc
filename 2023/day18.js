@@ -4,7 +4,7 @@ import { flood } from "./day18/flood.js";
 import { mapCoords } from "./day18/mapCoords.js";
 import { decodeInstruction } from "./day18/decodeInstruction.js";
 import { draw } from "./day18/draw.js";
-import { compressCoordinates } from "./day18/compression.js";
+import { compressCoordinates, decompressCoordinates } from "./day18/compression.js";
 
 const input = 1;
 const day = 18;
@@ -28,7 +28,9 @@ const part1 = instructions =>
                 coords
                     .pipe(mapCoords)
                     .pipe(map => [map, flood({ map, x: -1, y: -1 })])
-                    .tap(([map, flooded]) => console.log(flooded))
+                    .tap(([_, flooded]) => console.log(flooded))
+                    .pipe(([map, flooded]) => [map, decompressCoordinates(flooded, compressed)])
+                    .tap(([_, flooded]) => console.log(flooded))
                     .pipe(([map, flooded]) =>
                         map[0].length * map.length
                         - flooded.length
