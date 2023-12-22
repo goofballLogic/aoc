@@ -6,6 +6,7 @@ import { decodeInstruction } from "./day18/decodeInstruction.js";
 import { draw } from "./day18/draw.js";
 
 import { test } from "./test.js";
+import { compressInPlace } from "./day18/compression.js";
 
 const input = 1;
 const day = 18;
@@ -23,7 +24,8 @@ const data = raw
 const part1 = instructions =>
     instructions
         .pipe(draw)
-        //.tap(x => console.log(x))
+        //.pipe(compressInPlace)
+        .tap(x => console.log(x))
         .pipe(mapCoords)
         //.tee(x => console.log(x.join("")))
         .pipe(map => [map, flood({ map, x: -1, y: -1 })])
