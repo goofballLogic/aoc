@@ -4,6 +4,7 @@ import { flood } from "./day18/flood.js";
 import { draw } from "./day18/draw.js";
 import { mapCoords } from "./day18/mapCoords.js";
 import { decodeInstruction } from "./day18/decodeInstruction.js";
+import { test } from "./test.js";
 
 const input = 1;
 const day = 18;
@@ -18,7 +19,7 @@ const data = raw
     .map(([a, i, c]) => [a, parseInt(i), c])
     ;
 
-
+test("####\n#..#\n#..#\n#### compress");
 
 const part1 = instructions =>
     instructions
