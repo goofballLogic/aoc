@@ -163,6 +163,6 @@ const part2 = instructions =>
         .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
     ;
 
-console.time("Part 2");
-console.log("Part 2", part1(data));
-console.timeEnd("Part 2");
+// console.time("Part 2");
+// console.log("Part 2", part1(data));
+// console.timeEnd("Part 2");
