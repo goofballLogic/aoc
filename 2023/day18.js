@@ -30,7 +30,7 @@ const part1 = instructions =>
                     .pipe(map => [map, flood({ map, x: -1, y: -1 })])
                     .tap(([map, flooded]) => console.log(map, flooded))
                     .pipe(([map, flooded]) => [map, decompressCoordinates(flooded, compressed)])
-                    .tap(([map, flooded]) => console.log(map.map(line => line.join("")), flooded))
+                    .tap(([map, flooded]) => console.log(map.map(line => line.join("")).join("\n"), flooded))
                     .pipe(([map, flooded]) =>
                         map[0].length * map.length
                         - flooded.length
