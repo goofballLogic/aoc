@@ -23,6 +23,7 @@ console.log(data);
 const part1 = instructions =>
     instructions
         .pipe(draw)
+        .tap(x => console.log(x))
         .pipe(mapCoords)
         .tee(x => console.log(x.join("")))
         .pipe(map => [map, flood({ map, x: -1, y: -1 })])
