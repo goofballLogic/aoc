@@ -70,9 +70,7 @@ export const compressCoordinates = pairs => {
     const working = structuredClone(pairs);
     const significantY = working.map(([_, y]) => y).distinct().sort((a, b) => a - b);
     const significantX = working.map(([x, _]) => x).distinct().sort((a, b) => a - b);
-    console.log(significantY);
     const y = redundancies(significantY);
-    console.log(y);
     const x = redundancies(significantX);
     removeYRedundanciesInPlace(working, y);
     removeXRedundanciesInPlace(working, x);
