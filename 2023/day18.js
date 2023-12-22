@@ -48,7 +48,7 @@ const part2 = instructions =>
             const calc =
                 coords
                     .pipe(mapCoords)
-                    .tap(x => console.log(x))
+
                 //                    .tee(x => console.log(x.join("")))
                 //.pipe(map => [map, flood({ map, x: -1, y: -1 })])
                 //.tee(x => console.log(x))
