@@ -20,8 +20,6 @@ const data = raw
     .map(([a, i, c]) => [a, parseInt(i), c])
     ;
 
-test("####\n#..#\n#..#\n#### compress",);
-
 const part1 = instructions =>
     instructions
         .pipe(draw)
