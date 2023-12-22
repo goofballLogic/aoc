@@ -24,7 +24,6 @@ const inspectMap = map => map.map(line => line.join("")).join("\n");
 const part1 = instructions =>
     instructions
         .pipe(draw)
-        .tap(coords => console.log(coords))
         .pipe(coords => [coords, ...compressCoordinates(coords)])
         .pipe(([coords, compressedCoords, compressedRanges]) => {
             console.log(coords);
