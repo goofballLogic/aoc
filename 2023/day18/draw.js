@@ -35,17 +35,31 @@ export function draw(instructions) {
 test("U1", [[0, 0], [0, -1]], () => draw([["U", 1]]));
 test("U1 R1", [[0, 0], [0, -1], [1, -1]], () => draw([["U", 1], ["R", 1]]));
 
+const compress = pairs => {
+
+    const linesOnWhichSomethingHappens = pairs
+        .map(([x, y]) => y)
+        .sort();
+    const spareVerticalRanges = linesOnWhichSomethingHappens
+        .slice(1)
+        .reduce(
+            ([ranges, previous], y) => [
+                ranges.concat([previous, y]),
+                y
+            ],
+            [[], linesOnWhichSomethingHappens]
+        )[0];
+
+    pairs;
+
+}
+
+const pairs = data =>
+    data.split(" ").map(pair => pair.split("").map(x => parseInt(x)));
 /*
     ####
     #..#   ####
     #..#   #..#
     #### > ####
 */
-
-const compress = pairs =>
-    pairs;
-
-const pairs = data =>
-    data.split(" ").map(pair => pair.split("").map(x => parseInt(x)));
-
-test("00 30 33 03", pairs("00 30 32 03"));
+test("00 30 33 03", [pairs("00 30 32 03"), [[0, 1, 4, 1]]]);
