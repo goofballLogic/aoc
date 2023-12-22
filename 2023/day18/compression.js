@@ -91,8 +91,22 @@ test(
     () => compressCoordinates([[0, 0], [3, 0], [3, 3], [0, 3]])
 );
 
-const addYRedundanciesInPlace = (ranges, yRedundancies) =>
-    ranges
+const addYRedundanciesInPlace = (ranges, removed) => {
+
+    const sortedRemoved = [...removed].sort((a, b) => a[0] - b[0]);
+    let offset = 0;
+    for (const [expandAt, size] of sortedRemoved) {
+
+        ranges.forEach(range => {
+            range[1] += offset;
+            range[3] += offset;
+            if (range[1] === expandAt) range[3] += size;
+        });
+        offset += size;
+
+    }
+
+}
     ;
 
 
