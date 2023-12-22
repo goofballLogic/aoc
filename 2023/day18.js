@@ -6,7 +6,7 @@ import { decodeInstruction } from "./day18/decodeInstruction.js";
 import { draw } from "./day18/draw.js";
 import { compressCoordinates, decompressCoordinates } from "./day18/compression.js";
 
-const input = 1;
+const input = 2;
 const day = 18;
 const raw = readFileSync(`day${day}-input${input}.txt`)
     .toString()
