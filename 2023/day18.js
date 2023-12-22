@@ -34,7 +34,8 @@ const part1 = instructions =>
 
             console.log(outerFlood);
             const dimensions = calcDimensions(coords);
-            console.log(dimensions);
+            const size = dimensions[3] * dimensions[4];
+            console.log(size);
 
             return 42;
 
