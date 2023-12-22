@@ -103,7 +103,17 @@ const addYRedundanciesInPlace = (ranges, yRedundancies) =>
     ### y: [[1,1]] >    ###
 */
 test(
-    "00 10 20 01 21 02 12 22 addYRedundanciesInPlace"
+    "00 10 20 01 21 02 12 22 addYRedundanciesInPlace",
+    [
+        [0, 0, 0, 0],
+        [1, 0, 1, 0],
+        [2, 0, 2, 0],
+        [0, 1, 0, 2],
+        [2, 1, 2, 2],
+        [0, 3, 0, 3],
+        [1, 3, 1, 3],
+        [2, 3, 2, 3]
+    ]
 );
 
 const uncompressCoordinates = ([pairs, { x, y }]) => {
@@ -132,7 +142,7 @@ test(
         [1, 0, 2, 0],
         [3, 0, 3, 0],
         [0, 1, 0, 2],
-        [2, 1, 2, 2],
+        [3, 1, 3, 2],
         [0, 3, 0, 3],
         [1, 3, 2, 3],
         [3, 3, 3, 3]
