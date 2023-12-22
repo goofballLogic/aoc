@@ -4,6 +4,12 @@ Array.prototype.firstOrNull = function (strategy) {
 
 };
 
+Array.prototype.distinct = function () {
+
+    return Array.from(new Set(this));
+
+};
+
 Array.prototype.sum = function () {
 
     return this.reduce((a, b) => a + b, 0);

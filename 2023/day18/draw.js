@@ -1,4 +1,5 @@
 import { test } from "../test.js";
+import "../evil.js";
 
 function go(x, y, a, i) {
     switch (a) {
@@ -55,16 +56,40 @@ test("0,4 redundancies", [[1, 2]], () => redundancies([0, 4]));
 test("0,1,3 redundancies", [], () => redundancies([0, 1, 3]));
 test("0,3,6 redundancies", [[1, 1], [4, 1]], () => redundancies([0, 3, 6]));
 
+
+function removeRedundancies(sortedPairs, redundant, transform) {
+
+    const sortedRedundant = [...redundant].sort((a, b) => a[0] - b[0]);
+    const offset = 0;
+    const prunedPairs = sortedPairs.map(pair => {
+        while (sortedRedundant.length && sortedRedundant[0][0] < y)
+            offset += sortedRedundant.shift()[1];
+        return transform(pair, -offset);
+    });
+    return prunedPairs;
+
+}
+
+test("00 10 13 03 06 16 removeRedundancies", [[0, 0], [1, 0], [1, 2], [0, 2], [0, 4], [1, 4]]);
+
 const compress = pairs => {
 
-    const significant = pairs.map(([x, y]) => y).sort();
-    const y = redundancies(significant);
-    const x = [];
+    const significantY = pairs.map(([_, y]) => y).distinct().sort();
+    const significantX = pairs.map(([x, _]) => x).distinct().sort();
+    const y = redundancies(significantY);
+    const x = redundancies(significantX);
+
+    const ySortedPairs = [...pairs].sort((a, b) => a[1] - b[1]);
+    const yPrunedPairs = removeRedundancies(ySortedPairs, y, ([x, y], offset) => [x, y + offset]);
+
+    console.log(yPrunedPairs);
+    const xSortedPairs = [...pairs].sort((a, b) => a[0] - b[0]);
+
     return [pairs, { x, y }];
 
 }
 
-const pairs = data => data.split(" ").map(pair => pair.split("").map(x => parseInt(x)));
+const asPairs = data => data.split(" ").map(pair => pair.split("").map(x => parseInt(x)));
 /*
     ####
     #..#   ####
@@ -73,7 +98,8 @@ const pairs = data => data.split(" ").map(pair => pair.split("").map(x => parseI
 */
 test(
     "00 30 33 03",
-    [pairs("00 30 32 02"), { y: [[1, 1]], x: [] }]
+    [asPairs("00 30 32 02"), { y: [[1, 1]], x: [] }]
 );
+
 
 
