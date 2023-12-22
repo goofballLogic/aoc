@@ -28,9 +28,9 @@ const part1 = instructions =>
                 coords
                     .pipe(mapCoords)
                     .pipe(map => [map, flood({ map, x: -1, y: -1 })])
-                    .tap(([_, flooded]) => console.log(flooded))
+                    .tap(([map, flooded]) => console.log(map, flooded))
                     .pipe(([map, flooded]) => [map, decompressCoordinates(flooded, compressed)])
-                    .tap(([_, flooded]) => console.log(flooded))
+                    .tap(([map, flooded]) => console.log(map, flooded))
                     .pipe(([map, flooded]) =>
                         map[0].length * map.length
                         - flooded.length
