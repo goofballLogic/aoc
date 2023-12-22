@@ -32,7 +32,7 @@ const part1 = instructions =>
                     .pipe(map => flood({ map, x: -1, y: -1 }))
                     .pipe(flooded => decompressCoordinates(flooded, compressedRanges));
 
-            console.log("Outer flood", outerFlood);
+            console.log("Outer flood", outerFlood.slice(0, 10), "...");
             const outerFloodArea = outerFlood
                 .map(area)
                 .sum()
