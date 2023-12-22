@@ -33,6 +33,7 @@ const part1 = instructions =>
                     .pipe(map => [map, flood({ map, x: -1, y: -1 })])
                     .pipe(([map, flooded]) => (map[0].length * map.length - flooded.length))
                 ;
+            console.log(compressed);
             return calc;
 
         });
