@@ -22,7 +22,6 @@ console.log(data);
 
 const part1 = instructions =>
     instructions
-        .tee(x => console.log(x))
         .pipe(draw)
         .pipe(mapCoords)
         .pipe(map => [map, flood({ map, x: -1, y: -1 })])
