@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
-import { test } from "./test.js";
 import "./evil.js";
 import { flood } from "./day18/flood.js";
 import { draw } from "./day18/draw.js";
 import { mapCoords } from "./day18/mapCoords.js";
+import { decodeInstruction } from "./day18/decodeInstruction.js";
 
 const input = 1;
 const day = 18;
@@ -31,21 +31,6 @@ const part1 = instructions =>
 console.time("Part 1");
 console.log("Part 1", part1(data));
 console.timeEnd("Part 1");
-
-const decodeInstructionParts = (meters, dir) =>
-    [
-        dir === "0" ? "R" : dir === "1" ? "D" : dir === "2" ? "L" : "U",
-        parseInt(meters, 16)
-    ]
-    ;
-
-const decodeInstruction = instruction =>
-    decodeInstructionParts(
-        ...Array.from(/(.{5})(.)\)/.exec(instruction)).slice(1)
-    )
-    ;
-
-test("(#70c710)", ["R", 461937], decodeInstruction);
 
 const part2 = instructions =>
     instructions
