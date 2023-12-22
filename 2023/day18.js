@@ -36,6 +36,7 @@ const part1 = instructions =>
             console.log("Outer flood", outerFlood);
             const outerFloodArea = outerFlood
                 .map(area)
+                .sum()
                 ;
             console.log("Outer flood area", outerFloodArea);
             const dimensions = calcDimensions(coords);
