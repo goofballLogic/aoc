@@ -1,0 +1,60 @@
+&mg -> rx
+&jg -> mg
+&rh -> mg
+&jm -> mg
+&hf -> mg
+&zs -> mr, pj, zz, dh, jg, zc, rz
+&nt -> ds, hj, ht, rh, qj
+&ff -> vd, bq, pr, vk, ql, jm
+&th -> bn, gb, tt, hf, bk
+broadcaster -> zs, nt, ff, th
+
+%pr -> ql
+%mq -> gz, nt
+%db -> ff, dz
+%dx -> zs, bm
+%bd -> nt, lj
+%qj -> hj
+%xs -> zs, dx
+%xd -> nt
+%gb -> fx, th
+%ht -> nt, vp
+%sq -> th, cd
+%tt -> pq
+%dh -> sh
+%rz -> zc
+%cx -> xr, nt
+%zq -> tt, th
+%lj -> nt, cx
+%mp -> ff, bq
+%dz -> ff, gd
+%fz -> bk, th
+%hj -> mq
+broadcaster -> gb, ht, vk, zz
+%zc -> dh
+%pj -> xs
+%bn -> fz
+%mr -> bf
+%mj -> th, sq
+%gg -> pj, zs
+%sh -> mr, zs
+%bf -> zs, gg
+%bm -> zs
+%bk -> zg
+%pq -> th, mj
+%xf -> ff, db
+%fx -> th, bn
+%xr -> nt, xd
+%bq -> pr
+%zz -> rz, zs
+%gz -> nt, ds
+%vd -> xf
+%vk -> mp, ff
+%cv -> ff
+%cd -> th
+%zg -> th, zq
+%gd -> ff, cv
+%ql -> lt
+%lt -> ff, vd
+%ds -> bd
+%vp -> nt, qj

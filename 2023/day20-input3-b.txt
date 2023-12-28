@@ -1,0 +1,10 @@
+&mg -> rx
+&jg -> mg
+&rh -> mg
+&jm -> mg
+&hf -> mg
+&zs -> mr, pj, zz, dh, jg, zc, rz
+&nt -> ds, hj, ht, rh, qj
+&ff -> vd, bq, pr, vk, ql, jm
+&th -> bn, gb, tt, hf, bk
+broadcaster -> zs, nt, ff, th

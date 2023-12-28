@@ -1,0 +1,6 @@
+&mg -> rx
+&jg -> mg
+&rh -> mg
+&jm -> mg
+&hf -> mg
+broadcaster -> jg, rh, jm, hf
